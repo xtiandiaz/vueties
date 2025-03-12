@@ -1,0 +1,15 @@
+@use './base';
+
+button {
+  background: none;
+  border: none;
+  font-size: 1em;
+  padding: 0;
+
+  &:disabled {
+    opacity: 50%;
+  }
+  &:hover:enabled {
+    cursor: pointer;
+  }
+}
