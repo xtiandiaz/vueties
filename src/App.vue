@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ColorKey } from './components/assets/design-tokens/palette'
-import { IconKey } from './components/assets/design-tokens/iconography'
+import { ColorKey } from '@/assets/design-tokens/palette'
+import { IconKey } from '@/assets/design-tokens/iconography'
 import IconButton from '@/components/IconButton.vue'
 </script>
 

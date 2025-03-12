@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { IconKey } from './assets/design-tokens/iconography'
-import { ColorKey } from './assets/design-tokens/palette';
+import { IconKey } from '@/assets/design-tokens/iconography'
+import { ColorKey } from '@/assets/design-tokens/palette'
 import SvgIcon from './SvgIcon.vue'
 
 defineProps<{
@@ -20,8 +20,8 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/design-tokens/typography';
 @use './assets/buttons';
-@use './assets/design-tokens/typography';
 
 button {
   display: flex;
