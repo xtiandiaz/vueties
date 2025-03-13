@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 import { IconKey } from '@/assets/design-tokens/iconography'
 import { ColorKey } from '@/assets/design-tokens/palette'
-import SvgIcon from './SvgIcon.vue'
+import SvgIcon from '../assorted/SvgIcon.vue'
 
 defineProps<{
-  iconKey: IconKey,
-  colorKey: ColorKey,
+  icon: IconKey,
+  color: ColorKey,
   annotation?: string
 }>()
 </script>
 
 <template>
   <button>
-    <SvgIcon :icon-key="iconKey" :color-key="colorKey" />
-    <span v-if="annotation" class="annotation" :class="`color ${colorKey}`">
+    <SvgIcon :icon="icon" :color="color" />
+    <span v-if="annotation" class="annotation" :class="`color ${color}`">
       {{ annotation }}
     </span>
   </button>
@@ -21,14 +21,11 @@ defineProps<{
 
 <style lang="scss" scoped>
 @use '@/assets/design-tokens/typography';
-@use './assets/buttons';
+@use '../assets/buttons';
 
 button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.15em;
+  padding: 0.25em;
+  position: relative;
 
   .icon {
     height: 2em;
@@ -37,6 +34,11 @@ button {
 
   .annotation {
     @extend .caption, .all-caps;
+    bottom: 0;
+    left: 50%;
+    opacity: 50%;
+    position: absolute;
+    transform: translate(-50%, 100%);
   }
 }
 </style>
