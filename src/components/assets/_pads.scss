@@ -1,0 +1,11 @@
+$key-color: 'body' !default;
+$key-background-color: 'background' !default;
+
+div.pad {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+  max-width: 32em;
+}

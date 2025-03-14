@@ -1,31 +1,32 @@
 <script lang="ts" setup>
 import { IconKey } from '@/assets/design-tokens/iconography'
-import { ColorKey } from '@/assets/design-tokens/palette'
 import SvgIcon from '../assorted/SvgIcon.vue'
 
 defineProps<{
   icon: IconKey,
-  color: ColorKey,
   annotation?: string
 }>()
 </script>
 
 <template>
   <button>
-    <SvgIcon :icon="icon" :color="color" />
-    <span v-if="annotation" class="annotation" :class="`color ${color}`">
+    <SvgIcon :icon="icon" />
+    <span v-if="annotation" class="annotation">
       {{ annotation }}
     </span>
   </button>
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/theme';
+@use '@/assets/design-tokens/palette';
 @use '@/assets/design-tokens/typography';
 @use '../assets/buttons';
 
 button {
   padding: 0.25em;
   position: relative;
+  @include palette.color-attribute('color', theme.$tint-color);
 
   .icon {
     height: 2em;

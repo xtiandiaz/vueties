@@ -7,7 +7,7 @@ button {
   padding: 0;
 
   &:disabled {
-    opacity: 50%;
+    opacity: 25%;
   }
   &:hover:enabled {
     cursor: pointer;
