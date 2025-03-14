@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { IKeypadKey } from '../models';
-import { stringEnumKey } from '@/assets/tungsten/misc'
+import { enumKey } from '@/assets/tungsten/misc'
 import { IconKey } from '@/assets/design-tokens/iconography'
 import SvgIcon from '../assorted/SvgIcon.vue'
 
@@ -9,7 +9,7 @@ const { keypadKey } = defineProps<{
   keypadKey: IKeypadKey,
 }>()
 
-const iconKey = computed(() => stringEnumKey(IconKey, keypadKey.label))
+const iconKey = computed(() => enumKey(IconKey, keypadKey.label))
 </script>
 
 <template>
