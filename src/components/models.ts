@@ -5,3 +5,10 @@ export interface IKeypadKey {
   value: string | number
   isEnabled: boolean
 }
+
+export interface ITool<Key> {
+  key: Key
+  icon: IconKey
+  isEnabled: boolean
+  label?: string
+}

@@ -7,5 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <svg class="icon" v-html="svgIconString(icon)"></svg>
+  <svg class="svg-icon" v-html="svgIconString(icon)"></svg>
 </template>
+
+<style lang="scss" scoped>
+@use '../assets/assorted';
+</style>

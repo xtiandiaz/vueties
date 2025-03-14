@@ -13,7 +13,7 @@ const iconKey = computed(() => enumKey(IconKey, keypadKey.label))
 </script>
 
 <template>
-  <button :class="{ iconized: iconKey !== undefined }">
+  <button class="keypad-button" :class="{ iconized: iconKey !== undefined }">
     <SvgIcon v-if="iconKey !== undefined" :icon="iconKey"/>
     <span v-else class="h5">{{ keypadKey.label }}</span>
   </button>
@@ -23,7 +23,7 @@ const iconKey = computed(() => enumKey(IconKey, keypadKey.label))
 @use '@/assets/design-tokens/palette';
 @use '@/assets/theme';
 
-button {
+button.keypad-button {
   border-radius: 0.5em;
   height: 3em;
   vertical-align: middle;
@@ -39,11 +39,12 @@ button {
     'color': theme.$key-background-color
   ));
   }
+  
   &:disabled {
     background-color: transparent;
   }
   
-  .icon {
+  .svg-icon {
     height: 2em;
     width: 2em;
   }

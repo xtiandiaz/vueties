@@ -12,7 +12,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="pad">
+  <div class="pad simple-keypad">
     <KeypadButton 
       v-for="(key, index) of keys"
       :key="index"
@@ -24,4 +24,5 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
+@use '../assets/pads';
 </style>
