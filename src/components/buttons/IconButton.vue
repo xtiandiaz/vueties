@@ -24,8 +24,13 @@ defineProps<{
 @use '../assets/buttons';
 
 button.icon-button {
-  padding: 0.25em;
+  $icon-size: 2em;
+  $size: calc($icon-size + 1em);
+  
+  border-radius: 50%;
+  height: $size;
   position: relative;
+  width: $size;
   @include palette.color-attribute('color', theme.$tint-color);
 
   .annotation {
@@ -37,8 +42,8 @@ button.icon-button {
     transform: translate(-50%, 100%);
   }
   .svg-icon {
-    height: 2em;
-    width: 2em;
+    height: $icon-size;
+    width: $icon-size;
   }
 }
 </style>
