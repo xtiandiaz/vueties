@@ -29,17 +29,17 @@ button.icon-button {
   
   border-radius: 50%;
   height: $size;
+  padding: 0;
   position: relative;
   width: $size;
   @include palette.color-attribute('color', theme.$tint-color);
 
   .annotation {
-    @extend .caption, .all-caps;
+    @extend .caption;
     bottom: 0;
     left: 50%;
-    opacity: 50%;
     position: absolute;
-    transform: translate(-50%, 100%);
+    transform: translate(-50%, calc(100% - 0.25em));
   }
   .svg-icon {
     height: $icon-size;

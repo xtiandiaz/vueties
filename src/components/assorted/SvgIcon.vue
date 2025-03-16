@@ -12,4 +12,8 @@ defineProps<{
 
 <style lang="scss" scoped>
 @use '../assets/assorted';
+
+.svg-icon {
+  vertical-align: middle;
+}
 </style>
