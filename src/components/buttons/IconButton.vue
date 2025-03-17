@@ -4,15 +4,15 @@ import SvgIcon from '../assorted/SvgIcon.vue'
 
 defineProps<{
   icon: IconKey,
-  annotation?: string
+  label?: string
 }>()
 </script>
 
 <template>
   <button class="icon-button">
     <SvgIcon :icon="icon" />
-    <span v-if="annotation" class="annotation">
-      {{ annotation }}
+    <span v-if="label" class="label">
+      {{ label }}
     </span>
   </button>
 </template>
@@ -24,8 +24,7 @@ defineProps<{
 @use '../assets/buttons';
 
 button.icon-button {
-  $icon-size: 2em;
-  $size: calc($icon-size + 1em);
+  $size: 3em;
   
   border-radius: 50%;
   height: $size;
@@ -33,8 +32,12 @@ button.icon-button {
   position: relative;
   width: $size;
   @include palette.color-attribute('color', theme.$tint-color);
+  
+  &:disabled {
+    background: none;
+  }
 
-  .annotation {
+  .label {
     @extend .caption;
     bottom: 0;
     left: 50%;
@@ -42,8 +45,9 @@ button.icon-button {
     transform: translate(-50%, calc(100% - 0.25em));
   }
   .svg-icon {
-    height: $icon-size;
-    width: $icon-size;
+    $size: calc($size - 1em);
+    height: $size;
+    width: $size;
   }
 }
 </style>

@@ -17,6 +17,7 @@ const emits = defineEmits<{
       v-for="(tool, index) of tools"
       :key="index"
       :icon="tool.icon"
+      :label="tool.label"
       :class="tool.key"
       :disabled="!tool.isEnabled"
       @click="emits('toolSelected', tool.key)"
@@ -29,5 +30,6 @@ const emits = defineEmits<{
 
 div.tool-bar {
   @extends .bar;
+  justify-content: center;
 }
 </style>

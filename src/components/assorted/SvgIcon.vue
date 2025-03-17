@@ -7,13 +7,14 @@ defineProps<{
 </script>
 
 <template>
-  <svg class="svg-icon" v-html="svgIconString(icon)"></svg>
+  <span class="svg-icon" v-html="svgIconString(icon)"></span>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/assorted';
 
 .svg-icon {
+  display: inline-block;
   vertical-align: middle;
 }
 </style>
