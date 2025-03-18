@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IconKey, svgIconString } from '@/assets/design-tokens/iconography'
+import { Icon, svgIconString } from '@/assets/design-tokens/iconography'
 
 defineProps<{
-  icon: IconKey
+  icon: Icon
 }>()
 </script>
 
@@ -11,8 +11,6 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/assorted';
-
 .svg-icon {
   display: inline-block;
   vertical-align: middle;

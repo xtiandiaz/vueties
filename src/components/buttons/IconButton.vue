@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { IconKey } from '@/assets/design-tokens/iconography'
+import { Icon } from '@/assets/design-tokens/iconography'
 import SvgIcon from '../assorted/SvgIcon.vue'
 
 defineProps<{
-  icon: IconKey,
+  icon: Icon,
   label?: string
 }>()
 </script>
@@ -11,9 +11,7 @@ defineProps<{
 <template>
   <button class="icon-button">
     <SvgIcon :icon="icon" />
-    <span v-if="label" class="label">
-      {{ label }}
-    </span>
+    <span v-if="label" class="label">{{ label }}</span>
   </button>
 </template>
 
@@ -42,7 +40,7 @@ button.icon-button {
     bottom: 0;
     left: 50%;
     position: absolute;
-    transform: translate(-50%, calc(100% - 0.25em));
+    transform: translate(-50%, calc(100% - 0.325em));
   }
   .svg-icon {
     $size: calc($size - 1em);

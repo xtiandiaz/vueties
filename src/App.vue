@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ColorKey } from '@/assets/design-tokens/palette'
-import { IconKey } from '@/assets/design-tokens/iconography'
+import { Icon } from '@/assets/design-tokens/iconography'
 import IconButton from '@/components/IconButton.vue'
 </script>
 
@@ -10,9 +10,9 @@ import IconButton from '@/components/IconButton.vue'
 
   <main>
     <section>
-      <IconButton :icon-key="IconKey.Wand" :color-key="ColorKey.Yellow" />
-      <IconButton :icon-key="IconKey.Gamepad" :color-key="ColorKey.Blue" :annotation="'2'" />
-      <IconButton :icon-key="IconKey.Trash" :color-key="ColorKey.Red" />
+      <IconButton :icon-key="Icon.Wand" :color-key="ColorKey.Yellow" />
+      <IconButton :icon-key="Icon.Gamepad" :color-key="ColorKey.Blue" :annotation="'2'" />
+      <IconButton :icon-key="Icon.Trash" :color-key="ColorKey.Red" />
     </section>
   </main>
 </template>

@@ -1,12 +1,12 @@
 $nav-bar-padding: 0.25em;
 $nav-bar-height: calc(3em + $nav-bar-padding * 2);
+$item-gap: 1em;
 
 .bar {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 1.5em;
-  height: $nav-bar-height;
+  gap: $item-gap;
   
   div.spacer {
     flex: auto;

@@ -1,26 +1,26 @@
-<script setup lang="ts" generic="ToolKey">
-import { type ITool } from '../models'
+<script setup lang="ts" generic="Tool">
+import { type ToolBarButtonVM } from '../view-models'
 import IconButton from '../buttons/IconButton.vue'
 
 defineProps<{
-  tools: ITool<ToolKey>[]
+  buttonVMs: ToolBarButtonVM<Tool>[]
 }>()
 
 const emits = defineEmits<{
-  toolSelected: [key: ToolKey]
+  toolSelected: [tool: Tool]
 }>()
 </script>
 
 <template>
   <div class="bar tool-bar">
     <IconButton 
-      v-for="(tool, index) of tools"
+      v-for="(vm, index) of buttonVMs"
       :key="index"
-      :icon="tool.icon"
-      :label="tool.label"
-      :class="tool.key"
-      :disabled="!tool.isEnabled"
-      @click="emits('toolSelected', tool.key)"
+      :icon="vm.icon"
+      :label="vm.label"
+      :disabled="!vm.isEnabled"
+      :class="vm.tool"
+      @click="emits('toolSelected', vm.tool)"
     />    
   </div>
 </template>
@@ -29,7 +29,7 @@ const emits = defineEmits<{
 @use '../assets/bars';
 
 div.tool-bar {
-  @extends .bar;
+  @extend .bar;
   justify-content: center;
 }
 </style>

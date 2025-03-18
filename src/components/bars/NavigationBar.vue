@@ -1,20 +1,20 @@
-<script setup lang="ts" generic="NavigationItemKey">
-import { type INavigationBarItems, BackwardNavigationBarItemKey } from '../models'
+<script setup lang="ts" generic="NavigationTarget">
+import { type NavigationBarVM, ReturnNavigationTarget } from '../view-models'
 import { useRouter } from 'vue-router'
-import ToolBar from './ToolBar.vue'
 import IconButton from '../buttons/IconButton.vue'
+import NavigationSubBar from './NavigationSubBar.vue';
 
 defineProps<{
-  items: INavigationBarItems<NavigationItemKey>,
+  vm: NavigationBarVM<NavigationTarget>,
   title?: string
 }>()
 
 const router = useRouter()
 
-function onForwardItemSelected(key: NavigationItemKey) {
-  router.push(`${key}`)
-}
-function onBackwardItemSelected() {
+function onTargetSelected(target: NavigationTarget) {
+  router.push(`${target}`)
+} 
+function onBackwardTargetSelected() {
   router.back()
 }
 </script>
@@ -23,14 +23,15 @@ function onBackwardItemSelected() {
   <nav>
     <IconButton 
       class="back"
-      v-if="items.backwardItem?.key === BackwardNavigationBarItemKey.Back" 
-      :icon="items.backwardItem.icon"
-      @click="onBackwardItemSelected"
+      v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" 
+      :icon="vm.returnItem.icon"
+      @click="onBackwardTargetSelected"
     />
-    <ToolBar 
+    <NavigationSubBar 
+      v-if="vm.leftBarItems.length > 0"
+      :itemVMs="vm.leftBarItems" 
       class="left" 
-      :tools="items.leftBarItems" 
-      @tool-selected="onForwardItemSelected"
+      @target-selected="onTargetSelected"
     />
     
     <span class="title" v-if="title">{{ title }}</span>
@@ -39,14 +40,15 @@ function onBackwardItemSelected() {
     
     <IconButton 
       class="close"
-      v-if="items.backwardItem?.key === BackwardNavigationBarItemKey.Close" 
-      :icon="items.backwardItem.icon"
-      @click="onBackwardItemSelected"
+      v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" 
+      :icon="vm.returnItem.icon"
+      @click="onBackwardTargetSelected"
     />
-    <ToolBar 
+    <NavigationSubBar 
+      v-if="vm.rightBarItems.length > 0"
+      :itemVMs="vm.rightBarItems" 
       class="right" 
-      :tools="items.rightBarItems" 
-      @tool-selected="onForwardItemSelected"
+      @target-selected="onTargetSelected"
     />
   </nav>
 </template>

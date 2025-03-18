@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IKeypadKey } from '../models'
+import type { IKeypadKeyVM } from '../view-models'
 import KeypadButton from '../buttons/KeypadButton.vue';
 
 defineProps<{
-  keys: IKeypadKey[]
+  keys: IKeypadKeyVM[]
 }>()
 
 const emits = defineEmits<{

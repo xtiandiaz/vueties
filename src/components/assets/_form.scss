@@ -1,0 +1,49 @@
+@use '@/assets/design-tokens/palette';
+
+$max-width: 800px;
+$row-min-height: 3em;
+$row-side-padding: 1em;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin: 0 auto 1em auto;
+  max-width: $max-width;
+  
+  div.section {
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    
+    div.row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      min-height: $row-min-height;
+      padding: 0 $row-side-padding;
+      @include palette.color-attribute('background-color', 'background');
+      
+      &:first-of-type {
+        border-radius: 1em 1em 0 0;
+      }
+      &:last-of-type {
+        border-radius: 0 0 1em 1em;
+      }
+      &:only-of-type {
+        border-radius: 1em;
+      }
+      
+      .spacer {
+        flex: auto;
+      }
+      
+      .svg-icon.accessory {
+        height: 1em;
+        width: 1em;
+        @include palette.color-attribute('color', 'accessory');
+      }
+    }
+  }
+}
