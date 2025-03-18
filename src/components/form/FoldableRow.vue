@@ -15,7 +15,7 @@ const emits = defineEmits<{
 <template>
   <div class="row clickable foldable">
     <div class="content fixed" @click="emits('selected')">
-      <span class="serif" :class="{ h6: isUnfolded }">
+      <span :class="{ h6: isUnfolded }">
         {{ title }}
       </span>
       <div class="spacer"></div>
