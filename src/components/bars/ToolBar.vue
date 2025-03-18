@@ -28,7 +28,7 @@ const emits = defineEmits<{
 <style scoped lang="scss">
 @use '../assets/bars';
 
-div.tool-bar {
+.tool-bar {
   @extend .bar;
   justify-content: center;
 }

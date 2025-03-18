@@ -16,12 +16,14 @@ $row-side-padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 1px;
+    @include palette.color-attribute('background-color', 'tertiary-background');
     
     div.row {
       align-items: center;
       display: flex;
       flex-direction: row;
       min-height: $row-min-height;
+      overflow: hidden;
       padding: 0 $row-side-padding;
       @include palette.color-attribute('background-color', 'background');
       
