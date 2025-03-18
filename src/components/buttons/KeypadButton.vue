@@ -22,6 +22,7 @@ const icon = computed(() => enumKey(Icon, keypadKey.label))
 <style lang="scss" scoped>
 @use '@/assets/design-tokens/palette';
 @use '@/assets/theme';
+@use '../assets/buttons';
 
 button.keypad-button {
   border-radius: 0.5em;
