@@ -2,10 +2,11 @@ import { Icon } from "@/assets/design-tokens/iconography";
 
 // PADS ----------
 
-export interface IKeypadKeyVM {
+export interface KeypadKeyVM {
   label: string | Icon
   value: string | number
   isEnabled: boolean
+  icon?: Icon
 }
 
 // BARS ----------

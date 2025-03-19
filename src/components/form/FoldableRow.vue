@@ -15,14 +15,13 @@ const emits = defineEmits<{
 <template>
   <div class="row clickable foldable">
     <div class="content fixed" @click="emits('selected')">
-      <span :class="{ h6: isUnfolded }">
-        {{ title }}
-      </span>
+      <span :class="{ h6: isUnfolded }">{{ title }}</span>
+      <slot name="title-ornament"></slot>
       <div class="spacer"></div>
       <SvgIcon class="accessory" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
     </div>
     <div v-if="isUnfolded" class="content foldable">
-      <slot></slot>
+      <slot name="foldable-content"></slot>
     </div>
   </div>
 </template>
@@ -42,6 +41,8 @@ const emits = defineEmits<{
     padding: 0 form.$row-side-padding;
     
     &.fixed {
+      gap: 1em;
+      
       &:hover {
         cursor: pointer;
       }

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { Icon, svgIconString } from '@/assets/design-tokens/iconography'
 
 defineProps<{
@@ -10,7 +10,7 @@ defineProps<{
   <span class="svg-icon" v-html="svgIconString(icon)"></span>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .svg-icon {
   display: inline-block;
   vertical-align: middle;

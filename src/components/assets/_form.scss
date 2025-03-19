@@ -1,6 +1,6 @@
 @use '@/assets/design-tokens/palette';
 
-$max-width: 800px;
+$max-width: 800px !default;
 $row-min-height: 3em;
 $row-side-padding: 1em;
 

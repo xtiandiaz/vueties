@@ -1,21 +1,20 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import type { IKeypadKeyVM } from '../view-models';
-import { enumKey } from '@/assets/tungsten/misc'
-import { Icon } from '@/assets/design-tokens/iconography'
+import type { KeypadKeyVM } from '../view-models';
 import SvgIcon from '../assorted/SvgIcon.vue'
 
-const { keypadKey } = defineProps<{
-  keypadKey: IKeypadKeyVM,
+const { vm } = defineProps<{
+  vm: KeypadKeyVM
 }>()
-
-const icon = computed(() => enumKey(Icon, keypadKey.label))
 </script>
 
 <template>
-  <button class="keypad-button" :class="{ iconized: icon !== undefined }">
-    <SvgIcon v-if="icon" :icon="icon"/>
-    <span v-else class="h5">{{ keypadKey.label }}</span>
+  <button 
+    :disabled="!vm.isEnabled"
+    class="keypad-button" 
+    :class="{ iconized: vm.icon !== undefined }"
+  >
+    <SvgIcon v-if="vm.icon" :icon="vm.icon"/>
+    <span v-else class="h5">{{ vm.label }}</span>
   </button>
 </template>
 

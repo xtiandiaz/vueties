@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IKeypadKeyVM } from '../view-models'
+import type { KeypadKeyVM } from '../view-models'
 import KeypadButton from '../buttons/KeypadButton.vue';
 
 defineProps<{
-  keys: IKeypadKeyVM[]
+  keyVMs: KeypadKeyVM[]
 }>()
 
 const emits = defineEmits<{
@@ -14,11 +14,10 @@ const emits = defineEmits<{
 <template>
   <div class="pad simple-keypad">
     <KeypadButton 
-      v-for="(key, index) of keys"
+      v-for="(vm, index) of keyVMs"
       :key="index"
-      :keypadKey="key"
-      :disabled="!key.isEnabled"
-      @click="emits('input', key.value)"
+      :vm="vm"
+      @click="emits('input', vm.value)"
     />
   </div>
 </template>
