@@ -2,7 +2,7 @@
 
 $max-width: 800px !default;
 $row-min-height: 3em;
-$row-side-padding: 1em;
+$row-h-padding: 1em;
 
 .form {
   display: flex;
@@ -24,7 +24,7 @@ $row-side-padding: 1em;
       flex-direction: row;
       min-height: $row-min-height;
       overflow: hidden;
-      padding: 0 $row-side-padding;
+      padding: 0 $row-h-padding;
       @include palette.color-attribute('background-color', 'background');
       
       &:first-of-type {
@@ -37,14 +37,14 @@ $row-side-padding: 1em;
         border-radius: 1em;
       }
       
-      .spacer {
-        flex: auto;
-      }
-      
       .svg-icon.accessory {
         height: 1em;
         width: 1em;
         @include palette.color-attribute('color', 'accessory');
+      }
+      
+      .spacer {
+        flex: auto;
       }
     }
   }

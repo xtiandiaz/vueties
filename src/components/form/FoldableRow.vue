@@ -4,7 +4,8 @@ import SvgIcon from '../assorted/SvgIcon.vue';
 
 defineProps<{
   title: string,
-  isUnfolded: boolean
+  isUnfolded: boolean,
+  subtitle?: string
 }>()
 
 const emits = defineEmits<{
@@ -15,7 +16,10 @@ const emits = defineEmits<{
 <template>
   <div class="row clickable foldable">
     <div class="content fixed" @click="emits('selected')">
-      <span :class="{ h6: isUnfolded }">{{ title }}</span>
+      <div class="title-subtitle">
+        <span :class="{ h6: isUnfolded }">{{ title }}</span>
+        <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
+      </div>
       <slot name="title-ornament"></slot>
       <div class="spacer"></div>
       <SvgIcon class="accessory" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
@@ -27,6 +31,8 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/design-tokens/palette';
+@use '@/assets/design-tokens/typography';
 @use '../assets/form';
 
 .row.foldable {
@@ -38,13 +44,27 @@ const emits = defineEmits<{
     display: flex;
     flex-direction: row;
     min-height: form.$row-min-height;
-    padding: 0 form.$row-side-padding;
+    padding: 0 form.$row-h-padding;
     
     &.fixed {
       gap: 1em;
       
       &:hover {
         cursor: pointer;
+      }
+      
+      div.title-subtitle {
+        padding: 0.75em 0;
+        
+        > * {
+          display: block;
+        }
+          
+        span.subtitle {
+          @extend .footnote;
+          margin: 0.5em 0 0 0;
+          @include palette.color-attribute('color', 'secondary-body');
+        }
       }
     }
     &.foldable {
