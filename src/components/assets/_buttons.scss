@@ -1,8 +1,12 @@
+@use '@/assets/design-tokens/palette';
+@use '@/assets/theme';
+
 button {
   background: none;
   border: none;
   font-size: 1em;
   padding: 0;
+  @include palette.color-attribute('color', theme.$tint-color);
 
   &:disabled {
     opacity: 25%;

@@ -1,22 +1,27 @@
 @use '@/assets/design-tokens/palette';
+@use '@/assets/theme';
 
 $max-width: 800px !default;
-$row-min-height: 3em;
 $row-h-padding: 1em;
+$row-min-height: 3em;
 
-.form {
+section.form {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   margin: 0 auto 1em auto;
   max-width: $max-width;
+  padding: 0.5em 1em;
   
   div.section {
     border-radius: 1em;
     display: flex;
     flex-direction: column;
     gap: 1px;
-    @include palette.color-attribute('background-color', 'tertiary-background');
+    @include palette.color-attributes((
+      'background-color': 'tertiary-background',
+      'color': theme.$tint-color
+    ));
     
     div.row {
       align-items: center;

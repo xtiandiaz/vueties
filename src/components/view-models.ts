@@ -1,6 +1,6 @@
 import { Icon } from "@/assets/design-tokens/iconography";
 
-// PADS ----------
+// Pads ----------
 
 export interface KeypadKeyVM {
   label: string | Icon
@@ -9,7 +9,7 @@ export interface KeypadKeyVM {
   icon?: Icon
 }
 
-// BARS ----------
+// Bars ----------
 
 export interface ToolBarButtonVM<Tool> {
   tool: Tool
@@ -71,4 +71,18 @@ export const modalViewNavigationBarItems = <BarItemKey>(
     returnItem: closeNavigationBarItemVM,
     title: title
   }
+}
+
+// Form ----------
+
+export interface FormOptionRowVM<Value> {
+  title: string
+  value: Value
+  icon?: Icon
+  subtitle?: string
+}
+
+export interface FormChoiceSectionVM<Value> {
+  optionVMs: FormOptionRowVM<Value>[]
+  title: string
 }

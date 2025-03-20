@@ -5,8 +5,7 @@ import IconButton from '../buttons/IconButton.vue'
 import NavigationSubBar from './NavigationSubBar.vue';
 
 defineProps<{
-  vm: NavigationBarVM<NavigationTarget>,
-  title?: string
+  vm: NavigationBarVM<NavigationTarget>
 }>()
 
 const router = useRouter()
@@ -34,7 +33,7 @@ function onBackwardTargetSelected() {
       @target-selected="onTargetSelected"
     />
     
-    <span class="title" v-if="title">{{ title }}</span>
+    <span class="title" v-if="vm.title">{{ vm.title }}</span>
     
     <div class="spacer"></div>
     

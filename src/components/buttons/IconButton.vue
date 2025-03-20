@@ -16,7 +16,6 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/theme';
 @use '@/assets/design-tokens/palette';
 @use '@/assets/design-tokens/typography';
 @use '../assets/buttons';
@@ -29,7 +28,6 @@ button.icon-button {
   padding: 0;
   position: relative;
   width: $size;
-  @include palette.color-attribute('color', theme.$tint-color);
   
   &:disabled {
     background: none;
