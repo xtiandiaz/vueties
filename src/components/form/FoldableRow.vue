@@ -22,7 +22,7 @@ const emits = defineEmits<{
       </div>
       <slot name="title-ornament"></slot>
       <div class="spacer"></div>
-      <SvgIcon class="accessory" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
+      <SvgIcon class="indicator" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
     </div>
     <div v-if="isUnfolded" class="content foldable">
       <slot name="foldable-content"></slot>

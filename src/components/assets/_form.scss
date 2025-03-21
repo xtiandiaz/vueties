@@ -42,7 +42,7 @@ section.form {
         border-radius: 1em;
       }
       
-      .svg-icon.accessory {
+      .svg-icon.indicator {
         height: 1em;
         width: 1em;
         @include palette.color-attribute('color', 'accessory');
