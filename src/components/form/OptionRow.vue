@@ -4,8 +4,7 @@ import { Icon } from '@/assets/design-tokens/iconography'
 import SvgIcon from '../assorted/SvgIcon.vue';
 
 defineProps<{
-  vm: FormOptionRowVM<Value>,
-  isSelected: boolean
+  vm: FormOptionRowVM<Value>
 }>()
 
 const emits = defineEmits<{
@@ -17,11 +16,11 @@ const emits = defineEmits<{
   <div class="row option" @click="emits('selected', vm.value)">
     <SvgIcon class="accessory" v-if="vm.icon" :icon="vm.icon" />
     
-    <span :class="{ strong: isSelected }">{{ vm.title }}</span>
+    <span :class="{ strong: vm.isSelected }">{{ vm.title }}</span>
     
     <div class="spacer"></div>
     
-    <SvgIcon v-if="isSelected" :icon="Icon.Checkmark" />
+    <SvgIcon v-if="vm.isSelected" :icon="Icon.Checkmark" />
   </div>
 </template>
 

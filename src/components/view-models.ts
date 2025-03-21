@@ -76,13 +76,20 @@ export const modalViewNavigationBarItems = <BarItemKey>(
 // Form ----------
 
 export interface FormOptionRowVM<Value> {
+  isSelected: boolean
   title: string
   value: Value
   icon?: Icon
   subtitle?: string
 }
 
-export interface FormChoiceSectionVM<Value> {
-  optionVMs: FormOptionRowVM<Value>[]
-  title: string
+export interface FormSectionVM<RowVM> {
+  rowVMs: RowVM[]
+  title?: string
+  subtitle?: string
+  footnote?: string
+}
+
+export interface FormChoiceSectionVM<Value> extends FormSectionVM<FormOptionRowVM<Value>> {
+  selectedValue?: Value
 }

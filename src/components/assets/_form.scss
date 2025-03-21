@@ -1,5 +1,6 @@
-@use '@/assets/design-tokens/palette';
 @use '@/assets/theme';
+@use '@/assets/design-tokens/palette';
+@use '@/assets/design-tokens/typography';
 
 $max-width: 800px !default;
 $row-h-padding: 1em;
@@ -14,43 +15,70 @@ section.form {
   padding: 0.5em 1em;
   
   div.section {
-    border-radius: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 0.75em;
     @include palette.color-attributes((
-      'background-color': 'tertiary-background',
       'color': theme.$tint-color
     ));
     
-    div.row {
-      align-items: center;
+    div.heading, div.footnote {
+      @extend .footnote;
+      padding: 0 0 0 1em;
+      @include palette.color-attribute('color', 'tertiary-body');
+      
+      > * {
+        display: block;
+      }
+    }
+    
+    div.heading {      
+      span.title {
+        @extend .strong;
+      }
+      span.subtitle {
+        margin: 0.5em 0 0 0;
+      }
+    }
+    
+    div.rows {
+      border-radius: 1em;
       display: flex;
-      flex-direction: row;
-      min-height: $row-min-height;
-      overflow: hidden;
-      padding: 0 $row-h-padding;
-      @include palette.color-attribute('background-color', 'background');
+      flex-direction: column;
+      gap: 1px;
+      @include palette.color-attributes((
+        'background-color': 'tertiary-background'
+      ));
       
-      &:first-of-type {
-        border-radius: 1em 1em 0 0;
-      }
-      &:last-of-type {
-        border-radius: 0 0 1em 1em;
-      }
-      &:only-of-type {
-        border-radius: 1em;
-      }
-      
-      .svg-icon.indicator {
-        height: 1em;
-        width: 1em;
-        @include palette.color-attribute('color', 'accessory');
-      }
-      
-      .spacer {
-        flex: auto;
-      }
+      div.row {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        min-height: $row-min-height;
+        overflow: hidden;
+        padding: 0 $row-h-padding;
+        @include palette.color-attribute('background-color', 'background');
+        
+        &:first-of-type {
+          border-radius: 1em 1em 0 0;
+        }
+        &:last-of-type {
+          border-radius: 0 0 1em 1em;
+        }
+        &:only-of-type {
+          border-radius: 1em;
+        }
+        
+        .svg-icon.indicator {
+          height: 1em;
+          width: 1em;
+          @include palette.color-attribute('color', 'accessory');
+        }
+        
+        .spacer {
+          flex: auto;
+        }
+      }  
     }
   }
 }
