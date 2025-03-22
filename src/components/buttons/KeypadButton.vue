@@ -14,7 +14,7 @@ const { vm } = defineProps<{
     :class="{ iconized: vm.icon !== undefined }"
   >
     <SvgIcon v-if="vm.icon" :icon="vm.icon"/>
-    <span v-else class="h5">{{ vm.label }}</span>
+    <span v-else class="label h5" :class="{ dimmed: vm.label === '＿' }">{{ vm.label }}</span>
   </button>
 </template>
 
@@ -38,6 +38,12 @@ button.keypad-button {
     'background-color': theme.$key-color,
     'color': theme.$key-background-color
   ));
+  }
+  
+  .label {
+    &.dimmed {
+      opacity: 50%;
+    }
   }
   
   &:disabled {
