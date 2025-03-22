@@ -30,6 +30,7 @@ const emits = defineEmits<{
 
 .tool-bar {
   @extend .bar;
+  flex-wrap: wrap;
   justify-content: center;
 }
 </style>
