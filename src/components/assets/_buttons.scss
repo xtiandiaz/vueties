@@ -1,11 +1,18 @@
 @use '@/assets/design-tokens/palette';
 @use '@/assets/theme';
 
+$min-height: 3em;
+
 button {
+  align-items: center;
   background: none;
   border: none;
+  display: inline-flex;
   font-size: 1em;
+  justify-content: center;
+  min-height: $min-height;
   padding: 0;
+  width: fit-content;
   @include palette.color-attribute('color', theme.$tint-color);
 
   &:disabled {

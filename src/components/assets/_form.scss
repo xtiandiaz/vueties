@@ -18,9 +18,12 @@ section.form {
     display: flex;
     flex-direction: column;
     gap: 0.75em;
-    @include palette.color-attributes((
-      'color': theme.$tint-color
-    ));
+    
+    &.wrapper {
+      border-radius: 1em;
+      padding: 0.75em 1em;
+      @include palette.color-attribute('background-color', 'background');
+    }
     
     div.heading, div.footnote {
       @extend .footnote;

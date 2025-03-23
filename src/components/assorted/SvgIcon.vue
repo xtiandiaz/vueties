@@ -13,6 +13,8 @@ defineProps<{
 <style scoped lang="scss">
 .svg-icon {
   display: inline-block;
+  min-height: 1em;
+  min-width: 1em;
   vertical-align: middle;
 }
 </style>
