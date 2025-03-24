@@ -74,9 +74,10 @@ nav {
   }
   
   .title {
-    font-family: 'Inter Medium';
+    @extend .strong;
     left: 50%;
     position: absolute;
+    text-align: center;
     top: 50%;
     transform: translate(-50%, -50%);
   }

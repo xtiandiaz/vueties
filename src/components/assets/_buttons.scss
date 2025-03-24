@@ -12,7 +12,6 @@ button {
   justify-content: center;
   min-height: $min-height;
   padding: 0;
-  width: fit-content;
   @include palette.color-attribute('color', theme.$tint-color);
 
   &:disabled {

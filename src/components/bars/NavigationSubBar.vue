@@ -19,6 +19,7 @@ const emits = defineEmits<{
     :icon="vm.icon"
     :label="vm.label"
     :disabled="!vm.isEnabled"
+    :class="`${vm.target}`"
     @click="emits('targetSelected', vm.target)"
   />
 </div>

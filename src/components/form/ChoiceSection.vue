@@ -15,7 +15,7 @@ const emits = defineEmits<{
 
 <template>
   <div class="section choice">
-    <div v-if="vm.title || vm.subtitle" class="heading">
+    <div v-if="vm.title || vm.subtitle" class="header">
       <span v-if="vm.title" class="title">{{ vm.title }}</span>
       <span v-if="vm.subtitle" class="subtitle">{{ vm.subtitle }}</span>
     </div>
@@ -27,7 +27,7 @@ const emits = defineEmits<{
         @selected="(value) => emits('selected', value)"
       />
     </div>
-    <div v-if="vm.footnote" class="footnote">{{  vm.footnote }}</div>
+    <div v-if="vm.footnote" class="footer">{{  vm.footnote }}</div>
   </div>
 </template>
 

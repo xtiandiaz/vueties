@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <button class="icon-button">
     <SvgIcon :icon="icon" />
-    <span v-if="label" class="label">{{ label }}</span>
+    <label v-if="label">{{ label }}</label>
   </button>
 </template>
 
@@ -33,13 +33,14 @@ button.icon-button {
     background: none;
   }
 
-  .label {
+  label {
     @extend .caption;
     bottom: 0;
     left: 50%;
     position: absolute;
-    transform: translate(-50%, calc(100% - 0.325em));
+    transform: translate(-50%, calc(100% - 0.5em));
   }
+  
   .svg-icon {
     $size: calc($size - 1em);
     height: $size;

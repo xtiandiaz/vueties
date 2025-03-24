@@ -14,7 +14,7 @@ const emits = defineEmits<{
 
 <template>
   <div class="row option" @click="emits('selected', vm.value)">
-    <SvgIcon class="accessory" v-if="vm.icon" :icon="vm.icon" />
+    <SvgIcon v-if="vm.icon" :icon="vm.icon" class="representative-icon"/>
     
     <span :class="{ strong: vm.isSelected }">{{ vm.title }}</span>
     
@@ -32,7 +32,6 @@ const emits = defineEmits<{
 $icon-size: 1.5em;
 
 .row.option {
-  gap: 0.75em;
   
   &:hover {
     cursor: pointer;

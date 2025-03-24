@@ -1,7 +1,8 @@
 <script setup lang="ts">
+
 const { title } = defineProps<{
   title: string,
-  value?: string
+  value?: string,
 }>()
 </script>
 
@@ -10,6 +11,7 @@ const { title } = defineProps<{
     <span class="title">{{ title }}</span>
     <div class="spacer"></div>
     <span v-if="value" class="value">{{ value }}</span>
+    <slot v-if="!value" name="custom-value"></slot>
   </div>
 </template>
 
