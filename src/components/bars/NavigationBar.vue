@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="NavigationTarget">
-import { type NavigationBarVM, ReturnNavigationTarget } from '../view-models'
+import { type NavigationBarVM, ReturnNavigationTarget } from '@vueties/view-models'
 import { useRouter } from 'vue-router'
-import IconButton from '../buttons/IconButton.vue'
-import NavigationSubBar from './NavigationSubBar.vue';
+import IconButton from '@vueties/buttons/IconButton.vue'
+import NavigationSubBar from '@vueties/bars/NavigationSubBar.vue';
 
 defineProps<{
   vm: NavigationBarVM<NavigationTarget>
@@ -12,7 +12,7 @@ const router = useRouter()
 
 function onTargetSelected(target: NavigationTarget) {
   router.push(`${target}`)
-} 
+}
 function onBackwardTargetSelected() {
   router.back()
 }
@@ -20,41 +20,25 @@ function onBackwardTargetSelected() {
 
 <template>
   <nav>
-    <IconButton 
-      class="back"
-      v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" 
-      :icon="vm.returnItem.icon"
-      @click="onBackwardTargetSelected"
-    />
-    <NavigationSubBar 
-      v-if="vm.leftBarItems.length > 0"
-      :itemVMs="vm.leftBarItems" 
-      class="left" 
-      @target-selected="onTargetSelected"
-    />
-    
+    <IconButton class="back" v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" :icon="vm.returnItem.icon"
+      @click="onBackwardTargetSelected" />
+    <NavigationSubBar v-if="vm.leftBarItems.length > 0" :itemVMs="vm.leftBarItems" class="left"
+      @target-selected="onTargetSelected" />
+
     <span class="title" v-if="vm.title">{{ vm.title }}</span>
-    
+
     <div class="spacer"></div>
-    
-    <IconButton 
-      class="close"
-      v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" 
-      :icon="vm.returnItem.icon"
-      @click="onBackwardTargetSelected"
-    />
-    <NavigationSubBar 
-      v-if="vm.rightBarItems.length > 0"
-      :itemVMs="vm.rightBarItems" 
-      class="right" 
-      @target-selected="onTargetSelected"
-    />
+
+    <IconButton class="close" v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" :icon="vm.returnItem.icon"
+      @click="onBackwardTargetSelected" />
+    <NavigationSubBar v-if="vm.rightBarItems.length > 0" :itemVMs="vm.rightBarItems" class="right"
+      @target-selected="onTargetSelected" />
   </nav>
 </template>
 
 <style scoped lang="scss">
 @use '@/assets/design-tokens/typography';
-@use '../assets/bars';
+@use '@vueties/styles/bars';
 
 nav {
   @extend .bar;
@@ -63,16 +47,18 @@ nav {
   right: 0;
   top: 0;
   z-index: 1000;
-  
+
   :deep(.icon-button) {
-    &.back, &.close {
+
+    &.back,
+    &.close {
       .svg-icon {
         width: 1.5em;
         height: 1.5em;
       }
     }
   }
-  
+
   .title {
     @extend .strong;
     left: 50%;
@@ -81,11 +67,12 @@ nav {
     top: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   .tool-bar {
     &.left {
       justify-content: left;
     }
+
     &.right {
       justify-content: right;
     }

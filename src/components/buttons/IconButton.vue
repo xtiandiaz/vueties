@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@/assets/design-tokens/iconography'
-import SvgIcon from '../assorted/SvgIcon.vue'
+import SvgIcon from '@vueties/misc/SvgIcon.vue'
 
 defineProps<{
   icon: Icon,
@@ -16,19 +16,19 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/styles/buttons';
 @use '@/assets/design-tokens/palette';
 @use '@/assets/design-tokens/typography';
-@use '../assets/buttons';
 
 button.icon-button {
   $size: 3em;
-  
+
   border-radius: 50%;
   height: $size;
   padding: 0;
   position: relative;
   width: $size;
-  
+
   &:disabled {
     background: none;
   }
@@ -40,7 +40,7 @@ button.icon-button {
     position: absolute;
     transform: translate(-50%, calc(100% - 0.5em));
   }
-  
+
   .svg-icon {
     $size: calc($size - 1em);
     height: $size;

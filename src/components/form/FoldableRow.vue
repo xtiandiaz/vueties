@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@/assets/design-tokens/iconography'
-import SvgIcon from '../assorted/SvgIcon.vue';
+import SvgIcon from '@vueties/misc/SvgIcon.vue';
 
 defineProps<{
   title: string,
@@ -31,35 +31,35 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/styles/form';
 @use '@/assets/design-tokens/palette';
 @use '@/assets/design-tokens/typography';
-@use '../assets/form';
 
 .row.foldable {
   padding: 0 !important;
   display: block !important;
-  
+
   div.content {
     align-items: center;
     display: flex;
     flex-direction: row;
     min-height: form.$row-min-height;
     padding: 0 form.$row-h-padding;
-    
+
     &.fixed {
       gap: 1em;
-      
+
       &:hover {
         cursor: pointer;
       }
-      
+
       div.title-subtitle {
         padding: 0.75em 0;
-        
-        > * {
+
+        >* {
           display: block;
         }
-          
+
         span.subtitle {
           @extend .footnote;
           margin: 0.25em 0 0 0;
@@ -67,7 +67,7 @@ const emits = defineEmits<{
         }
       }
     }
-    
+
     &.foldable {
       padding-bottom: 0.25em;
     }

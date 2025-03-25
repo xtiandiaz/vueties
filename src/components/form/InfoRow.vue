@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { title } = defineProps<{
   title: string,
   value?: string,
@@ -16,8 +15,8 @@ const { title } = defineProps<{
 </template>
 
 <style lang="scss">
+@use '@vueties/styles/form';
 @use '@/assets/design-tokens/palette';
-@use '../assets/form';
 
 .row.info {
   .value {

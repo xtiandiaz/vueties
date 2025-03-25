@@ -1,8 +1,6 @@
 <script setup lang="ts" generic="Value">
-// import { Language, LocalizedString } from '@/models/language'
-// import { localizedString } from '@/services/localization'
-import { type FormChoiceSectionVM } from '../view-models'
-import OptionRow from './OptionRow.vue'
+import { type FormChoiceSectionVM } from '@vueties/view-models'
+import OptionRow from '@vueties/form/OptionRow.vue'
 
 defineProps<{
   vm: FormChoiceSectionVM<Value>
@@ -20,17 +18,13 @@ const emits = defineEmits<{
       <span v-if="vm.subtitle" class="subtitle">{{ vm.subtitle }}</span>
     </div>
     <div class="rows">
-      <OptionRow 
-        v-for="(rowVm, index) in vm.rowVMs"
-        :key="index"
-        :vm="rowVm"
-        @selected="(value) => emits('selected', value)"
-      />
+      <OptionRow v-for="(rowVm, index) in vm.rowVMs" :key="index" :vm="rowVm"
+        @selected="(value) => emits('selected', value)" />
     </div>
-    <div v-if="vm.footnote" class="footer">{{  vm.footnote }}</div>
+    <div v-if="vm.footnote" class="footer">{{ vm.footnote }}</div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '../assets/form';
+@use '@vueties/styles/form';
 </style>
