@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="NavigationTarget">
-import { type NavigationBarVM, ReturnNavigationTarget } from '@vueties/view-models'
 import { useRouter } from 'vue-router'
+import { type NavigationBarVM, ReturnNavigationTarget } from '../view-models'
 import IconButton from '../buttons/IconButton.vue'
 import NavigationSubBar from './NavigationSubBar.vue';
 
@@ -37,8 +37,8 @@ function onBackwardTargetSelected() {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/design-tokens/typography';
-@use '@vueties/styles/bars';
+@use '../styles/bars';
+@use '@design-tokens/typography';
 
 nav {
   @extend .item-bar;
@@ -49,7 +49,9 @@ nav {
   z-index: 1000;
 
   :deep(.icon-button) {
-    &.back, &.close {
+
+    &.back,
+    &.close {
       .svg-icon {
         width: 1.5em;
         height: 1.5em;

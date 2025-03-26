@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { KeypadKeyVM } from '@vueties/view-models'
-import KeypadButton from '@vueties/buttons/KeypadButton.vue';
+import type { KeypadKeyVM } from '../view-models'
+import KeypadButton from '../buttons/KeypadButton.vue';
 
 defineProps<{
   keyVMs: KeypadKeyVM[]
@@ -18,5 +18,5 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-@use '@vueties/styles/pads';
+@use '../styles/pads';
 </style>

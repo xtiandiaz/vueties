@@ -1,4 +1,4 @@
-@use '@/assets/theme';
+@use '@/assets/varties';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
@@ -13,7 +13,7 @@ button {
   justify-content: center;
   min-height: $min-height;
   padding: 0;
-  @include palette.color-attribute('color', theme.$tint-color);
+  @include palette.color-attribute('color', varties.$tint-color);
 
   &:disabled {
     opacity: 25%;

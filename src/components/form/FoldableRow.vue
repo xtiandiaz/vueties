@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '@/assets/design-tokens/iconography'
-import SvgIcon from '@vueties/misc/SvgIcon.vue';
+import { Icon } from '@design-tokens/iconography'
+import SvgIcon from '../misc/SvgIcon.vue';
 
 defineProps<{
   title: string,
@@ -31,9 +31,9 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/form';
-@use '@/assets/design-tokens/palette';
-@use '@/assets/design-tokens/typography';
+@use '../styles/form';
+@use '@design-tokens/palette';
+@use '@design-tokens/typography';
 
 .row.foldable {
   padding: 0 !important;

@@ -12,7 +12,7 @@ import SvgIcon from '../misc/SvgIcon.vue';
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/buttons';
+@use '../styles/buttons';
 @use '@design-tokens/palette';
 
 $fill-size: 2em;

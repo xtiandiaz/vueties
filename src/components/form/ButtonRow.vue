@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '@/assets/design-tokens/iconography';
-import SvgIcon from '@vueties/misc/SvgIcon.vue';
+import { Icon } from '@design-tokens/iconography';
+import SvgIcon from '../misc/SvgIcon.vue';
 
 defineProps<{
   label: string,
@@ -16,10 +16,10 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/form';
-@use '@/assets/theme';
-@use '@/assets/design-tokens/palette';
-@use '@/assets/design-tokens/typography';
+@use '../styles/form';
+@use '@/assets/varties';
+@use '@design-tokens/palette';
+@use '@design-tokens/typography';
 
 $icon-size: 1.5em;
 
@@ -27,7 +27,7 @@ $icon-size: 1.5em;
   @extend .strong;
   gap: 0.5em !important;
   justify-content: center;
-  @include palette.color-attribute('color', theme.$tint-color);
+  @include palette.color-attribute('color', varties.$tint-color);
 
   &:hover,
   label:hover {

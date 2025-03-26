@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="Value">
-import { type FormOptionRowVM } from '@vueties/view-models';
-import { Icon } from '@/assets/design-tokens/iconography'
-import SvgIcon from '@vueties/misc/SvgIcon.vue';
+import { type FormOptionRowVM } from '../view-models';
+import { Icon } from '@design-tokens/iconography'
+import SvgIcon from '../misc/SvgIcon.vue';
 
 defineProps<{
   vm: FormOptionRowVM<Value>
@@ -25,9 +25,8 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/form';
-@use '@/assets/theme';
-@use '@/assets/design-tokens/palette';
+@use '../styles/form';
+@use '@design-tokens/palette';
 
 $icon-size: 1.5em;
 

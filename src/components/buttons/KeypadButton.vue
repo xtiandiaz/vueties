@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { KeypadKeyVM } from '@vueties/view-models';
-import SvgIcon from '@vueties/misc/SvgIcon.vue'
+import type { KeypadKeyVM } from '../view-models';
+import SvgIcon from '../misc/SvgIcon.vue'
 
 const { vm } = defineProps<{
   vm: KeypadKeyVM
@@ -15,21 +15,21 @@ const { vm } = defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@use '@vueties/styles/buttons';
-@use '@/assets/theme';
-@use '@/assets/design-tokens/palette';
+@use '../styles/buttons';
+@use '@/assets/varties';
+@use '@design-tokens/palette';
 
 button.keypad-button {
   border-radius: 0.5em;
   height: 3em;
   vertical-align: middle;
   width: 3em;
-  @include palette.color-attributes(('background-color': theme.$key-background-color,
-      'color': theme.$key-color ));
+  @include palette.color-attributes(('background-color': varties.$key-background-color,
+      'color': varties.$key-color ));
 
   &.iconized:enabled {
-    @include palette.color-attributes(('background-color': theme.$key-color,
-        'color': theme.$key-background-color ));
+    @include palette.color-attributes(('background-color': varties.$key-color,
+        'color': varties.$key-background-color ));
   }
 
   .label {

@@ -15,8 +15,8 @@ const { title } = defineProps<{
 </template>
 
 <style lang="scss">
-@use '@vueties/styles/form';
-@use '@/assets/design-tokens/palette';
+@use '../styles/form';
+@use '@design-tokens/palette';
 
 .row.info {
   .value {

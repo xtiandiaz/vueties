@@ -11,10 +11,10 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/buttons';
-@use '@/assets/theme';
-@use '@/assets/design-tokens/palette';
-@use '@/assets/design-tokens/typography';
+@use '../styles/buttons';
+@use '@/assets/varties';
+@use '@design-tokens/palette';
+@use '@design-tokens/typography';
 
 button.text-button {
   border-radius: 2em;
@@ -26,6 +26,6 @@ button.text-button {
     font-size: 0.9em;
   }
 
-  @include palette.color-attributes(('background-color': theme.$tint-color ));
+  @include palette.color-attributes(('background-color': varties.$tint-color));
 }
 </style>

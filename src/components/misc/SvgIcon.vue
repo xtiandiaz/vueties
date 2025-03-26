@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon, svgIconString } from '@/assets/design-tokens/iconography'
+import { Icon, svgIconString } from '@design-tokens/iconography'
 
 defineProps<{
   icon: Icon

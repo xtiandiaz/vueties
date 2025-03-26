@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@/assets/design-tokens/iconography'
+import { Icon } from '@design-tokens/iconography'
 import SvgIcon from '../misc/SvgIcon.vue'
 
 defineProps<{
@@ -16,5 +16,5 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/buttons';
+@use '../styles/buttons';
 </style>

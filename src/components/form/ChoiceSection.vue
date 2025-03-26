@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="Value">
-import { type FormChoiceSectionVM } from '@vueties/view-models'
-import OptionRow from '@vueties/form/OptionRow.vue'
+import { type FormChoiceSectionVM } from '../view-models'
+import OptionRow from '../form/OptionRow.vue'
 
 defineProps<{
   vm: FormChoiceSectionVM<Value>
@@ -26,5 +26,5 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/styles/form';
+@use '../styles/form';
 </style>

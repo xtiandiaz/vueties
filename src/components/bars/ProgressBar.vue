@@ -12,18 +12,18 @@ defineProps<{
 <template>
   <div class="progress-bar">
     <SvgIcon v-if="iconFrom" :icon="iconFrom" />
-    
+
     <div class="bar">
       <span class="track"></span>
       <span class="fill" :style="{ width: `${progress * 100}%` }"></span>
     </div>
-    
+
     <SvgIcon v-if="iconTo" :icon="iconTo" />
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/theme';
+@use '@/assets/varties';
 @use '@design-tokens/palette';
 
 $bar-height: 6px;
@@ -35,16 +35,16 @@ div.progress-bar {
   flex-direction: row;
   gap: 0.5em;
   min-height: $bar-height;
-  
+
   div.bar {
     height: $bar-height;
     flex: auto;
     position: relative;
-    
+
     > * {
       display: block;
     }
-    
+
     .track, .fill {
       border-radius: calc($bar-height / 2);
       bottom: 0;
@@ -52,19 +52,19 @@ div.progress-bar {
       position: absolute;
       top: 0;
     }
-    
+
     .track {
       right: 0;
       @include palette.color-attribute('background-color', 'body', 0.1);
     }
-    
+
     .fill {
       min-width: $bar-height;
       transition: width 0.25s ease-out;
-      @include palette.color-attribute('background-color', theme.$tint-color);
+      @include palette.color-attribute('background-color', varties.$tint-color);
     }
   }
-  
+
   .svg-icon {
     height: $icon-size;
     width: $icon-size;

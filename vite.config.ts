@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@design-tokens': fileURLToPath(new URL('./src/assets/design-tokens', import.meta.url)),
       '@vueties': fileURLToPath(new URL('./src/components', import.meta.url)),
     },
   },
