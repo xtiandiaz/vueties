@@ -56,12 +56,12 @@ const emits = defineEmits<{
       div.title-subtitle {
         padding: 0.75em 0;
 
-        >* {
+        > * {
           display: block;
         }
 
         span.subtitle {
-          @extend .footnote;
+          @extend .caption;
           margin: 0.25em 0 0 0;
           @include palette.color-attribute('color', 'secondary-body');
         }
