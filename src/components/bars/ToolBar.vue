@@ -12,7 +12,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="bar tool-bar">
+  <div class="item-bar tool-bar">
     <IconButton v-for="(vm, index) of buttonVMs" :key="index" :icon="vm.icon" :label="vm.label"
       :disabled="!vm.isEnabled" :class="vm.tool" @click="emits('toolSelected', vm.tool)" />
   </div>
@@ -22,7 +22,7 @@ const emits = defineEmits<{
 @use '@vueties/styles/bars';
 
 .tool-bar {
-  @extend .bar;
+  @extend .item-bar;
   flex-wrap: wrap;
   justify-content: center;
 }
