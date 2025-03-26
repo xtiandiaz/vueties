@@ -1,5 +1,6 @@
-@use '@/assets/design-tokens/palette';
 @use '@/assets/theme';
+@use '@design-tokens/palette';
+@use '@design-tokens/typography';
 
 $min-height: 3em;
 
@@ -19,5 +20,33 @@ button {
   }
   &:hover:enabled {
     cursor: pointer;
+  }
+  
+  &.icon-button {
+    $size: $min-height;
+    $icon-size: calc($min-height - 1em);
+    
+    border-radius: 50%;
+    height: $size;
+    padding: 0;
+    position: relative;
+    width: $size;
+  
+    &:disabled {
+      background: none;
+    }
+  
+    label {
+      @extend .caption;
+      bottom: 0;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, calc(100% - 0.5em));
+    }
+  
+    .svg-icon {
+      height: $icon-size;
+      width: $icon-size;
+    }
   }
 }
