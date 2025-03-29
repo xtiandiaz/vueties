@@ -1,2 +1,2 @@
 # vueties
-A collection of beauty-components for Vue 3 apps
+A collection of veauty-components for Vue3 apps.
