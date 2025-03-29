@@ -17,10 +17,12 @@ const emits = defineEmits<{
   <div class="row foldable">
     <div class="content fixed" @click="emits('selected')">
       <div class="title-subtitle">
-        <span :class="{ h6: isUnfolded }">{{ title }}</span>
+        <div class="title-container">
+          <span :class="{ h6: isUnfolded }">{{ title }}</span>
+          <slot name="title-ornament"></slot>
+        </div>
         <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
       </div>
-      <slot name="title-ornament"></slot>
       <div class="spacer"></div>
       <SvgIcon class="disclosure-indicator" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
     </div>
@@ -58,6 +60,12 @@ const emits = defineEmits<{
 
         > * {
           display: block;
+        }
+        
+        div.title-container {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5em;
         }
 
         span.subtitle {

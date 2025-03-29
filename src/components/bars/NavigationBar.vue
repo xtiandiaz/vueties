@@ -49,9 +49,7 @@ nav {
   z-index: 1000;
 
   :deep(.icon-button) {
-
-    &.back,
-    &.close {
+    &.back, &.close {
       .svg-icon {
         width: 1.5em;
         height: 1.5em;
