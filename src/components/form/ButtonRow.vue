@@ -29,8 +29,7 @@ $icon-size: 1.5em;
   justify-content: center;
   @include palette.color-attribute('color', varties.$tint-color);
 
-  &:hover,
-  label:hover {
+  &:hover, label:hover {
     cursor: pointer;
   }
 
