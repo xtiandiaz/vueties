@@ -11,7 +11,13 @@ defineProps<{
 
 const router = useRouter()
 
-console.log(router, '@ Navigation Bar')
+function onTargetSelected(target: NavigationTarget) {
+  router.push(`${target}`)
+}
+
+function onBackOrCloseClicked() {
+  router.back()
+}
 </script>
 
 <template>
@@ -20,14 +26,14 @@ console.log(router, '@ Navigation Bar')
       v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" 
       :icon="vm.returnItem.icon"
       class="back"
-      @click="$router.back()" 
+      @click="onBackOrCloseClicked" 
     />
     
     <NavigationSubBar 
       v-if="vm.leftBarItems.length > 0" 
       :itemVMs="vm.leftBarItems" 
       class="left"
-      @target-selected="(target) => $router.push(`${target}`)" 
+      @target-selected="onTargetSelected" 
     />
 
     <span class="title" v-if="vm.title">{{ vm.title }}</span>
@@ -36,14 +42,14 @@ console.log(router, '@ Navigation Bar')
 
     <CloseButton 
       v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" 
-      @click="$router.back()" 
+      @click="onBackOrCloseClicked" 
     />
     
     <NavigationSubBar 
       v-if="vm.rightBarItems.length > 0" 
       :itemVMs="vm.rightBarItems" 
       class="right"
-      @target-selected="(target) => $router.push(`${target}`)" 
+      @target-selected="onTargetSelected" 
     />
   </nav>
 </template>
