@@ -13,8 +13,14 @@ const emits = defineEmits<{
 
 <template>
   <div class="item-bar">
-    <IconButton v-for="(vm, index) of itemVMs" :key="index" :icon="vm.icon" :label="vm.label" :disabled="!vm.isEnabled"
-      :class="`${vm.target}`" @click="emits('targetSelected', vm.target)" />
+    <IconButton 
+      v-for="(vm, index) of itemVMs" 
+      :key="index" :icon="vm.icon" 
+      :label="vm.label" 
+      :disabled="!vm.isEnabled"
+      :class="`${vm.target}`" 
+      @click="emits('targetSelected', vm.target)" 
+    />
   </div>
 </template>
 

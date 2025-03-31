@@ -1,38 +1,50 @@
 <script setup lang="ts" generic="NavigationTarget">
 import { useRouter } from 'vue-router'
 import { type NavigationBarVM, ReturnNavigationTarget } from '../view-models'
-import IconButton from '../buttons/IconButton.vue'
 import NavigationSubBar from './NavigationSubBar.vue';
+import IconButton from '../buttons/IconButton.vue'
+import CloseButton from '../buttons/CloseButton.vue';
 
 defineProps<{
-  vm: NavigationBarVM<NavigationTarget>
+  vm: NavigationBarVM<NavigationTarget>,
 }>()
 
 const router = useRouter()
 
-function onTargetSelected(target: NavigationTarget) {
-  router.push(`${target}`)
-}
-function onBackwardTargetSelected() {
-  router.back()
-}
+console.log(router, '@ Navigation Bar')
 </script>
 
 <template>
   <nav>
-    <IconButton class="back" v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" :icon="vm.returnItem.icon"
-      @click="onBackwardTargetSelected" />
-    <NavigationSubBar v-if="vm.leftBarItems.length > 0" :itemVMs="vm.leftBarItems" class="left"
-      @target-selected="onTargetSelected" />
+    <IconButton 
+      v-if="vm.returnItem?.target === ReturnNavigationTarget.Back" 
+      :icon="vm.returnItem.icon"
+      class="back"
+      @click="$router.back()" 
+    />
+    
+    <NavigationSubBar 
+      v-if="vm.leftBarItems.length > 0" 
+      :itemVMs="vm.leftBarItems" 
+      class="left"
+      @target-selected="(target) => $router.push(`${target}`)" 
+    />
 
     <span class="title" v-if="vm.title">{{ vm.title }}</span>
 
     <div class="spacer"></div>
 
-    <IconButton class="close" v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" :icon="vm.returnItem.icon"
-      @click="onBackwardTargetSelected" />
-    <NavigationSubBar v-if="vm.rightBarItems.length > 0" :itemVMs="vm.rightBarItems" class="right"
-      @target-selected="onTargetSelected" />
+    <CloseButton 
+      v-if="vm.returnItem?.target === ReturnNavigationTarget.Close" 
+      @click="$router.back()" 
+    />
+    
+    <NavigationSubBar 
+      v-if="vm.rightBarItems.length > 0" 
+      :itemVMs="vm.rightBarItems" 
+      class="right"
+      @target-selected="(target) => $router.push(`${target}`)" 
+    />
   </nav>
 </template>
 
@@ -48,13 +60,9 @@ nav {
   top: 0;
   z-index: 1000;
 
-  :deep(.icon-button) {
-    &.back, &.close {
-      .svg-icon {
-        width: 1.5em;
-        height: 1.5em;
-      }
-    }
+  :deep(.icon-button.back .svg-icon) {
+    width: 1.5em;
+    height: 1.5em;
   }
 
   .title {
