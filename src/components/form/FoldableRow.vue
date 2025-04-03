@@ -12,8 +12,8 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="row foldable">
-    <div id="content" class="fixed" @click="emits('selected')">
+  <div class="row foldable" :class="{ unfolded: isUnfolded }">
+    <div class="content fixed" @click="emits('selected')">
       <div id="title-subtitle-wrapper">
         <slot name="title"></slot>
         <slot name="subtitle"></slot>
@@ -36,7 +36,7 @@ const emits = defineEmits<{
   padding: 0 !important;
   display: block !important;
 
-  #content {
+  .content {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -54,7 +54,7 @@ const emits = defineEmits<{
         display: flex;
         flex-direction: column;
         gap: 0.25em;
-        padding: 0.75em 0;
+        padding: 0.5em 0;
       }
     }
 

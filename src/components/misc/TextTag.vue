@@ -17,13 +17,10 @@ defineProps<{
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-$background-opacity: 0.75;
-
 span.tag {  
   border: 2px solid;
   display: inline-block;
   padding: 0.25em 0.5em;
-  position: relative;
   @include palette.color-attribute('color', varties.$tag-color);
   @include palette.color-attribute(
     'background-color', 
@@ -47,10 +44,6 @@ span.tag {
   }
   &.tiny {
     padding: 0 0.375em;
-  }
-  
-  .background {
-    @include palette.color-attribute('background-color', 'background');
   }
 }
 </style>
