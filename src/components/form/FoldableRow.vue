@@ -3,9 +3,7 @@ import { Icon } from '@design-tokens/iconography'
 import SvgIcon from '../misc/SvgIcon.vue';
 
 defineProps<{
-  title: string,
   isUnfolded: boolean,
-  subtitle?: string
 }>()
 
 const emits = defineEmits<{
@@ -15,13 +13,10 @@ const emits = defineEmits<{
 
 <template>
   <div class="row foldable">
-    <div class="content fixed" @click="emits('selected')">
-      <div class="title-subtitle">
-        <div class="title-container">
-          <span :class="{ h6: isUnfolded }">{{ title }}</span>
-          <slot name="title-ornament"></slot>
-        </div>
-        <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
+    <div id="content" class="fixed" @click="emits('selected')">
+      <div id="title-subtitle-wrapper">
+        <slot name="title"></slot>
+        <slot name="subtitle"></slot>
       </div>
       <div class="spacer"></div>
       <SvgIcon class="disclosure-indicator" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
@@ -41,7 +36,7 @@ const emits = defineEmits<{
   padding: 0 !important;
   display: block !important;
 
-  div.content {
+  #content {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -55,24 +50,11 @@ const emits = defineEmits<{
         cursor: pointer;
       }
 
-      div.title-subtitle {
+      #title-subtitle-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25em;
         padding: 0.75em 0;
-
-        > * {
-          display: block;
-        }
-        
-        div.title-container {
-          display: flex;
-          flex-direction: row;
-          gap: 0.5em;
-        }
-
-        span.subtitle {
-          @extend .caption;
-          margin: 0.25em 0 0 0;
-          @include palette.color-attribute('color', 'secondary-body');
-        }
       }
     }
 
