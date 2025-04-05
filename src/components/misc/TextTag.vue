@@ -36,13 +36,12 @@ span.tag {
   &, > * {
     border-radius: 2em;
   }
-  &.small, &.tiny {
-    @extend .caption;
-  }
   &.small {
+    font-size: typography.em(14px);
     padding: 0.125em 0.5em;
   }
   &.tiny {
+    font-size: typography.em(12px);
     padding: 0 0.375em;
   }
 }
