@@ -18,11 +18,6 @@ export interface ToolBarButtonVM<Tool> {
   label?: string
 }
 
-export enum ReturnNavigationTarget {
-  Back = 'back',
-  Close = 'close'
-}
-
 export interface NavigationBarItemVM<Target> {
   target: Target
   icon: Icon
@@ -30,23 +25,16 @@ export interface NavigationBarItemVM<Target> {
   label?: string
 }
 
+export enum NavigationReturnForm {
+  Back = 'back',
+  Close = 'close'
+}
+
 export interface NavigationBarVM<Target> {
   leftBarItems: NavigationBarItemVM<Target>[]
   rightBarItems: NavigationBarItemVM<Target>[]
-  returnItem?: NavigationBarItemVM<ReturnNavigationTarget>
+  returnForm?: NavigationReturnForm
   title?: string
-}
-
-const backNavigationBarItemVM: NavigationBarItemVM<ReturnNavigationTarget> = {
-  target: ReturnNavigationTarget.Back,
-  icon: Icon.ChevronLeft,
-  isEnabled: true
-}
-
-const closeNavigationBarItemVM: NavigationBarItemVM<ReturnNavigationTarget> = {
-  target: ReturnNavigationTarget.Close,
-  icon: Icon.Xmark,
-  isEnabled: true
 }
 
 export const pushedViewNavigationBarItems = <BarItemKey>(
@@ -56,7 +44,7 @@ export const pushedViewNavigationBarItems = <BarItemKey>(
   return {
     leftBarItems: [],
     rightBarItems: rightBarItems,
-    returnItem: backNavigationBarItemVM,
+    returnForm: NavigationReturnForm.Back,
     title: title
   }
 }
@@ -68,7 +56,7 @@ export const modalViewNavigationBarItems = <BarItemKey>(
   return {
     leftBarItems: leftBarItems,
     rightBarItems: [],
-    returnItem: closeNavigationBarItemVM,
+    returnForm: NavigationReturnForm.Close,
     title: title
   }
 }
