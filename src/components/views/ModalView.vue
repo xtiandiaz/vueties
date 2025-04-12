@@ -4,7 +4,6 @@ import NavigationBar from '../bars/NavigationBar.vue';
 
 defineProps<{
   title?: string,
-  customTargetSelectedAction?: (target: NavigationTarget) => void,
   customCloseButtonAction?: () => void
 }>()
 
@@ -12,12 +11,11 @@ defineProps<{
 
 <template>
   <div class="modal-view">
-    <div class="background"></div>
+    <div class="background" @click="customCloseButtonAction"></div>
     <div class="view-wrapper">
       <!-- <span id="drag-indicator"></span> -->
       <NavigationBar 
         :vm="modalViewNavigationBarItems<NavigationTarget>([], title)"
-        :custom-target-selected-action="customTargetSelectedAction"
         :custom-close-button-action="customCloseButtonAction"
       />
       <div class="view">
@@ -69,10 +67,8 @@ defineProps<{
     
     .view {
       height: calc(100% - bars.$nav-bar-height - $view-margin-top - env(safe-area-inset-bottom));
-      margin: 0;
-      padding: 0;
-      position: relative;
       overflow-y: auto;
+      position: relative;
     }
     
     // #drag-indicator {
