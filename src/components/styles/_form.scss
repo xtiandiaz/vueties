@@ -2,7 +2,6 @@
 @use '@/assets/design-tokens/typography';
 
 $max-width: 1080px !default;
-$min-width: 360px !default;
 $row-h-padding: 1em;
 $row-min-height: 3em;
 
@@ -12,7 +11,6 @@ section.form {
   gap: 2em;
   margin: 0 auto 1em auto;
   max-width: $max-width;
-  min-width: $min-width;
   padding: 0.5em 1em;
   
   div.section {

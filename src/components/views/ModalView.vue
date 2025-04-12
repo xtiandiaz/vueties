@@ -51,7 +51,7 @@ defineProps<{
   .view-wrapper {
     $border-radius: 1.25em;
     $view-margin-top: 2em;
-      
+    
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     height: 100%;
@@ -69,6 +69,8 @@ defineProps<{
     
     .view {
       height: calc(100% - bars.$nav-bar-height - $view-margin-top - env(safe-area-inset-bottom));
+      margin: 0;
+      padding: 0;
       position: relative;
       overflow-y: auto;
     }
