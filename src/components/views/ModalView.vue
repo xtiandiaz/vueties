@@ -53,9 +53,7 @@ defineProps<{
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: $view-margin-top;
+    margin: $view-margin-top auto 0 auto;
     max-width: views.$modal-view-max-width;
     overflow: hidden;
     padding: bars.$nav-bar-height 0;
