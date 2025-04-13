@@ -1,37 +1,22 @@
 <script setup lang="ts" generic="NavigationTarget">
-import { useRouter } from 'vue-router'
 import { type NavigationBarVM, NavigationReturnForm } from '../view-models'
-import { Icon } from '@/assets/design-tokens/iconography';
+import { Icon } from '@design-tokens/iconography';
 import NavigationSubBar from './NavigationSubBar.vue';
 import IconButton from '../buttons/IconButton.vue'
 import CloseButton from '../buttons/CloseButton.vue';
 
-const { customTargetSelectedAction, customCloseButtonAction } = defineProps<{
+const { vm } = defineProps<{
   vm: NavigationBarVM<NavigationTarget>,
-  customTargetSelectedAction?: (target: NavigationTarget) => void,
-  customCloseButtonAction?: () => void
 }>()
 
-const router = useRouter()
+const emits = defineEmits<{
+  backButtonClicked: [void],
+  closeButtonClicked: [void],
+  targetSelected: [NavigationTarget]
+}>()
 
 function onTargetSelected(target: NavigationTarget) {
-  if (customTargetSelectedAction) {
-    customTargetSelectedAction?.(target)
-  } else {
-    router.push(`${target}`)
-  }
-}
-
-function onBackButtonClicked() {
-  router.back()
-}
-
-function onCloseButtonClicked() {
-  if (customCloseButtonAction) {
-    customCloseButtonAction?.()
-  } else {
-    router.back()
-  }
+  emits('targetSelected', target)
 }
 </script>
 
@@ -41,7 +26,7 @@ function onCloseButtonClicked() {
       v-if="vm.returnForm === NavigationReturnForm.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
-      @click="onBackButtonClicked" 
+      @click="emits('backButtonClicked')" 
     />
     
     <NavigationSubBar 
@@ -57,7 +42,7 @@ function onCloseButtonClicked() {
 
     <CloseButton 
       v-if="vm.returnForm === NavigationReturnForm.Close" 
-      @click="onCloseButtonClicked" 
+      @click="emits('closeButtonClicked')" 
     />
     
     <NavigationSubBar 

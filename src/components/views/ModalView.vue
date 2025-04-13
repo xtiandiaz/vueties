@@ -3,20 +3,24 @@ import { modalViewNavigationBarItems } from '../view-models';
 import NavigationBar from '../bars/NavigationBar.vue';
 
 defineProps<{
-  title?: string,
-  customCloseButtonAction?: () => void
+  title?: string
 }>()
 
+const emits = defineEmits<{
+  closeButtonClicked: [void]
+}>()
 </script>
 
 <template>
   <div class="modal-view">
-    <div class="background" @click="customCloseButtonAction"></div>
+    
+    <div class="background" @click="emits('closeButtonClicked')"></div>
+    
     <div class="view-wrapper">
       <!-- <span id="drag-indicator"></span> -->
       <NavigationBar 
         :vm="modalViewNavigationBarItems<NavigationTarget>([], title)"
-        :custom-close-button-action="customCloseButtonAction"
+        @close-button-clicked="emits('closeButtonClicked')"
       />
       <div class="view">
         <slot></slot>
@@ -33,7 +37,7 @@ defineProps<{
 @use '../styles/bars';
 @use '@design-tokens/palette';
 
-.modal-view {
+div.modal-view {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -48,7 +52,7 @@ defineProps<{
   
   .view-wrapper {
     $border-radius: 1.25em;
-    $view-margin-top: 2em;
+    $view-margin-top: 1.5em;
     
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
@@ -66,7 +70,6 @@ defineProps<{
     .view {
       height: calc(100% - bars.$nav-bar-height - $view-margin-top - env(safe-area-inset-bottom));
       overflow-y: auto;
-      position: relative;
     }
     
     // #drag-indicator {
