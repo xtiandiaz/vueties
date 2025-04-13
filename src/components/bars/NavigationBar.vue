@@ -60,7 +60,9 @@ function onTargetSelected(target: NavigationTarget) {
 
 nav {
   @extend .item-bar;
+  height: bars.$nav-bar-height;
   left: 0;
+  padding: 0 bars.$nav-bar-h-padding;
   position: absolute;
   right: 0;
   top: 0;

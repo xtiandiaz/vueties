@@ -1,7 +1,7 @@
 @use '@design-tokens/palette';
 
-$nav-bar-padding: 0.25em;
-$nav-bar-height: calc(3em + $nav-bar-padding * 2);
+$nav-bar-h-padding: 0.25em;
+$nav-bar-height: 3.5em;
 $item-gap: 1em;
 
 .item-bar {

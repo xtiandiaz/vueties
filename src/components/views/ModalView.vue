@@ -51,7 +51,7 @@ div.modal-view {
   }
   
   .view-wrapper {
-    $border-radius: 1.25em;
+    $border-radius: 1em;
     $view-margin-top: 1.5em;
     
     border-top-left-radius: $border-radius;
