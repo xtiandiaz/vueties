@@ -1,5 +1,7 @@
 <script setup lang="ts" generic="NavigationTarget">
+import { ref, onMounted, onBeforeUnmount, useTemplateRef } from 'vue';
 import { modalViewNavigationBarItems } from '../view-models';
+import { clamp } from '@/assets/tungsten/math';
 import NavigationBar from '../bars/NavigationBar.vue';
 
 defineProps<{
@@ -9,6 +11,22 @@ defineProps<{
 const emits = defineEmits<{
   closeButtonClicked: [void]
 }>()
+
+const viewRef = useTemplateRef('view')
+const scrollShadeThreshold = ref(56)
+const barShadeOpacity = ref(0)
+
+function onViewScrolled() {
+  barShadeOpacity.value = clamp(viewRef.value!.scrollTop / scrollShadeThreshold.value, 0, 1)
+}
+
+onMounted(() => {
+  scrollShadeThreshold.value = Number(getComputedStyle(viewRef.value!).getPropertyValue('--scroll-shade-threshold').replace('px', ''))
+  viewRef.value?.addEventListener('scroll', onViewScrolled)
+})
+onBeforeUnmount(() => {
+  viewRef.value?.removeEventListener('scroll', onViewScrolled)
+})
 </script>
 
 <template>
@@ -20,9 +38,10 @@ const emits = defineEmits<{
       <!-- <span id="drag-indicator"></span> -->
       <NavigationBar 
         :vm="modalViewNavigationBarItems<NavigationTarget>([], title)"
+        :barShadeOpacity='barShadeOpacity'
         @close-button-clicked="emits('closeButtonClicked')"
       />
-      <div class="view">
+      <div class="view" ref='view'>
         <slot></slot>
       </div>
     </div>
@@ -47,6 +66,7 @@ div.modal-view {
   
   .background {
     @extend .absolute-background;
+    
     background-color: rgba($color: #000000, $alpha: 0.8);
   }
   
@@ -63,11 +83,10 @@ div.modal-view {
     padding: bars.$nav-bar-height 0;
     position: relative;
     
-    nav, & {
-      @include palette.color-attribute('background-color', 'secondary-background');
-    }
+    @include palette.color-attribute('background-color', 'secondary-background');
     
     .view {
+      @extend .scroll-shade-target;
       height: calc(100% - bars.$nav-bar-height - $view-margin-top - env(safe-area-inset-bottom));
       overflow-y: auto;
     }

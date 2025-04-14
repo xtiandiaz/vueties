@@ -5,8 +5,9 @@ import NavigationSubBar from './NavigationSubBar.vue';
 import IconButton from '../buttons/IconButton.vue'
 import CloseButton from '../buttons/CloseButton.vue';
 
-const { vm } = defineProps<{
+defineProps<{
   vm: NavigationBarVM<NavigationTarget>,
+  barShadeOpacity?: number
 }>()
 
 const emits = defineEmits<{
@@ -22,6 +23,8 @@ function onTargetSelected(target: NavigationTarget) {
 
 <template>
   <nav>
+    <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
+    
     <IconButton 
       v-if="vm.returnForm === NavigationReturnForm.Back" 
       :icon="Icon.ChevronLeft"
@@ -56,6 +59,8 @@ function onTargetSelected(target: NavigationTarget) {
 
 <style scoped lang="scss">
 @use '../styles/bars';
+@use '../styles/utils';
+@use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
 nav {
@@ -67,10 +72,24 @@ nav {
   right: 0;
   top: 0;
   z-index: 1000;
+  @include palette.color-attribute('background-color', 'secondary-background');
 
   :deep(.icon-button.back .svg-icon) {
     width: 1.5em;
     height: 1.5em;
+  }
+  
+  .scroll-shade {
+    border-bottom: 1px solid;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include palette.color-attributes((
+      'background-color': 'background',
+      'border-color': 'tertiary-background'
+    ));
   }
 
   .title {

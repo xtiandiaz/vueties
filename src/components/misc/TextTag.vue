@@ -15,12 +15,13 @@ defineProps<{
 @use '@/assets/varties';
 @use '../styles/utils';
 @use '@design-tokens/palette';
-@use '@design-tokens/typography';
+@use '@design-tokens/utils' as ds-utils;
 
 span.tag {  
   border: 2px solid;
   display: inline-block;
   padding: 0.25em 0.5em;
+  
   @include palette.color-attribute('color', varties.$tag-color);
   @include palette.color-attribute(
     'background-color', 
@@ -37,11 +38,11 @@ span.tag {
     border-radius: 2em;
   }
   &.small {
-    font-size: typography.em(14px);
+    font-size: ds-utils.em(14px);
     padding: 0.125em 0.5em;
   }
   &.tiny {
-    font-size: typography.em(12px);
+    font-size: ds-utils.em(12px);
     padding: 0 0.375em;
   }
 }

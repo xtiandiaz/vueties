@@ -24,7 +24,7 @@ button.close-button {
   .svg-icon {
     height: $icon-size;
     width: $icon-size;
-    @include palette.color-attribute('color', 'body');
+    @include palette.color-attribute('color', 'tertiary-body');
   }
   
   .circle-fill {
