@@ -1,23 +1,24 @@
-<script setup lang="ts" generic="NavigationTarget">
-import { type NavigationBarVM, NavigationReturnForm } from '../view-models'
+<script setup lang="ts">
+import { type NavigationBarVM, NavigationReturnMode } from '../view-models'
 import { Icon } from '@design-tokens/iconography';
 import NavigationSubBar from './NavigationSubBar.vue';
 import IconButton from '../buttons/IconButton.vue'
 import CloseButton from '../buttons/CloseButton.vue';
 
 defineProps<{
-  vm: NavigationBarVM<NavigationTarget>,
+  vm: NavigationBarVM
   barShadeOpacity?: number
+  title?: string
 }>()
 
 const emits = defineEmits<{
-  backButtonClicked: [void],
-  closeButtonClicked: [void],
-  targetSelected: [NavigationTarget]
+  backButtonClicked: [void]
+  closeButtonClicked: [void]
+  routeSelected: [key: string]
 }>()
 
-function onTargetSelected(target: NavigationTarget) {
-  emits('targetSelected', target)
+function onRouteSelected(key: string) {
+  emits('routeSelected', key)
 }
 </script>
 
@@ -26,33 +27,33 @@ function onTargetSelected(target: NavigationTarget) {
     <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <IconButton 
-      v-if="vm.returnForm === NavigationReturnForm.Back" 
+      v-if="vm.returnMode === NavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
       @click="emits('backButtonClicked')" 
     />
     
     <NavigationSubBar 
-      v-if="vm.leftBarItems.length > 0" 
+      v-if="vm.leftBarItems" 
       :itemVMs="vm.leftBarItems" 
       class="left"
-      @target-selected="onTargetSelected" 
+      @route-selected="onRouteSelected" 
     />
 
-    <span class="title" v-if="vm.title">{{ vm.title }}</span>
+    <span class="title" v-if="title">{{ title }}</span>
 
     <div class="spacer"></div>
 
     <CloseButton 
-      v-if="vm.returnForm === NavigationReturnForm.Close" 
+      v-if="vm.returnMode === NavigationReturnMode.Close" 
       @click="emits('closeButtonClicked')" 
     />
     
     <NavigationSubBar 
-      v-if="vm.rightBarItems.length > 0" 
+      v-if="vm.rightBarItems" 
       :itemVMs="vm.rightBarItems" 
       class="right"
-      @target-selected="onTargetSelected" 
+      @route-selected="onRouteSelected" 
     />
   </nav>
 </template>

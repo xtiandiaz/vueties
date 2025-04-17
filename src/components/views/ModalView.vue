@@ -1,8 +1,8 @@
-<script setup lang="ts" generic="NavigationTarget">
+<script setup lang="ts" generic="RouteKey">
 import { ref, onMounted, onBeforeUnmount, useTemplateRef } from 'vue';
-import { modalViewNavigationBarItems } from '../view-models';
 import { clamp } from '@/assets/tungsten/math';
 import NavigationBar from '../bars/NavigationBar.vue';
+import { NavigationReturnMode } from '../view-models';
 
 defineProps<{
   title?: string
@@ -37,8 +37,9 @@ onBeforeUnmount(() => {
     <div class="view-wrapper">
       <!-- <span id="drag-indicator"></span> -->
       <NavigationBar 
-        :vm="modalViewNavigationBarItems<NavigationTarget>([], title)"
+        :vm="{ isVisible: true, returnMode: NavigationReturnMode.Close }"
         :barShadeOpacity='barShadeOpacity'
+        :title="title"
         @close-button-clicked="emits('closeButtonClicked')"
       />
       <div class="view" ref='view'>

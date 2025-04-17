@@ -1,4 +1,4 @@
-import { Icon } from "@/assets/design-tokens/iconography";
+import { Icon } from "@design-tokens/iconography"
 
 // Pads ----------
 
@@ -18,47 +18,23 @@ export interface ToolBarButtonVM<Tool> {
   label?: string
 }
 
-export interface NavigationBarItemVM<Target> {
-  target: Target
+export interface NavigationBarItemVM {
   icon: Icon
   isEnabled: boolean
+  routeKey: string
   label?: string
 }
 
-export enum NavigationReturnForm {
+export enum NavigationReturnMode {
   Back = 'back',
   Close = 'close'
 }
 
-export interface NavigationBarVM<Target> {
-  leftBarItems: NavigationBarItemVM<Target>[]
-  rightBarItems: NavigationBarItemVM<Target>[]
-  returnForm?: NavigationReturnForm
-  title?: string
-}
-
-export const pushedViewNavigationBarItems = <BarItemKey>(
-  rightBarItems: NavigationBarItemVM<BarItemKey>[],
-  title?: string
-): NavigationBarVM<BarItemKey> => {
-  return {
-    leftBarItems: [],
-    rightBarItems: rightBarItems,
-    returnForm: NavigationReturnForm.Back,
-    title: title
-  }
-}
-
-export const modalViewNavigationBarItems = <BarItemKey>(
-  leftBarItems: NavigationBarItemVM<BarItemKey>[],
-  title?: string
-): NavigationBarVM<BarItemKey> => {
-  return {
-    leftBarItems: leftBarItems,
-    rightBarItems: [],
-    returnForm: NavigationReturnForm.Close,
-    title: title
-  }
+export interface NavigationBarVM {
+  isVisible: boolean
+  leftBarItems?: NavigationBarItemVM[]
+  rightBarItems?: NavigationBarItemVM[]
+  returnMode?: NavigationReturnMode
 }
 
 // Form ----------

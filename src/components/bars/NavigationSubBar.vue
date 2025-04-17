@@ -1,13 +1,13 @@
-<script setup lang="ts" generic="Target">
+<script setup lang="ts">
 import { type NavigationBarItemVM } from '../view-models';
 import IconButton from '../buttons/IconButton.vue';
 
 defineProps<{
-  itemVMs: NavigationBarItemVM<Target>[]
+  itemVMs: NavigationBarItemVM[]
 }>()
 
 const emits = defineEmits<{
-  targetSelected: [target: Target]
+  routeSelected: [key: string]
 }>()
 </script>
 
@@ -18,8 +18,8 @@ const emits = defineEmits<{
       :key="index" :icon="vm.icon" 
       :label="vm.label" 
       :disabled="!vm.isEnabled"
-      :class="`${vm.target}`" 
-      @click="emits('targetSelected', vm.target)" 
+      :class="`${vm.routeKey}`" 
+      @click="emits('routeSelected', vm.routeKey)" 
     />
   </div>
 </template>
