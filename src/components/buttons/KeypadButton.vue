@@ -10,7 +10,7 @@ const { vm } = defineProps<{
 <template>
   <button :disabled="!vm.isEnabled" class="keypad-button" :class="{ iconized: vm.icon !== undefined }">
     <SvgIcon v-if="vm.icon" :icon="vm.icon" />
-    <span v-else class="label h5" :class="{ dimmed: vm.label === '＿' }">{{ vm.label }}</span>
+    <span v-else class="label h5" :class="{ dimmed: vm.isDimmed }">{{ vm.label }}</span>
   </button>
 </template>
 
@@ -34,7 +34,7 @@ button.keypad-button {
 
   .label {
     &.dimmed {
-      opacity: 50%;
+      opacity: 25%;
     }
   }
 

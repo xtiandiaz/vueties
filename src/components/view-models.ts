@@ -3,9 +3,10 @@ import { Icon } from "@design-tokens/iconography"
 // Pads ----------
 
 export interface KeypadKeyVM {
+  isDimmed: boolean
+  isEnabled: boolean
   label: string | Icon
   value: string | number
-  isEnabled: boolean
   icon?: Icon
 }
 
