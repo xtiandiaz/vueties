@@ -7,7 +7,6 @@ import CloseButton from '../buttons/CloseButton.vue';
 
 defineProps<{
   vm: NavigationBarVM
-  barShadeOpacity?: number
   title?: string
 }>()
 
@@ -23,9 +22,7 @@ function onRouteSelected(key: string) {
 </script>
 
 <template>
-  <nav>
-    <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
-    
+  <nav>    
     <IconButton 
       v-if="vm.returnMode === NavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
@@ -73,24 +70,10 @@ nav {
   right: 0;
   top: 0;
   z-index: 1000;
-  @include palette.color-attribute('background-color', 'secondary-background');
 
   :deep(.icon-button.back .svg-icon) {
     width: 1.5em;
     height: 1.5em;
-  }
-  
-  .scroll-shade {
-    border-bottom: 1px solid;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    @include palette.color-attributes((
-      'background-color': 'background',
-      'border-color': 'tertiary-background'
-    ));
   }
 
   .title {
