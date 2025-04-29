@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="RouteKey">
 import NavigationBar from '../bars/NavigationBar.vue';
 import { NavigationReturnMode } from '../view-models';
-import NavigationView from './NavigationView.vue'
+import NavigationalView from './NavigationalView.vue'
 
 defineProps<{
   title?: string
@@ -17,7 +17,7 @@ const emits = defineEmits<{
     
     <div class="background" @click="emits('closeButtonClicked')"></div>
     
-    <NavigationView>
+    <NavigationalView>
       <template v-slot:bar>
         <NavigationBar 
           :vm="{ isVisible: true, returnMode: NavigationReturnMode.Close }"
@@ -28,7 +28,7 @@ const emits = defineEmits<{
       <template v-slot:view>
         <slot></slot>
       </template>
-    </NavigationView>
+    </NavigationalView>
   </div>
 </template>
 
