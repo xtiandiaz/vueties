@@ -1,3 +1,26 @@
+@mixin safe-area($top: true, $bottom: true) {
+  $padding-bottom: 0px;
+  $padding-top: 0px;
+  
+  @if $bottom {
+    $padding-bottom: env(safe-area-inset-bottom);
+  }
+  @if $top {
+    $padding-top: env(safe-area-inset-top);
+  }
+  
+  height: calc(100% - $padding-top - $padding-bottom);
+  overflow: auto;
+  padding-bottom: $padding-bottom;
+  padding-top: $padding-top;
+}
+
+.inhibit-contextual-touch-action {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 div.spacer {
   flex: auto;
 }
