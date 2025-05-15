@@ -18,8 +18,10 @@ button {
   &:disabled {
     opacity: 25%;
   }
-  &:hover:enabled, label:hover {
-    cursor: pointer;
+  &:hover:enabled {
+    &, label {
+      cursor: pointer;
+    }
   }
   
   &.icon-button {
