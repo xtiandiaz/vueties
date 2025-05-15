@@ -1,5 +1,6 @@
 $key-color: 'body' !default;
 $key-background-color: 'background' !default;
+$pad-max-width: 32em;
 
 div.pad {
   display: flex;
@@ -7,5 +8,6 @@ div.pad {
   flex-wrap: wrap;
   gap: 0.5em;
   justify-content: center;
-  max-width: 32em;
+  max-width: $pad-max-width;
+  overflow: hidden;
 }

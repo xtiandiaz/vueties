@@ -12,7 +12,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="pad keypad">
+  <div class="pad key-pad">
     <button 
       v-for="(vm, index) of keyVMs" 
       :key="index" 
@@ -33,7 +33,7 @@ const emits = defineEmits<{
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-.keypad {
+.key-pad {
   button {
     border-radius: 0.5em;
     height: 3em;
@@ -43,6 +43,10 @@ const emits = defineEmits<{
       'background-color': varties.$key-background-color,
       'color': varties.$key-color
     ));
+    
+    &:disabled {
+      background-color: transparent;
+    }
 
     &.iconized:enabled {
       @include palette.color-attributes((
@@ -58,11 +62,7 @@ const emits = defineEmits<{
         opacity: 25%;
       }
     }
-
-    &:disabled {
-      background-color: transparent;
-    }
-
+    
     .svg-icon {
       height: 2em;
       width: 2em;
