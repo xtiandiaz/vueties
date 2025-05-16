@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
   
   .view {
     @extend .scroll-shade-target;
-    height: calc(100% - env(safe-area-inset-bottom));
+    height: 100%;
     overflow-y: auto;
   }
   
