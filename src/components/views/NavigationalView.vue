@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
 @use '@design-tokens/palette';
 
 .navigational-view-wrapper {  
-  height: 100%;
+  height: calc(100% - bars.$nav-bar-height);
   margin: 0 auto;
   overflow: hidden;
   padding: bars.$nav-bar-height 0 0 0;
@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
   
   .view {
     @extend .scroll-shade-target;
-    height: calc(100% - bars.$nav-bar-height - env(safe-area-inset-bottom));
+    height: calc(100% - env(safe-area-inset-bottom));
     overflow-y: auto;
   }
   
