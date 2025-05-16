@@ -20,7 +20,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="view-wrapper">
+  <div class="navigational-view-wrapper">
     
     <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     <slot name="bar"></slot>
@@ -31,15 +31,13 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use '../styles/bars';
 @use '@design-tokens/palette';
 
-.view-wrapper {
-  $view-margin-top: 1.5em;
-  
+.navigational-view-wrapper {  
   height: 100%;
-  margin: $view-margin-top auto 0 auto;
+  margin: 0 auto;
   overflow: hidden;
   padding: bars.$nav-bar-height 0 0 0;
   position: relative;
@@ -47,7 +45,7 @@ onBeforeUnmount(() => {
   
   .view {
     @extend .scroll-shade-target;
-    height: calc(100% - bars.$nav-bar-height - $view-margin-top - env(safe-area-inset-bottom));
+    height: calc(100% - bars.$nav-bar-height - env(safe-area-inset-bottom));
     overflow-y: auto;
   }
   

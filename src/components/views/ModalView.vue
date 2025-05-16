@@ -15,7 +15,7 @@ const emits = defineEmits<{
 <template>
   <div class="modal-view">
     
-    <div class="background" @click="emits('closeButtonClicked')"></div>
+    <div class="modal-background" @click="emits('closeButtonClicked')"></div>
     
     <NavigationalView>
       <template v-slot:bar>
@@ -38,20 +38,21 @@ const emits = defineEmits<{
 );
 @use '../styles/utils';
 
-div.modal-view {
+div.modal-view {  
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
-  top: 0;
+  top: views.$modal-view-margin-top;
   z-index: 1000;
   
-  .background {
+  .modal-background {
     @extend .absolute-background;
     background-color: rgba($color: #000000, $alpha: 0.8);
+    top: -1 * views.$modal-view-margin-top;
   }
   
-  .view-wrapper {
+  .navigational-view-wrapper {
     $border-radius: 1em;
     
     border-top-left-radius: $border-radius;
