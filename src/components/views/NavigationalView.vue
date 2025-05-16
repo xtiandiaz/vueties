@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  @include palette.color-attribute('background-color', 'secondary-background');
+  @include palette.color-attribute('background-color', 'tertiary-background');
   
   .view {
     $padding-bottom: env(safe-area-inset-bottom);
