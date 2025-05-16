@@ -60,6 +60,8 @@ div.modal-view {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     max-width: views.$modal-view-max-width;
+    
+    height: calc(100% - bars.$nav-bar-height - env(safe-area-inset-bottom));
   }
 }
 </style>
