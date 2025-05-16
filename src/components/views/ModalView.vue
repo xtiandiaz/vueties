@@ -42,7 +42,7 @@ const emits = defineEmits<{
 div.modal-view {  
   bottom: 0;
   left: 0;
-  padding: views.$modal-view-margin-top 0 0 0;
+  padding-top: calc(views.$modal-view-margin-top + env(safe-area-inset-top));
   position: absolute;
   right: 0;
   top: 0;
