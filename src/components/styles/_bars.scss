@@ -5,7 +5,7 @@ $nav-bar-h-padding: 0.25em;
 $nav-bar-height: 3.5em;
 $item-gap: 1em;
 
-.scroll-shade-target {
+.nav-bar-scroll-shade-target {
   --scroll-shade-threshold: #{utils.px(calc($nav-bar-height / 2))};
 }
 

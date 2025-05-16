@@ -33,28 +33,23 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 @use '../styles/bars';
+@use '../styles/utils';
 @use '@design-tokens/palette';
 
 .navigational-view-wrapper {  
-  height: calc(100% - bars.$nav-bar-height);
+  height: 100%;
   margin: 0 auto;
   overflow: hidden;
-  padding-top: bars.$nav-bar-height;
   position: relative;
-  @include palette.color-attribute('background-color', 'tertiary-background');
-  
-  :deep(nav.navigation-bar) {
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1000;
-  }
+  @include palette.color-attribute('background-color', 'secondary-background');
   
   .view {
-    @extend .scroll-shade-target;
-    height: 100%;
+    $padding-bottom: env(safe-area-inset-bottom);
+    
+    @extend .nav-bar-scroll-shade-target;
+    height: calc(100% - bars.$nav-bar-height - $padding-bottom);
     overflow-y: auto;
+    padding-bottom: $padding-bottom;
   }
   
   .scroll-shade {

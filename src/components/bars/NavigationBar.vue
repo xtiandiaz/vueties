@@ -65,6 +65,7 @@ nav.navigation-bar {
   @extend .item-bar;
   height: bars.$nav-bar-height;
   padding: 0 bars.$nav-bar-h-padding;
+  position: relative;
 
   :deep(.icon-button.back .svg-icon) {
     width: 1.5em;

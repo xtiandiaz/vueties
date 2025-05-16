@@ -51,7 +51,6 @@ div.modal-view {
   .modal-background {
     @extend .absolute-background;
     background-color: rgba($color: #000000, $alpha: 0.8);
-    top: -1 * views.$modal-view-margin-top;
   }
   
   .navigational-view-wrapper {
@@ -60,10 +59,6 @@ div.modal-view {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     max-width: views.$modal-view-max-width;
-    
-    :deep(.view) {
-      @include utils.safe-area(false, true);
-    }
   }
 }
 </style>
