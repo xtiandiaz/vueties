@@ -22,7 +22,7 @@ function onRouteSelected(key: string) {
 </script>
 
 <template>
-  <nav>    
+  <nav class="navigation-bar">
     <IconButton 
       v-if="vm.returnMode === NavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
@@ -61,15 +61,10 @@ function onRouteSelected(key: string) {
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-nav {
+nav.navigation-bar {
   @extend .item-bar;
   height: bars.$nav-bar-height;
-  left: 0;
   padding: 0 bars.$nav-bar-h-padding;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1000;
 
   :deep(.icon-button.back .svg-icon) {
     width: 1.5em;

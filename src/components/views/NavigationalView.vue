@@ -36,17 +36,25 @@ onBeforeUnmount(() => {
 @use '@design-tokens/palette';
 
 .navigational-view-wrapper {  
-  height: calc(100% - bars.$nav-bar-height);
+  height: 100%;
   margin: 0 auto;
   overflow: hidden;
-  padding: bars.$nav-bar-height 0 0 0;
   position: relative;
   @include palette.color-attribute('background-color', 'secondary-background');
   
+  :deep(nav.navigation-bar) {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
+  
   .view {
     @extend .scroll-shade-target;
-    height: calc(100% - env(safe-area-inset-bottom));
+    height: calc(100% - bars.$nav-bar-height);
     overflow-y: auto;
+    padding: bars.$nav-bar-height 0 0 0;
   }
   
   .scroll-shade {

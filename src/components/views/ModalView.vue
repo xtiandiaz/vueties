@@ -36,14 +36,16 @@ const emits = defineEmits<{
 @use '../styles/views' with (
   $modal-view-max-width: 720px
 );
+@use '../styles/bars';
 @use '../styles/utils';
 
 div.modal-view {  
   bottom: 0;
   left: 0;
+  padding: views.$modal-view-margin-top 0 0 0;
   position: absolute;
   right: 0;
-  top: views.$modal-view-margin-top;
+  top: 0;
   z-index: 1000;
   
   .modal-background {
