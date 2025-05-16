@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
   padding-top: bars.$nav-bar-height;
   position: relative;
-  @include palette.color-attribute('background-color', 'secondary-background');
+  @include palette.color-attribute('background-color', 'tertiary-background');
   
   :deep(nav.navigation-bar) {
     left: 0;
