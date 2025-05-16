@@ -61,7 +61,9 @@ div.modal-view {
     border-top-right-radius: $border-radius;
     max-width: views.$modal-view-max-width;
     
-    height: calc(100% - bars.$nav-bar-height - env(safe-area-inset-bottom));
+    :deep(.view) {
+      @include utils.safe-area(false, true);
+    }
   }
 }
 </style>
