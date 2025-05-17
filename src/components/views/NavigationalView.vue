@@ -54,15 +54,20 @@ onBeforeUnmount(() => {
 @use '../styles/utils';
 @use '@design-tokens/palette';
 
-.navigational-view-wrapper {
-  $margin-top: env(safe-area-inset-top);
-  
-  height: calc(100% - $margin-top);
+.navigational-view-wrapper {  
+  height: 100%;
   margin: 0 auto;
   overflow: hidden;
+  padding-top: bars.$nav-bar-height;
   position: relative;
-  margin-top: $margin-top;
   @include palette.color-attribute('background-color', 'secondary-background');
+  
+  .navigation-bar {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;  
+  }
   
   .view {    
     @extend .nav-bar-scroll-shade-target;

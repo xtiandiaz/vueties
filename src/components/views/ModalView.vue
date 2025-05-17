@@ -33,7 +33,7 @@ const emits = defineEmits<{
 @use '../styles/bars';
 @use '../styles/utils';
 
-div.modal-view {  
+div.modal-view {
   bottom: 0;
   left: 0;
   padding-top: views.$modal-view-margin-top;
@@ -43,8 +43,13 @@ div.modal-view {
   z-index: 1000;
   
   .modal-background {
-    @extend .absolute-background;
     background-color: rgba($color: #000000, $alpha: 0.8);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1000;
   }
   
   .navigational-view-wrapper {
