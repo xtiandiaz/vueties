@@ -6,8 +6,8 @@ import IconButton from '../buttons/IconButton.vue'
 import CloseButton from '../buttons/CloseButton.vue';
 
 defineProps<{
-  vm: NavigationBarVM
-  title?: string
+  vm: NavigationBarVM,
+  barShadeOpacity?: number
 }>()
 
 const emits = defineEmits<{
@@ -22,8 +22,10 @@ function onRouteSelected(key: string) {
 </script>
 
 <template>
-  <nav class="navigation-bar">
-    <IconButton 
+  <nav v-if="vm.isVisible" class="navigation-bar">
+    <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
+    
+    <IconButton
       v-if="vm.returnMode === NavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
@@ -37,7 +39,7 @@ function onRouteSelected(key: string) {
       @route-selected="onRouteSelected" 
     />
 
-    <span class="title" v-if="title">{{ title }}</span>
+    <span class="title" v-if="vm.title">{{ vm.title }}</span>
 
     <div class="spacer"></div>
 
@@ -89,6 +91,19 @@ nav.navigation-bar {
     &.right {
       justify-content: right;
     }
+  }
+  
+  .scroll-shade {
+    border-bottom: 1px solid;
+    height: bars.$nav-bar-height;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include palette.color-attributes((
+      'background-color': 'background',
+      'border-color': 'tertiary-background'
+    ));
   }
 }
 </style>

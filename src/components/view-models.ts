@@ -34,6 +34,7 @@ export enum NavigationReturnMode {
 export interface NavigationBarVM {
   isVisible: boolean
   leftBarItems?: NavigationBarItemVM[]
+  title?: string,
   rightBarItems?: NavigationBarItemVM[]
   returnMode?: NavigationReturnMode
 }

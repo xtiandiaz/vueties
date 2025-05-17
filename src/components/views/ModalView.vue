@@ -1,5 +1,4 @@
 <script setup lang="ts" generic="RouteKey">
-import NavigationBar from '../bars/NavigationBar.vue';
 import { NavigationReturnMode } from '../view-models';
 import NavigationalView from './NavigationalView.vue'
 
@@ -17,17 +16,12 @@ const emits = defineEmits<{
     
     <div class="modal-background" @click="emits('closeButtonClicked')"></div>
     
-    <NavigationalView>
-      <template v-slot:bar>
-        <NavigationBar 
-          :vm="{ isVisible: true, returnMode: NavigationReturnMode.Close }"
-          :title="title"
-          @close-button-clicked="emits('closeButtonClicked')"
-        />  
-      </template>
-      <template v-slot:view>
-        <slot></slot>
-      </template>
+    <NavigationalView
+      :navigationBarVM="{ isVisible: true, title: title, returnMode: NavigationReturnMode.Close }"
+      :title="title"
+      @close-button-clicked="emits('closeButtonClicked')"
+    >
+      <slot></slot>
     </NavigationalView>
   </div>
 </template>
@@ -42,7 +36,7 @@ const emits = defineEmits<{
 div.modal-view {  
   bottom: 0;
   left: 0;
-  padding-top: calc(views.$modal-view-margin-top + env(safe-area-inset-top));
+  padding-top: views.$modal-view-margin-top;
   position: absolute;
   right: 0;
   top: 0;
