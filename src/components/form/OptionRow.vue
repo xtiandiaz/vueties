@@ -13,10 +13,13 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="row option" @click="emits('selected', vm.value)">
+  <div 
+    class="row option" :class="{ selected: vm.isSelected }"
+    @click="emits('selected', vm.value)"
+  >
+    
     <SvgIcon v-if="vm.icon" :icon="vm.icon" class="representative-icon" />
-
-    <span :class="{ strong: vm.isSelected }">{{ vm.title }}</span>
+    <span class="title" :class="{ selected: vm.isSelected }">{{ vm.title }}</span>
 
     <div class="spacer"></div>
 
@@ -27,16 +30,31 @@ const emits = defineEmits<{
 <style scoped lang="scss">
 @use '../styles/form';
 @use '@design-tokens/palette';
-
-$icon-size: 1.5em;
+@use '@design-tokens/typography';
 
 .row.option {
-
   &:hover {
     cursor: pointer;
   }
+  
+  &.selected {
+    .title {
+      @extend strong;
+    }
+    .title, .representative-icon {
+      @include palette.color-attribute('color', 'body');
+    }  
+  }
+  
+  .title {
+    @include palette.color-attribute('color', 'secondary-body');
+  }
+  .representative-icon {
+    @include palette.color-attribute('color', 'tertiary-body');
+  }
 
   .svg-icon {
+    $icon-size: 1.5em;
     height: $icon-size;
     width: $icon-size;
   }
