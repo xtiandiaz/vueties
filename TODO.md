@@ -1,0 +1,9 @@
+- Group all components into a single folder
+- Rename and make form member classes more explicit
+- Add Slider and Slider Row components
+- Add Switch and Switch Row components
+- Add Input Text and Input Row components
+- Add Search View
+- Add Segmented Button component
+- Add Weekly Calendar component
+- Add Monthly Calendar component
