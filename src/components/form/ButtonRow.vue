@@ -4,12 +4,13 @@ import SvgIcon from '../misc/SvgIcon.vue';
 
 defineProps<{
   label: string,
-  icon?: Icon
+  icon?: Icon,
+  isDestructive?: boolean
 }>()
 </script>
 
 <template>
-  <div class="row button">
+  <div class="row button" :class="{ destructive: isDestructive ?? false }">
     <SvgIcon v-if="icon" :icon="icon" />
     <label>{{ label }}</label>
   </div>
@@ -28,9 +29,15 @@ $icon-size: 1.5em;
   gap: 0.5em !important;
   justify-content: center;
   @include palette.color-attribute('color', varties.$tint-color);
+  
+  &.destructive {
+    @include palette.color-attribute('color', 'red');
+  }
 
-  &:hover, label:hover {
-    cursor: pointer;
+  &:not(:disabled, .disabled) {
+    &:hover, label:hover {
+      cursor: pointer;
+    }
   }
 
   .svg-icon {

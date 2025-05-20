@@ -84,6 +84,11 @@ section.form {
           border-radius: 1em;
         }
         
+        &.disabled, &:disabled {
+          cursor: default;
+          opacity: 50%;
+        }
+        
         .disclosure-indicator {
           height: 1em;
           width: 1em;
