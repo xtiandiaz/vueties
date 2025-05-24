@@ -4,6 +4,7 @@
 - Add Switch and Switch Row components
 - Add Input Text and Input Row components
 - Add Search View
+- Add Form View
 - Add Segmented Button component
 - Add Weekly Calendar component
 - Add Monthly Calendar component

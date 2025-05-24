@@ -52,11 +52,5 @@ const emits = defineEmits<{
   .representative-icon {
     @include palette.color-attribute('color', 'tertiary-body');
   }
-
-  .svg-icon {
-    $icon-size: 1.5em;
-    height: $icon-size;
-    width: $icon-size;
-  }
 }
 </style>

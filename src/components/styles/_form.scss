@@ -95,6 +95,10 @@ section.form {
           @include palette.color-attribute('color', 'accessory');
         }
         
+        .representative-icon {
+          width: 1.5em;
+        }
+        
         .spacer {
           flex: auto;
         }
