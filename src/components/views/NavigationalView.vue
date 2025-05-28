@@ -66,10 +66,11 @@ onBeforeUnmount(() => {
     left: 0;
     position: absolute;
     right: 0;
-    top: 0;  
+    top: 0;
+    z-index: 1000;
   }
   
-  .view {    
+  .view {
     @extend .nav-bar-scroll-shade-target;
     height: calc(100% - bars.$nav-bar-height);
     overflow-y: auto;
