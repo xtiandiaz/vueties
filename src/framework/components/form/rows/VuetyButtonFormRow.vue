@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@design-tokens/iconography';
-import SvgIcon from '../misc/SvgIcon.vue';
+import SvgIcon from '../../misc/VuetySvgIcon.vue';
 
 defineProps<{
   label: string,
@@ -17,7 +17,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/form';
+@use '../styles';
 @use '@/assets/varties';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';

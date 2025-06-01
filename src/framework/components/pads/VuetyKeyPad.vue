@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import SvgIcon from '../misc/SvgIcon.vue';
+import SvgIcon from '../misc/VuetySvgIcon.vue';
 import type { KeypadKeyVM } from '../view-models'
 
 defineProps<{

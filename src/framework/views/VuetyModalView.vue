@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="RouteKey">
-import { NavigationReturnMode } from '../view-models';
-import NavigationalView from './NavigationalView.vue'
+import { VuetyNavigationReturnMode } from '../models/navigation';
+import NavigationalView from './VuetyNavigationalView.vue'
 
 defineProps<{
   title?: string
@@ -17,7 +17,7 @@ const emits = defineEmits<{
     <div class="modal-background" @click="emits('closeButtonClicked')"></div>
     
     <NavigationalView
-      :navigationBarVM="{ isVisible: true, title: title, returnMode: NavigationReturnMode.Close }"
+      :navigationBarVM="{ isVisible: true, title: title, returnMode: VuetyNavigationReturnMode.Close }"
       :title="title"
       @close-button-clicked="emits('closeButtonClicked')"
     >
@@ -27,16 +27,16 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/views' with (
+@use 'styles' with (
   $modal-view-max-width: 720px
 );
-@use '../styles/bars';
-@use '../styles/utils';
+@use '../components/bars/styles' as bar-styles;
+@use '../utils/styles' as utility-styles;
 
 div.modal-view {
   bottom: 0;
   left: 0;
-  padding-top: views.$modal-view-margin-top;
+  padding-top: styles.$modal-view-margin-top;
   position: absolute;
   right: 0;
   top: 0;
@@ -57,7 +57,7 @@ div.modal-view {
     
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
-    max-width: views.$modal-view-max-width;
+    max-width: styles.$modal-view-max-width;
   }
 }
 </style>

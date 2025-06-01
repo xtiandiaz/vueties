@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SvgIcon from '../misc/SvgIcon.vue';
+import SvgIcon from '../misc/VuetySvgIcon.vue';
 import { Icon } from '@design-tokens/iconography'
 
 const emits = defineEmits<{
@@ -21,8 +21,8 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/pads';
-@use '../styles/buttons';
+@use 'styles';
+@use '../buttons/styles' as button-styles;
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 @use '@/assets/varties';

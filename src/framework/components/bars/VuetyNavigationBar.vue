@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { type NavigationBarVM, NavigationReturnMode } from '../view-models'
+import { type VuetyNavigationBarVM } from './view-models'
+import { VuetyNavigationReturnMode } from '../../models/navigation'
+import NavigationSubBar from './VuetyNavigationSubBar.vue';
+import IconButton from '../buttons/VuetyIconButton.vue'
+import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
-import NavigationSubBar from './NavigationSubBar.vue';
-import IconButton from '../buttons/IconButton.vue'
-import CloseButton from '../buttons/CloseButton.vue';
 
 defineProps<{
-  vm: NavigationBarVM,
+  vm: VuetyNavigationBarVM,
   barShadeOpacity?: number
 }>()
 
@@ -26,7 +27,7 @@ function onRouteSelected(key: string) {
     <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <IconButton
-      v-if="vm.returnMode === NavigationReturnMode.Back" 
+      v-if="vm.returnMode === VuetyNavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
       @click="emits('backButtonClicked')" 
@@ -44,7 +45,7 @@ function onRouteSelected(key: string) {
     <div class="spacer"></div>
 
     <CloseButton 
-      v-if="vm.returnMode === NavigationReturnMode.Close" 
+      v-if="vm.returnMode === VuetyNavigationReturnMode.Close" 
       @click="emits('closeButtonClicked')" 
     />
     
@@ -58,15 +59,15 @@ function onRouteSelected(key: string) {
 </template>
 
 <style scoped lang="scss">
-@use '../styles/bars';
-@use '../styles/utils';
+@use 'styles';
+@use '../../utils/styles' as utility-styles;
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
 nav.navigation-bar {
   @extend .item-bar;
-  height: bars.$nav-bar-height;
-  padding: 0 bars.$nav-bar-h-padding;
+  height: styles.$nav-bar-height;
+  padding: 0 styles.$nav-bar-h-padding;
   position: relative;
 
   :deep(.icon-button.back .svg-icon) {
@@ -95,7 +96,7 @@ nav.navigation-bar {
   
   .scroll-shade {
     border-bottom: 1px solid;
-    height: bars.$nav-bar-height;
+    height: styles.$nav-bar-height;
     left: 0;
     position: absolute;
     right: 0;

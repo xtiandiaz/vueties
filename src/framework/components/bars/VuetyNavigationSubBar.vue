@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { type NavigationBarItemVM } from '../view-models';
-import IconButton from '../buttons/IconButton.vue';
+import { type VuetyNavigationBarItemVM } from './view-models';
+import IconButton from '../buttons/VuetyIconButton.vue';
 
 defineProps<{
-  itemVMs: NavigationBarItemVM[]
+  itemVMs: VuetyNavigationBarItemVM[]
 }>()
 
 const emits = defineEmits<{
@@ -25,5 +25,5 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/bars';
+@use 'styles';
 </style>

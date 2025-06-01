@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@design-tokens/iconography'
-import SvgIcon from '../misc/SvgIcon.vue';
+import SvgIcon from '../../misc/VuetySvgIcon.vue';
 
 defineProps<{
   isUnfolded: boolean,

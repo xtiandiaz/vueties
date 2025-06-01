@@ -11,7 +11,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/buttons';
+@use 'styles';
 @use '@/assets/varties';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';

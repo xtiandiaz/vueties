@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@design-tokens/iconography'
-import SvgIcon from './SvgIcon.vue'
+import SvgIcon from './VuetySvgIcon.vue'
 </script>
 
 <template>

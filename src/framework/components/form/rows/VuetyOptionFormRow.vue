@@ -1,10 +1,10 @@
 <script setup lang="ts" generic="Value">
-import { type FormOptionRowVM } from '../view-models';
+import { type VuetyFormOptionRowVM } from '../view-models';
 import { Icon } from '@design-tokens/iconography'
-import SvgIcon from '../misc/SvgIcon.vue';
+import SvgIcon from '../../misc/VuetySvgIcon.vue';
 
 defineProps<{
-  vm: FormOptionRowVM<Value>
+  vm: VuetyFormOptionRowVM<Value>
 }>()
 
 const emits = defineEmits<{
@@ -28,7 +28,7 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/form';
+@use '../styles';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
