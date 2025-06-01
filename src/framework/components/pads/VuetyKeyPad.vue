@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import SvgIcon from '../misc/VuetySvgIcon.vue';
-import type { KeypadKeyVM } from '../view-models'
+import type { VuetyKeypadKeyVM } from './view-models'
 
 defineProps<{
-  keyVMs: KeypadKeyVM[]
+  keyVMs: VuetyKeypadKeyVM[]
 }>()
 
 const emits = defineEmits<{
@@ -27,8 +27,8 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/pads';
-@use '../styles/buttons';
+@use 'styles';
+@use '../buttons/styles' as button-styles;
 @use '@/assets/varties';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';

@@ -7,17 +7,19 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="title || subtitle" class="header">
-    <strong v-if="title">{{ title }}</strong>
-    <span v-if="subtitle">{{ subtitle }}</span>
-  </div>
-  
-  <div class="rows">
-    <slot></slot>
-  </div>
-  
-  <div v-if="footnote" class="footer">
-    <span>{{ footnote }}</span>
+  <div class="section">
+    <div v-if="title || subtitle" class="header">
+      <strong v-if="title">{{ title }}</strong>
+      <span v-if="subtitle">{{ subtitle }}</span>
+    </div>
+    
+    <div class="rows">
+      <slot></slot>
+    </div>
+    
+    <div v-if="footnote" class="footer">
+      <span>{{ footnote }}</span>
+    </div>
   </div>
 </template>
 

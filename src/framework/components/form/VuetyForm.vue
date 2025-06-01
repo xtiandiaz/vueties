@@ -3,9 +3,7 @@
 
 <template>
   <section class="form">
-    <div class="section">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </section>
 </template>
 

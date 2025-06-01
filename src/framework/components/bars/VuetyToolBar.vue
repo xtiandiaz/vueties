@@ -1,9 +1,9 @@
 <script setup lang="ts" generic="Tool">
-import { type ToolBarButtonVM } from '../view-models'
-import IconButton from '../buttons/IconButton.vue'
+import { type VuetyToolBarButtonVM } from './view-models'
+import IconButton from '../buttons/VuetyIconButton.vue'
 
 defineProps<{
-  buttonVMs: ToolBarButtonVM<Tool>[]
+  buttonVMs: VuetyToolBarButtonVM<Tool>[]
 }>()
 
 const emits = defineEmits<{
@@ -19,7 +19,7 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/bars';
+@use 'styles';
 
 .tool-bar {
   @extend .item-bar;
