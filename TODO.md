@@ -1,5 +1,3 @@
-- Group all components into a single folder
-- Create components for Form and its Sections
 - Add Slider and Slider Row components
 - Add Switch and Switch Row components
 - Add Input Text and Input Row components
