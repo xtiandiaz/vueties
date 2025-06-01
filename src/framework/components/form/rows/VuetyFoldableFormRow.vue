@@ -28,7 +28,7 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
-@use '../styles/form';
+@use '../styles';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
@@ -40,8 +40,8 @@ const emits = defineEmits<{
     align-items: center;
     display: flex;
     flex-direction: row;
-    min-height: form.$row-min-height;
-    padding: 0 form.$row-h-padding;
+    min-height: styles.$row-min-height;
+    padding: 0 styles.$row-h-padding;
 
     &.fixed {
       gap: 1em;

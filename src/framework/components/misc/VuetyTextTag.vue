@@ -13,7 +13,7 @@ defineProps<{
 
 <style scoped lang="scss">
 @use '@/assets/varties';
-@use '../styles/utils';
+@use '../../utils/styles';
 @use '@design-tokens/palette';
 @use '@design-tokens/utils' as ds-utils;
 
