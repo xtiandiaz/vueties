@@ -23,15 +23,9 @@ section.form {
       width: auto;
     }
     
-    &.wrapper {
-      border-radius: 1em;
-      padding: 0.75em 1em;
-      @include palette.color-attribute('background-color', 'background');
-    }
-    
     div.header, div.footer {
       @extend .caption;
-      padding: 0 0 0 1em;
+      padding: 0 1em;
       @include palette.color-attribute('color', 'tertiary-body');
       
       > * {
