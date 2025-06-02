@@ -48,12 +48,12 @@ section.form {
         @extend .strong;
       }
     }
-    
     div.rows {
       border-radius: 1em;
       display: flex;
       flex-direction: column;
       gap: 1px;
+      overflow: hidden;
       @include palette.color-attributes((
         'background-color': 'tertiary-background'
       ));
@@ -68,13 +68,13 @@ section.form {
         padding: 0 $row-h-padding;
         @include palette.color-attribute('background-color', 'background');
         
-        &:first-of-type {
+        &:first-of-type .rounded-element {
           border-radius: 1em 1em 0 0;
         }
-        &:last-of-type {
+        &:last-of-type .rounded-element {
           border-radius: 0 0 1em 1em;
         }
-        &:only-of-type {
+        &:only-of-type .rounded-element {
           border-radius: 1em;
         }
         
