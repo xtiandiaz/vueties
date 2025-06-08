@@ -29,14 +29,10 @@ button.text-button {
   color: white;
   min-height: form-styles.$row-min-height;
   padding: 0 1.25em;
-  @include palette.color-attributes(('background-color': varties.$tint-color));
-  
-  &.secondary {
-    @include palette.color-attributes((
-      'background-color': 'background',
-      'color': varties.$tint-color,
-    ));
-  }
+  @include palette.color-attributes((
+    'background-color': 'background',
+    'color': varties.$tint-color
+  ));
 
   label {
     align-items: center;
