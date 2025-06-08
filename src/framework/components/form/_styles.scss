@@ -1,9 +1,10 @@
 @use '@/assets/design-tokens/palette';
 @use '@/assets/design-tokens/typography';
 
+$form-padding: 1rem;
 $max-width: 1080px !default;
-$row-h-padding: 1em;
-$row-min-height: 3em;
+$row-h-padding: 1rem;
+$row-min-height: 3rem;
 
 section.form {
   display: flex;
@@ -11,7 +12,7 @@ section.form {
   gap: 2em;
   margin: 0 auto;
   max-width: $max-width;
-  padding: 1em;
+  padding: $form-padding;
   text-align: left;
   
   div.section {
