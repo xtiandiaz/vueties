@@ -23,7 +23,7 @@ const emits = defineEmits<{
 
     <div class="spacer"></div>
 
-    <SvgIcon v-if="vm.isSelected" :icon="Icon.Checkmark" />
+    <SvgIcon v-if="vm.isSelected" :icon="Icon.Checkmark" class="representative-icon" />
   </div>
 </template>
 
