@@ -1,5 +1,6 @@
 import { valueAndUnitFromString, pxValue } from '@/assets/tungsten/css'
 import '@/assets/tungsten/extensions/css.extensions'
+import '@/assets/tungsten/extensions/array.extensions'
 
 export default function fitText(
   textElement: HTMLElement,
@@ -11,7 +12,8 @@ export default function fitText(
   const container = textElement.parentNode as HTMLElement
   const horizontalPadding = container
     .getCssValueStrings('padding-left', 'padding-right')
-    .map(vs => pxValue(valueAndUnitFromString(vs)))
+    .compactMap(vs => valueAndUnitFromString(vs))
+    .compactMap(vu => pxValue(vu))
     .reduce((acc, v) => acc + v, 0)
   
   // console.log('horizontalPadding: ', horizontalPadding)
