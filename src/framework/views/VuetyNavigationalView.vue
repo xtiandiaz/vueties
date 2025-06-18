@@ -8,12 +8,6 @@ defineProps<{
   navigationBarVM: VuetyNavigationBarVM
 }>()
 
-const emits = defineEmits<{
-  backButtonClicked: [void]
-  closeButtonClicked: [void]
-  routeSelected: [key: string]
-}>()
-
 const viewRef = useTemplateRef('view')
 const scrollShadeThreshold = ref(56)
 const barShadeOpacity = ref(0)
@@ -35,11 +29,8 @@ onBeforeUnmount(() => {
   <div class="navigational-view-wrapper">
     
     <NavigationBar 
-      :vm="navigationBarVM" 
+      :viewModel="navigationBarVM" 
       :barShadeOpacity="barShadeOpacity" 
-      @back-button-clicked="emits('backButtonClicked')"
-      @close-button-clicked="emits('closeButtonClicked')"
-      @route-selected="key => emits('routeSelected', key)"
     />
     
     <div class="view" ref='view'>

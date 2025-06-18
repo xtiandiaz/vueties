@@ -1,59 +1,50 @@
 <script setup lang="ts">
-import { type VuetyNavigationBarVM } from './view-models'
+import { useRouter } from 'vue-router';
 import { VuetyNavigationReturnMode } from '../../models/navigation'
+import { type VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
 
 defineProps<{
-  vm: VuetyNavigationBarVM,
+  viewModel: VuetyNavigationBarVM,
   barShadeOpacity?: number
 }>()
 
-const emits = defineEmits<{
-  backButtonClicked: [void]
-  closeButtonClicked: [void]
-  routeSelected: [key: string]
-}>()
-
-function onRouteSelected(key: string) {
-  emits('routeSelected', key)
-}
+const router = useRouter()
 </script>
 
 <template>
-  <nav v-if="vm.isVisible" class="navigation-bar">
+  <nav v-if="viewModel.isVisible" class="navigation-bar">
     <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <IconButton
-      v-if="vm.returnMode === VuetyNavigationReturnMode.Back" 
+      v-if="viewModel.returnMode === VuetyNavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
-      @click="emits('backButtonClicked')" 
+      @click="router.back()" 
     />
     
     <NavigationSubBar 
-      v-if="vm.leftBarItems" 
-      :itemVMs="vm.leftBarItems" 
+      v-if="viewModel.leftBarItems" 
+      :itemVMs="viewModel.leftBarItems" 
       class="left"
-      @route-selected="onRouteSelected" 
     />
 
-    <span class="title" v-if="vm.title">{{ vm.title }}</span>
+    <span class="title" v-if="viewModel.title">{{ viewModel.title }}</span>
 
     <div class="spacer"></div>
 
     <CloseButton 
-      v-if="vm.returnMode === VuetyNavigationReturnMode.Close" 
-      @click="emits('closeButtonClicked')" 
+      v-if="viewModel.returnMode === VuetyNavigationReturnMode.Close" 
+      @click="router.back()" 
     />
     
     <NavigationSubBar 
-      v-if="vm.rightBarItems" 
-      :itemVMs="vm.rightBarItems" 
+      v-if="viewModel.rightBarItems" 
+      :itemVMs="viewModel.rightBarItems" 
       class="right"
-      @route-selected="onRouteSelected" 
     />
   </nav>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="RouteKey">
+import { useRouter } from 'vue-router'
 import { VuetyNavigationReturnMode } from '../models/navigation';
 import NavigationalView from './VuetyNavigationalView.vue'
 
@@ -6,20 +7,16 @@ defineProps<{
   title?: string
 }>()
 
-const emits = defineEmits<{
-  closeButtonClicked: [void]
-}>()
+const router = useRouter()
 </script>
 
 <template>
   <div class="modal-view">
     
-    <div class="modal-background" @click="emits('closeButtonClicked')"></div>
+    <div class="modal-background" @click="router.back()"></div>
     
     <NavigationalView
       :navigationBarVM="{ isVisible: true, title: title, returnMode: VuetyNavigationReturnMode.Close }"
-      :title="title"
-      @close-button-clicked="emits('closeButtonClicked')"
     >
       <slot></slot>
     </NavigationalView>
