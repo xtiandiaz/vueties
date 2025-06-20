@@ -33,7 +33,8 @@ const router = useRouter()
 div.modal-view {
   bottom: 0;
   left: 0;
-  padding-top: styles.$modal-view-margin-top;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: calc(styles.$modal-view-margin-top + env(safe-area-inset-top));
   position: fixed;
   right: 0;
   top: 0;
