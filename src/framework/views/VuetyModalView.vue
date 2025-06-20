@@ -34,7 +34,7 @@ div.modal-view {
   bottom: 0;
   left: 0;
   padding-top: styles.$modal-view-margin-top;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   z-index: 1000;
