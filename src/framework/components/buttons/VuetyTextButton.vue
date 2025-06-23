@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-  <button class="text-button">
+  <button type="button" class="text-button">
     <label class="strong">
       <VuetySvgIcon v-if="icon" :icon="icon" />
       <span>{{ label }}</span>

@@ -4,6 +4,12 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.disabled, :disabled {
+  cursor: default;
+  opacity: 50%;
+  background: none;
+}
+
 div.spacer {
   flex: auto;
 }

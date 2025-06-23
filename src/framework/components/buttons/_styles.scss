@@ -1,8 +1,10 @@
 @use '@/assets/varties';
+@use '@vueties/utils/mixins';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
 $min-height: 3em;
+$icon-size: calc($min-height - 1em) !default;
 
 button {
   align-items: center;
@@ -15,28 +17,18 @@ button {
   padding: 0;
   @include palette.color-attribute('color', varties.$tint-color);
 
-  &:disabled {
-    opacity: 25%;
-  }
   &:hover:enabled {
     &, label {
       cursor: pointer;
     }
   }
   
-  &.icon-button {
-    $size: $min-height;
-    $icon-size: calc($min-height - 1em);
-    
+  &.icon-button {    
+    aspect-ratio: 1;
     border-radius: 50%;
-    height: $size;
     padding: 0;
     position: relative;
-    width: $size;
-  
-    &:disabled {
-      background: none;
-    }
+    @include mixins.size($min-height);
   
     label {
       @extend .caption;

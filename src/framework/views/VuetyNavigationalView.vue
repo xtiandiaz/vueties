@@ -5,7 +5,8 @@ import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
 import { clamp } from '@/assets/tungsten/math';
 
 defineProps<{
-  navigationBarVM: VuetyNavigationBarVM
+  navigationBarVM: VuetyNavigationBarVM,
+  title?: string 
 }>()
 
 const viewRef = useTemplateRef('view')
@@ -20,6 +21,7 @@ onMounted(() => {
   scrollShadeThreshold.value = Number(getComputedStyle(viewRef.value!).getPropertyValue('--scroll-shade-threshold').replace('px', ''))
   viewRef.value?.addEventListener('scroll', onViewScrolled)
 })
+
 onBeforeUnmount(() => {
   viewRef.value?.removeEventListener('scroll', onViewScrolled)
 })
@@ -31,6 +33,7 @@ onBeforeUnmount(() => {
     <NavigationBar 
       :viewModel="navigationBarVM" 
       :barShadeOpacity="barShadeOpacity" 
+      :title="title"
     />
     
     <div class="view" ref='view'>

@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="RouteKey">
 import { useRouter } from 'vue-router'
-import { VuetyNavigationReturnMode } from '../models/navigation';
+import { VuetyNavigationReturnMode } from '../components/bars/view-models'
 import NavigationalView from './VuetyNavigationalView.vue'
 
 defineProps<{
@@ -12,11 +12,11 @@ const router = useRouter()
 
 <template>
   <div class="modal-view">
-    
     <div class="modal-background" @click="router.back()"></div>
     
     <NavigationalView
-      :navigationBarVM="{ isVisible: true, title: title, returnMode: VuetyNavigationReturnMode.Close }"
+      :navigationBarVM="{ isVisible: true, returnMode: VuetyNavigationReturnMode.Close }"
+      :title="title"
     >
       <slot></slot>
     </NavigationalView>

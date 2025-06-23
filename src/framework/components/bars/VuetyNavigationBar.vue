@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { VuetyNavigationReturnMode } from '../../models/navigation'
-import { type VuetyNavigationBarVM } from './view-models'
+import { VuetyNavigationReturnMode, type VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
@@ -10,6 +9,7 @@ import { Icon } from '@design-tokens/iconography';
 defineProps<{
   viewModel: VuetyNavigationBarVM,
   barShadeOpacity?: number
+  title?: string
 }>()
 
 const router = useRouter()
@@ -23,7 +23,7 @@ const router = useRouter()
       v-if="viewModel.returnMode === VuetyNavigationReturnMode.Back" 
       :icon="Icon.ChevronLeft"
       class="back"
-      @click="router.back()" 
+      @click="router.back()"
     />
     
     <NavigationSubBar 
@@ -32,7 +32,7 @@ const router = useRouter()
       class="left"
     />
 
-    <span class="title" v-if="viewModel.title">{{ viewModel.title }}</span>
+    <span class="title" v-if="title">{{ title }}</span>
 
     <div class="spacer"></div>
 

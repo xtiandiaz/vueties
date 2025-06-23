@@ -3,10 +3,11 @@
 
 $form-padding: 1rem;
 $max-width: 1080px !default;
+$row-border-radus: 1em;
 $row-h-padding: 1rem;
 $row-min-height: 3rem;
 
-section.form {
+form {
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -49,55 +50,55 @@ section.form {
         @extend .strong;
       }
     }
-    div.rows {
-      border-radius: 1em;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      overflow: hidden;
-      @include palette.color-attributes((
-        'background-color': 'tertiary-background'
-      ));
-      
-      div.row {
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        gap: 0.75em;
-        min-height: $row-min-height;
-        overflow: hidden;
-        padding: 0 $row-h-padding;
-        @include palette.color-attribute('background-color', 'background');
-        
-        &:first-of-type .rounded-element {
-          border-radius: 1em 1em 0 0;
-        }
-        &:last-of-type .rounded-element {
-          border-radius: 0 0 1em 1em;
-        }
-        &:only-of-type .rounded-element {
-          border-radius: 1em;
-        }
-        
-        &.disabled, &:disabled {
-          cursor: default;
-          opacity: 50%;
-        }
-        
-        .disclosure-indicator {
-          height: 1em;
-          width: 1em;
-          @include palette.color-attribute('color', 'accessory');
-        }
-        
-        .representative-icon {
-          width: 1.5em;
-        }
-        
-        .spacer {
-          flex: auto;
-        }
-      }  
-    }
+  }
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+.rows {
+  border-radius: $row-border-radus;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+  @include palette.color-attributes((
+    'background-color': 'tertiary-background'
+  ));  
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75em;
+  min-height: $row-min-height;
+  overflow: hidden;
+  padding: 0 $row-h-padding;
+  @include palette.color-attribute('background-color', 'background');
+  
+  &:first-of-type .rounded-element {
+    border-radius: 1em 1em 0 0;
+  }
+  &:last-of-type .rounded-element {
+    border-radius: 0 0 1em 1em;
+  }
+  &:only-of-type .rounded-element {
+    border-radius: 1em;
+  }
+  
+  .disclosure-indicator {
+    height: 1em;
+    width: 1em;
+    @include palette.color-attribute('color', 'accessory');
+  }
+  
+  .representative-icon {
+    width: 1.5em;
+  }
+  
+  .spacer {
+    flex: auto;
   }
 }

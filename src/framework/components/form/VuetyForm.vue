@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <section class="form">
+  <form>
     <slot></slot>
-  </section>
+  </form>
 </template>
 
 <style scoped lang="scss">

@@ -16,7 +16,7 @@ import SvgIcon from './VuetySvgIcon.vue'
 
 .progress-indicator {
   animation: spin 1s linear 0s infinite;
-  display: block;
+  display: inline-block;
   @include palette.color-attribute('color', 'accessory');
 }
 </style>

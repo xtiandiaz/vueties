@@ -17,7 +17,12 @@
   overflow: auto;
   padding-bottom: $padding-bottom;
   padding-top: $padding-top;
-};
+}
+
+@mixin size($value) {
+  height: $value;
+  width: $value;
+}
 
 @mixin linear-gradient($angle, $color-stops...) {
   & {
@@ -48,4 +53,4 @@
       background-image: linear-gradient($angle, list.zip($dark-scheme-colors, $positions)...);
     }
   }
-};
+}

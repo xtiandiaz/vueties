@@ -24,7 +24,7 @@ const { title } = defineProps<{
 </template>
 
 <style lang="scss">
-@use '../styles/form';
+@use '../styles';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
