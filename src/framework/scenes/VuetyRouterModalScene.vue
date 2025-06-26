@@ -1,13 +1,27 @@
-<script setup lang="ts">
-import ModalView from '../views/VuetyModalView.vue'
+<script setup lang="ts">;
+import { ref, provide } from 'vue';
+import ModalNavigationalView from '../views/VuetyModalNavigationalView.vue'
+import ModalSearchView from '../views/VuetyModalSearchView.vue';
+import { VuetyTransitionState } from '../utils/types';
+
+const transitionState = ref<VuetyTransitionState>()
+
+provide('modal-transition-state', transitionState)
 </script>
 
 <template>
   <RouterView name="modal" v-slot="{ Component, route }">
-    <Transition>
-      <ModalView v-if="Component" :title="route.meta.title?.value">
+    <Transition
+      @after-enter="transitionState = VuetyTransitionState.Entered"
+      @after-leave="transitionState = VuetyTransitionState.Left"
+    >
+      <ModalSearchView v-if="Component && route.name === 'search'">
         <component :is="Component" />
-      </ModalView>
+      </ModalSearchView>
+      
+      <ModalNavigationalView v-else-if="Component" :title="route.meta.title?.value">
+        <component :is="Component" />
+      </ModalNavigationalView>
     </Transition>
   </RouterView>
 </template>
@@ -16,12 +30,12 @@ import ModalView from '../views/VuetyModalView.vue'
 @mixin transition($timing-function, $duration: 0.25s) {
   transition: none $duration $timing-function;
   
-  :deep(.modal-background) {
+  :deep(.vmv-background) {
     transition: opacity $duration $timing-function;
   }
-  :deep(.navigational-view-wrapper) {
+  :deep(.vmv-view-wrapper) {
     transition: transform $duration $timing-function;
-  }
+  } 
 }
 
 .v-enter-active {
@@ -31,10 +45,10 @@ import ModalView from '../views/VuetyModalView.vue'
   @include transition(ease-in);
 }
 .v-enter-from, .v-leave-to {
-  :deep(.modal-background) {
-    opacity: 0;
+  :deep(.vmv-background) {
+      opacity: 0;
   }
-  :deep(.navigational-view-wrapper) {
+  :deep(.vmv-view-wrapper) {
     transform: translateY(100%);
   }
 }

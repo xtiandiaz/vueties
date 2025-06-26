@@ -1,7 +1,5 @@
 <script setup lang="ts" generic="RouteKey">
 import { useRouter } from 'vue-router'
-import { VuetyNavigationReturnMode } from '../components/bars/view-models'
-import NavigationalView from './VuetyNavigationalView.vue'
 
 defineProps<{
   title?: string
@@ -11,15 +9,12 @@ const router = useRouter()
 </script>
 
 <template>
-  <div class="modal-view">
-    <div class="modal-background" @click="router.back()"></div>
+  <div class="vuety-modal-view">
+    <div class="vmv-background" @click="router.back()"></div>
     
-    <NavigationalView
-      :navigationBarVM="{ isVisible: true, returnMode: VuetyNavigationReturnMode.Close }"
-      :title="title"
-    >
+    <div class="vmv-view-wrapper">
       <slot></slot>
-    </NavigationalView>
+    </div>
   </div>
 </template>
 
@@ -29,10 +24,12 @@ const router = useRouter()
 );
 @use '../components/bars/styles' as bar-styles;
 @use '../utils/styles' as utility-styles;
+@use '@design-tokens/palette';
 
-div.modal-view {
+.vuety-modal-view {
   bottom: 0;
   left: 0;
+  overflow: hidden;
   padding-bottom: env(safe-area-inset-bottom);
   padding-top: calc(styles.$modal-view-margin-top + env(safe-area-inset-top));
   position: fixed;
@@ -40,7 +37,7 @@ div.modal-view {
   top: 0;
   z-index: 1000;
   
-  .modal-background {
+  .vmv-background {
     background-color: rgba($color: #000000, $alpha: 0.8);
     bottom: 0;
     left: 0;
@@ -50,12 +47,14 @@ div.modal-view {
     z-index: -1000;
   }
   
-  .navigational-view-wrapper {
-    $border-radius: 1em;
-    
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+  .vmv-view-wrapper {
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: styles.$modal-view-border-radius styles.$modal-view-border-radius 0 0;
     max-width: styles.$modal-view-max-width;
+    @include palette.color-attribute('background-color', 'secondary-background');
   }
 }
 </style>

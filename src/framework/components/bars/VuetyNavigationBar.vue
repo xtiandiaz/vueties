@@ -16,7 +16,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <nav v-if="viewModel.isVisible" class="navigation-bar">
+  <nav v-if="viewModel.isVisible" class="vuety-navigation-bar">
     <div class="scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <IconButton
@@ -55,11 +55,12 @@ const router = useRouter()
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-nav.navigation-bar {
+.vuety-navigation-bar {
   @extend .item-bar;
   height: styles.$nav-bar-height;
   padding: 0 styles.$nav-bar-h-padding;
   position: relative;
+  z-index: styles.$nav-bar-z-index;
 
   :deep(.icon-button.back .svg-icon) {
     width: 1.5em;
@@ -75,7 +76,7 @@ nav.navigation-bar {
     transform: translate(-50%, -50%);
   }
 
-  .tool-bar {
+  .vuety-toolbar {
     &.left {
       justify-content: left;
     }
@@ -83,19 +84,6 @@ nav.navigation-bar {
     &.right {
       justify-content: right;
     }
-  }
-  
-  .scroll-shade {
-    border-bottom: 1px solid;
-    height: styles.$nav-bar-height;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    @include palette.color-attributes((
-      'background-color': 'background',
-      'border-color': 'tertiary-background'
-    ));
   }
 }
 </style>

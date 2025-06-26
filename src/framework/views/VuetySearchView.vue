@@ -1,45 +1,85 @@
 <script setup lang="ts" generic="Result">
-import { ref } from 'vue'
-import ProgressIndicator from '../components/misc/VuetyProgressIndicator.vue';
+import { ref, watch } from 'vue'
 import Form from '../components/form/VuetyForm.vue'
 import Section from '../components/form/VuetyFormSection.vue'
-import VuetyTextInputFormRow from '../components/form/rows/VuetyTextInputFormRow.vue';
+import SearchInputRow from '../components/form/rows/VuetySearchInputFormRow.vue';
+import { Icon } from '@design-tokens/iconography'
+import { delayCancellable } from '@/assets/tungsten/promises'
+import '@/assets/tungsten/extensions/string.extensions'
 
-defineProps<{
-  placeholder: string
-  input?: string
+const { search } = defineProps<{
+  placeholder: string,
+  search: (input: string) => Result[] | undefined
 }>()
 
+const input = ref('')
+const results = ref<Result[]>()
 const isSearching = ref(false)
+const searchCancellable = ref<() => void>()
+
+function onInput(textInput: string) {
+  input.value = textInput.removeLeadingAndTrailingSpaces()
+}
+
+function clearSearch() {
+  searchCancellable.value?.()
+  isSearching.value = false
+  results.value = undefined
+}
+
+async function performSearch(_input: string) {
+  clearSearch()
+  
+  const { delay, cancellable } = delayCancellable(500)
+  searchCancellable.value = cancellable
+  isSearching.value = true
+  
+  try {
+    await delay
+    results.value = await search(_input)
+    isSearching.value = false
+  } catch {
+    // console.log('cancelled: ', _input)
+  }
+}
+
+watch(input, async (value, oldValue) => {
+  if (!value || value === oldValue) {
+    clearSearch()
+    return
+  }
+  
+  await performSearch(value)
+})
 </script>
 
 <template>
-  <Form>
-    <Section id="search-input-section">
-      <VuetyTextInputFormRow id="search-input-row" :placeholder="placeholder" />
+  <Form class="vuety-search-view">
+    <Section class="vsv-input-section">
+      <SearchInputRow 
+        class="vsv-input-row"
+        :placeholder="placeholder" 
+        :placeholderIcon="Icon.MagnifyingGlass"
+        :isSearching="isSearching"
+        :shouldFocusOnMounted="true"
+        @input="onInput"
+      />
     </Section>
     
-    <Section
-      v-if="input"
-      :title="`Results for... &quot${input}&quot`"
+    <Section 
+      v-if="results && results.length > 0"
     >
-      <slot></slot>
+      <slot name="result" v-for="(result, index) of results" :key="index" :result="result">
+        {{ result }}
+      </slot>
+      
     </Section>
     
-    <ProgressIndicator v-if="isSearching" />
+    <slot v-else-if="isSearching" name="searching" :input="input"></slot>
+    
+    <slot v-else name="no-results" :input="input"></slot>
   </Form>
 </template>
 
 <style scoped lang="scss">
-@use '../components/form/styles';
-@use '../components/bars/styles' as bar-styles;
-
-#search-input-section {
-  position: sticky;
-}
-
-.progress-indicator {
-  width: 2.5em;
-  margin: 0 auto;
-}
 </style>

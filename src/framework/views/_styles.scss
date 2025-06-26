@@ -1,2 +1,9 @@
+@use '@design-tokens/utils';
+
+$modal-view-border-radius: 1em;
 $modal-view-margin-top: 1.5em;
 $modal-view-max-width: 1080px !default;
+
+@mixin scroll-shade-threshold($extent) {
+  --scroll-shade-threshold: #{utils.px(calc($extent / 2))};
+}

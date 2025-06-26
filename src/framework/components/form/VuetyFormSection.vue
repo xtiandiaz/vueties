@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="section">
+  <section>
     <div v-if="title || subtitle" class="header">
       <strong v-if="title">{{ title }}</strong>
       <span v-if="subtitle">{{ subtitle }}</span>
@@ -20,7 +20,7 @@ defineProps<{
     <div v-if="footnote" class="footer">
       <span>{{ footnote }}</span>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
