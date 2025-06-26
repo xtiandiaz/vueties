@@ -26,7 +26,11 @@ form {
   
   input[type=text] {
     line-height: $row-min-height;
-    @include palette.color-attribute('background-color', 'background');
+    @include palette.color-attributes((
+      'background-color': 'background',
+      'color': 'body',
+      'caret-color': 'body'
+    ));
   }
 
   section {
