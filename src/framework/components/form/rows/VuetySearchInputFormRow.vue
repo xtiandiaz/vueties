@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { onBeforeMount, ref, useTemplateRef, watch } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import IconButton from '../../buttons/VuetyIconButton.vue';
 import SvgIcon from '../../misc/VuetySvgIcon.vue';
 import ProgressIndicator from '../../misc/VuetyProgressIndicator.vue';
 import { Icon } from '@design-tokens/iconography';
-import { focusInput } from '@/vueties/composables/focus-input';
+import { watchInjection } from '@/vueties/composables/watch-injection';
+import { inputFocusProvisionKey } from '@/vueties/utils/provision-keys';
 
 defineProps<{
   placeholder: string
@@ -32,8 +33,10 @@ watch(input, (value) => {
   emits('input', value ?? '')
 })
 
-onBeforeMount(() => {
-  focusInput(textInputRef.value!, 'search-input-row')
+watchInjection(inputFocusProvisionKey, (inputKey) => {
+  if (inputKey === 'vuety-search-input') {
+    focus()
+  }
 })
 </script>
 

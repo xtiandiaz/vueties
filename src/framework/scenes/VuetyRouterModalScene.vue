@@ -3,10 +3,11 @@ import { ref, provide } from 'vue';
 import ModalNavigationalView from '../views/VuetyModalNavigationalView.vue'
 import ModalSearchView from '../views/VuetyModalSearchView.vue';
 import { VuetyTransitionState } from '../utils/types';
+import { modalTransitionStateProvisionKey } from '../utils/provision-keys';
 
 const transitionState = ref<VuetyTransitionState>()
 
-provide('modal-transition-state', transitionState)
+provide(modalTransitionStateProvisionKey, transitionState)
 </script>
 
 <template>

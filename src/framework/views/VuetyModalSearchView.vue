@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import ModalNavigationalView from './VuetyModalNavigationalView.vue';
-import { flagInputFocus, VuetyFocusTrigger } from '../composables/focus-input';
+import { modalTransitionStateProvisionKey, inputFocusProvisionKey } from '../utils/provision-keys';
+import { VuetyTransitionState } from '../utils/types';
+import { watchInjection } from '../composables/watch-injection';
+import { createProvisionRef } from '../composables/provision-ref';
 
-flagInputFocus('search-input-row', VuetyFocusTrigger.ModalEntered)
+const inputFocusKey = createProvisionRef(inputFocusProvisionKey)
+
+watchInjection(modalTransitionStateProvisionKey, (state) => {
+  if (state === VuetyTransitionState.Entered) {
+    inputFocusKey.value = 'vuety-search-input'
+  }
+})
 </script>
 
 <template>

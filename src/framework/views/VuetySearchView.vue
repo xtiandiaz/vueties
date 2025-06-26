@@ -78,6 +78,8 @@ watch(input, async (value, oldValue) => {
     <slot v-else-if="isSearching" name="searching" :input="input"></slot>
     
     <slot v-else name="no-results" :input="input"></slot>
+    
+    <div id="vuety-mobile-keyboard"></div>
   </Form>
 </template>
 
