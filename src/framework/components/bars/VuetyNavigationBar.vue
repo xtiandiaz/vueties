@@ -62,7 +62,7 @@ const router = useRouter()
   position: relative;
   z-index: styles.$nav-bar-z-index;
 
-  :deep(.icon-button.back .svg-icon) {
+  :deep(.vuety-icon-button.back .svg-icon) {
     width: 1.5em;
     height: 1.5em;
   }

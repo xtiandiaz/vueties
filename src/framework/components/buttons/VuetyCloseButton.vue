@@ -5,34 +5,31 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 </script>
 
 <template>
-  <button class="icon-button close-button">
-    <span class="circle-fill" />
+  <button type="button" class="vuety-close-button">
+    <span class="circle-fill"></span>
     <SvgIcon :icon="Icon.Xmark" />
   </button>
 </template>
 
 <style scoped lang="scss">
 @use 'styles';
+@use '../../utils/mixins';
 @use '@design-tokens/palette';
 
-$fill-size: 2em;
-$icon-size: 1.5em;
-
-button.close-button {
+button.vuety-close-button {
+  @extend .vuety-icon-button;
   position: relative;
   
   .svg-icon {
-    height: $icon-size;
-    width: $icon-size;
+    @include mixins.size(1.5em);
     @include palette.color-attribute('color', 'tertiary-body');
   }
   
   .circle-fill {
     border-radius: 50%;
     display: block;
-    height: $fill-size;
     position: absolute;
-    width: $fill-size;
+    @include mixins.size(2em);
     @include palette.color-attribute('background-color', 'body', 0.1);
   }
 }

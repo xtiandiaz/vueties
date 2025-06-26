@@ -56,8 +56,9 @@ onBeforeMount(() => {
     >
     
     <IconButton 
+      v-if="input && input.length > 0"
       :icon="Icon.Xmark" 
-      :class="{ disabled: !input }" class="auxiliary" 
+      class="auxiliary" 
       @click="clear"
     />
   </div>
