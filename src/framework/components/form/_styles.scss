@@ -26,6 +26,7 @@ form {
   
   input[type=text] {
     line-height: $row-min-height;
+    @include palette.color-attribute('background-color', 'background');
   }
 
   section {
