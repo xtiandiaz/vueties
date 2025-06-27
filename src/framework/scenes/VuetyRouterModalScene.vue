@@ -1,21 +1,11 @@
 <script setup lang="ts">;
 import ModalNavigationalView from '../views/VuetyModalNavigationalView.vue'
 import ModalSearchView from '../views/VuetyModalSearchView.vue';
-import statusStore, { VuetyTransitionState } from '../stores/status'
-
-const status = statusStore()
-
-function setModalTransitionState(state: VuetyTransitionState) {
-  status.modalTransitionState = state
-}
 </script>
 
 <template>
   <RouterView name="modal" v-slot="{ Component, route }">
-    <Transition
-      @after-enter="setModalTransitionState(VuetyTransitionState.Entered)"
-      @before-leave="setModalTransitionState(VuetyTransitionState.Leaving)"
-    >
+    <Transition>
       <ModalSearchView v-if="Component && route.name === 'search'">
         <component :is="Component" />
       </ModalSearchView>
