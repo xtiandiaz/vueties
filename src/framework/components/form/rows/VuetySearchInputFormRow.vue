@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, useTemplateRef, watch } from 'vue'
+import { nextTick, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue'
 import IconButton from '../../buttons/VuetyIconButton.vue';
 import SvgIcon from '../../misc/VuetySvgIcon.vue';
 import ProgressIndicator from '../../misc/VuetyProgressIndicator.vue';
@@ -34,8 +34,9 @@ watch(input, (value) => {
   emits('input', value ?? '')
 })
 
-watch(() => status.focusInputTarget, (targetKey) => {
+watch(() => status.focusInputTarget, async (targetKey) => {
   if (targetKey === VuetyFocusInputTargetKey.SearchInput) {
+    await nextTick()
     focus()
   }
 })
