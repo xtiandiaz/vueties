@@ -1,6 +1,6 @@
 import { onMounted } from 'vue'
 import { setUpEvent } from "./set-up-event";
-import { isMobile } from "@/assets/tungsten/navigator";
+import { isMobile } from "@/assets/tungsten/navigator"
 
 export function compensateForKeyboardSpace() {
   if (!isMobile()) {

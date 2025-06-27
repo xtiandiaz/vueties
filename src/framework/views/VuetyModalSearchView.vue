@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { watch } from 'vue';
 import ModalNavigationalView from './VuetyModalNavigationalView.vue';
-import { modalTransitionStateProvisionKey, inputFocusProvisionKey } from '../utils/provision-keys';
-import { VuetyTransitionState } from '../utils/types';
-import { watchInjection } from '../composables/watch-injection';
-import { createProvisionRef } from '../composables/provision-ref';
+import statusStore, { VuetyFocusInputTargetKey, VuetyTransitionState } from '../stores/status'
 
-const inputFocusKey = createProvisionRef(inputFocusProvisionKey)
+const status = statusStore()
 
-watchInjection(modalTransitionStateProvisionKey, (state) => {
-  if (state === VuetyTransitionState.Entered) {
-    inputFocusKey.value = 'vuety-search-input'
+watch(() => status.modalTransitionState, (state) => {
+  switch (state) {
+    case VuetyTransitionState.Entered:
+      status.focusInputTarget = VuetyFocusInputTargetKey.SearchInput
+      break
   }
 })
 </script>

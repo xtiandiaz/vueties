@@ -4,7 +4,8 @@ import Form from '../components/form/VuetyForm.vue'
 import Section from '../components/form/VuetyFormSection.vue'
 import SearchInputRow from '../components/form/rows/VuetySearchInputFormRow.vue';
 import { Icon } from '@design-tokens/iconography'
-import { delayCancellable } from '@/assets/tungsten/promises'
+import { cancellableDelay } from '@/assets/tungsten/promises'
+import { compensateForKeyboardSpace } from '../composables/compensate-keyboard-space';
 import '@/assets/tungsten/extensions/string.extensions'
 
 const { search } = defineProps<{
@@ -30,7 +31,7 @@ function clearSearch() {
 async function performSearch(_input: string) {
   clearSearch()
   
-  const { delay, cancellable } = delayCancellable(500)
+  const { delay, cancellable } = cancellableDelay(500)
   searchCancellable.value = cancellable
   isSearching.value = true
   
@@ -51,6 +52,8 @@ watch(input, async (value, oldValue) => {
   
   await performSearch(value)
 })
+
+compensateForKeyboardSpace()
 </script>
 
 <template>
@@ -72,14 +75,13 @@ watch(input, async (value, oldValue) => {
       <slot name="result" v-for="(result, index) of results" :key="index" :result="result">
         {{ result }}
       </slot>
-      
     </Section>
     
     <slot v-else-if="isSearching" name="searching" :input="input"></slot>
     
     <slot v-else name="no-results" :input="input"></slot>
     
-    <div id="vuety-mobile-keyboard"></div>
+    <!-- <div id="vuety-mobile-keyboard"></div> -->
   </Form>
 </template>
 
