@@ -53,7 +53,7 @@ watch(input, async (value, oldValue) => {
   await performSearch(value)
 })
 
-compensateForKeyboardSpace()
+// compensateForKeyboardSpace()
 </script>
 
 <template>
@@ -81,7 +81,7 @@ compensateForKeyboardSpace()
     
     <slot v-else name="no-results" :input="input"></slot>
     
-    <div id="vuety-mobile-keyboard"></div>
+    <!-- <div id="vuety-mobile-keyboard"></div> -->
   </Form>
 </template>
 
