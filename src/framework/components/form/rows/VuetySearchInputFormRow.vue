@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue'
+import { onMounted, ref, useTemplateRef, watch } from 'vue'
 import IconButton from '../../buttons/VuetyIconButton.vue';
 import SvgIcon from '../../misc/VuetySvgIcon.vue';
 import ProgressIndicator from '../../misc/VuetyProgressIndicator.vue';
 import { Icon } from '@design-tokens/iconography';
-import statusStore, { VuetyFocusInputTargetKey } from '../../../stores/status'
+import { delay } from '@/assets/tungsten/promises';
 
 defineProps<{
   placeholder: string
@@ -15,8 +15,6 @@ defineProps<{
 const emits = defineEmits<{
   input: [string]
 }>()
-
-const status = statusStore()
 
 const textInputRef = useTemplateRef('textInput')
 const input = ref<string>()
@@ -34,17 +32,9 @@ watch(input, (value) => {
   emits('input', value ?? '')
 })
 
-watch(() => status.focusInputTarget, async (targetKey) => {
-  if (targetKey === VuetyFocusInputTargetKey.SearchInput) {
-    await nextTick()
-    focus()
-  }
-})
-
-onBeforeUnmount(() => {
-  if (status.focusInputTarget === VuetyFocusInputTargetKey.SearchInput) {
-    status.focusInputTarget = undefined
-  }
+onMounted(async () => {
+  await delay(500)
+  focus()
 })
 </script>
 

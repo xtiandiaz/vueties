@@ -66,13 +66,12 @@ watch(input, async (value, oldValue) => {
       />
     </Section>
     
-    <Section 
-      v-if="results && results.length > 0"
-    >
-      <slot name="result" v-for="(result, index) of results" :key="index" :result="result">
-        {{ result }}
-      </slot>
-    </Section>
+    <slot 
+      v-if="results && results.length > 0" 
+      name="results" 
+      :results="results" 
+      :input="input"
+    ></slot>
     
     <slot v-else-if="isSearching" name="searching" :input="input"></slot>
     
