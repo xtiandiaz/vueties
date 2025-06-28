@@ -23,6 +23,10 @@ button {
     }
   }
   
+  &.destructive {
+    @include palette.color-attribute('color', 'red');
+  }
+  
   &.vuety-icon-button {
     aspect-ratio: 1;
     border-radius: 50%;
