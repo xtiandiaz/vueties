@@ -111,8 +111,7 @@ form {
         }
         
         .disclosure-indicator {
-          height: 1em;
-          width: 1em;
+          width: 1rem;
           @include palette.color-attribute('color', 'accessory');
         }
         

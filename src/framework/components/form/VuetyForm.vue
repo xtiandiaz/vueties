@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <form>
+  <form class="vuety-form">
     <slot></slot>
   </form>
 </template>

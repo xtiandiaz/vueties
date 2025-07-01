@@ -1,22 +1,35 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import SvgIcon from '../../misc/VuetySvgIcon.vue'
-import type { Icon } from '@design-tokens/iconography'
+import { Icon } from '@design-tokens/iconography'
 
-const { title } = defineProps<{
+defineProps<{
   title: string,
-  icon?: Icon,
+  path: string,
+  emoji?: string,
+  icon?: Icon
   subtitle?: string,
 }>()
+
+const router = useRouter()
 </script>
 
 <template>
-  <div class="row info">
+  <div 
+    class="row push"
+    @click="router.push(path)"
+  >
     <SvgIcon v-if="icon" :icon="icon" />
+    <h5 v-else-if="emoji">{{ emoji }}</h5>
     
     <div class="title-subtitle-wrapper">
       <span class="title">{{ title }}</span>
       <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
     </div>
+    
+    <div class="spacer"></div>
+    
+    <SvgIcon class="disclosure-indicator" :icon="Icon.ChevronRight" />
   </div>
 </template>
 
@@ -25,7 +38,7 @@ const { title } = defineProps<{
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-.row.info {
+.row.push {
   .title-subtitle-wrapper {
     display: flex;
     flex-direction: column;
@@ -39,10 +52,6 @@ const { title } = defineProps<{
   
   .value, .subtitle {
     @include palette.color-attribute('color', 'secondary-body');
-  }
-  
-  .svg-icon {
-    min-width: 1.75em;
   }
 }
 </style>

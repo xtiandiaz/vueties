@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <section>
+  <section class="vuety-form-section">
     <div v-if="title || subtitle" class="header">
       <strong v-if="title">{{ title }}</strong>
       <span v-if="subtitle">{{ subtitle }}</span>
