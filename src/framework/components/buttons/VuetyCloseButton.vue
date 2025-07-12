@@ -13,7 +13,7 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 <style scoped lang="scss">
 @use 'styles';
-@use '../../utils/mixins';
+@use '../../styles/mixins';
 @use '@design-tokens/palette';
 
 button.vuety-close-button {

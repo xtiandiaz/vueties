@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { type VuetyNavigationBarVM } from '../components/bars/view-models'
-import VuetyNavigationBar from '../components/bars/VuetyNavigationBar.vue'
+import VuetyNavigationalView from '../views/VuetyNavigationalView.vue';
+import VuetyModalScene from './VuetyModalScene.vue';
 
 defineProps<{
   navigationBarVM?: VuetyNavigationBarVM
 }>()
+
+const route = useRoute()
 </script>
 
 <template>
-  <VuetyNavigationBar v-if="navigationBarVM" :viewModel="navigationBarVM" />
+  <VuetyNavigationalView :navigationBarVM="navigationBarVM" :title="route.meta.title?.value">
+    <RouterView />
+  </VuetyNavigationalView>
   
-  <RouterView id="router-view" />
+  <VuetyModalScene />
 </template>
 
 <style scoped lang="scss">
-@use '@vueties/components/bars/styles' as bar-styles;
+@use '../styles/mixins';
 
-#router-view {
-  height: calc(100% - bar-styles.$nav-bar-height);
-  overflow: auto;
+.vuety-navigational-view {
+  @include mixins.position(fixed, 0, 0, 0, 0)
 }
 </style>

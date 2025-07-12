@@ -1,27 +1,18 @@
-@use 'sass:map';
 @use 'sass:list';
+@use 'sass:map';
 @use '@design-tokens/palette';
-
-@mixin safe-area($top: true, $bottom: true) {
-  $padding-bottom: 0px;
-  $padding-top: 0px;
-  
-  @if $top {
-    $padding-top: env(safe-area-inset-top);
-  }
-  @if $bottom {
-    $padding-bottom: env(safe-area-inset-bottom);
-  }
-  
-  height: calc(100% - $padding-top - $padding-bottom);
-  overflow: auto;
-  padding-bottom: $padding-bottom;
-  padding-top: $padding-top;
-}
 
 @mixin size($value) {
   height: $value;
   width: $value;
+}
+
+@mixin position($kind, $top: null, $right: null, $bottom: null, $left: null) {
+  bottom: $bottom;
+  left: $left;
+  position: $kind;
+  right: $right;
+  top: $top;
 }
 
 @mixin linear-gradient($angle, $color-stops...) {

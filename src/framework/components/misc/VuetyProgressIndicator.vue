@@ -4,7 +4,7 @@ import SvgIcon from './VuetySvgIcon.vue'
 </script>
 
 <template>
-  <SvgIcon :icon="Icon.Spinner" class="progress-indicator" />
+  <SvgIcon :icon="Icon.Spinner" class="vuety-progress-indicator" />
 </template>
 
 <style scoped lang="scss">
@@ -14,7 +14,7 @@ import SvgIcon from './VuetySvgIcon.vue'
   100% { rotate: 180deg; }
 }
 
-.progress-indicator {
+.vuety-progress-indicator {
   animation: spin 1s linear 0s infinite;
   display: inline-block;
   @include palette.color-attribute('color', 'accessory');

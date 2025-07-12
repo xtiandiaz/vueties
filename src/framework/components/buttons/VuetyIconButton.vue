@@ -17,10 +17,15 @@ defineProps<{
 
 <style scoped lang="scss">
 @use 'styles';
-@use '../../utils/mixins';
+@use '@/assets/varties';
+@use '../../styles/mixins';
 @use '@design-tokens/palette';
 
 .vuety-icon-button {
+  .svg-icon {
+    @include palette.color-attribute('color', varties.$tint-color);
+  }
+  
   &.auxiliary {
     .svg-icon {
       @include mixins.size(1.25em);

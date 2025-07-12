@@ -1,6 +1,8 @@
 <script setup lang="ts">;
-import ModalNavigationalView from '../views/VuetyModalNavigationalView.vue'
 import ModalSearchView from '../views/VuetyModalSearchView.vue';
+import ModalView from '../views/VuetyModalView.vue';
+import NavigationalView from '../views/VuetyNavigationalView.vue'
+import { VuetyNavigationReturnMode } from '../components/bars/view-models'
 </script>
 
 <template>
@@ -10,9 +12,14 @@ import ModalSearchView from '../views/VuetyModalSearchView.vue';
         <component :is="Component" />
       </ModalSearchView>
       
-      <ModalNavigationalView v-else-if="Component" :title="route.meta.title?.value">
-        <component :is="Component" />
-      </ModalNavigationalView>
+      <ModalView v-else-if="Component">
+        <NavigationalView
+          :navigationBarVM="{ isVisible: true, returnMode: VuetyNavigationReturnMode.Close }"
+          :title="route.meta.isModal ? route.meta.title?.value : undefined"
+        >
+          <component :is="Component" />
+        </NavigationalView>
+      </ModalView>
     </Transition>
   </RouterView>
 </template>

@@ -1,0 +1,36 @@
+@use '@design-tokens/palette';
+
+* {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  overscroll-behavior: none;
+  @include palette.color-attributes((
+    'color': 'body',
+    'background-color': 'secondary-background'
+  ));
+}
+
+html, body, #app {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.disabled, :disabled {
+  cursor: default;
+  opacity: 25%;
+  background: none;
+}
+
+.flex-spacer {
+  flex: auto;
+}
+
+h1.large-title {
+  margin-bottom: 0;
+  margin-left: 0.25em;
+}

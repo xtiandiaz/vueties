@@ -78,51 +78,62 @@ form {
         'background-color': 'tertiary-background'
       ));
       
-      .row {
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        gap: 0.75em;
-        min-height: $row-min-height;
-        overflow: hidden;
-        padding: 0 $row-h-padding;
-        @include palette.color-attribute('background-color', 'background');
-        
-        &:first-of-type .rounded-element {
-          border-radius: 1em 1em 0 0;
-        }
-        &:last-of-type .rounded-element {
-          border-radius: 0 0 1em 1em;
-        }
-        &:only-of-type .rounded-element {
-          border-radius: 1em;
-        }
-        
-        &.text-input {
-          padding: 0;
-          gap: 0;
-          
-          input {
-            @extend .body;
-            border: none;
-            padding: 0;
-            width: 100%;
-          }
-        }
-        
-        .disclosure-indicator {
-          width: 1rem;
-          @include palette.color-attribute('color', 'accessory');
-        }
-        
-        .representative-icon {
-          width: 1.5em;
-        }
-        
-        .spacer {
-          flex: auto;
-        }
+      .divider {
+        @extend .italic;
+        line-height: calc($row-min-height / 1.5);
+        padding-left: 1em;
+        @include palette.color-attribute('color', 'secondary-body');
       }
+    }
+  }
+  
+  .row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75em;
+    min-height: $row-min-height;
+    overflow: hidden;
+    padding: 0 $row-h-padding;
+    @include palette.color-attribute('background-color', 'background');
+    
+    &:first-of-type .rounded-element {
+      border-radius: 1em 1em 0 0;
+    }
+    &:last-of-type .rounded-element {
+      border-radius: 0 0 1em 1em;
+    }
+    &:only-of-type .rounded-element {
+      border-radius: 1em;
+    }
+    
+    &.text-input {
+      padding: 0;
+      gap: 0;
+      
+      input {
+        @extend .body;
+        border: none;
+        padding: 0;
+        width: 100%;
+      }
+    }
+    
+    &.discloser {
+      padding-right: calc($row-h-padding / 1.5);
+    }
+    
+    .disclosure-indicator {
+      width: 1rem;
+      @include palette.color-attribute('color', 'accessory');
+    }
+    
+    .representative-icon {
+      width: 1.5em;
+    }
+    
+    .spacer {
+      flex: auto;
     }
   }
 }

@@ -1,7 +1,7 @@
 @use '@design-tokens/palette';
 @use '@design-tokens/utils';
 
-$nav-bar-h-padding: 0.5em;
+$nav-bar-h-padding: 0.25em;
 $nav-bar-height: 3.5em;
 $nav-bar-z-index: 100;
 $search-bar-height: 5em;
@@ -16,17 +16,4 @@ $item-gap: 1em;
   div.spacer {
     flex: auto;
   }
-}
-
-.scroll-shade {
-  border-bottom: 1px solid;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  @include palette.color-attributes((
-    'background-color': 'background',
-    'border-color': 'tertiary-background'
-  ));
 }

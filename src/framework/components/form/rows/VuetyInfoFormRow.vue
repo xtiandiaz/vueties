@@ -20,7 +20,7 @@ const { title } = defineProps<{
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use '../styles';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';

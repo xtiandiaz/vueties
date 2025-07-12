@@ -9,6 +9,7 @@ defineProps<{
   emoji?: string,
   icon?: Icon
   subtitle?: string,
+  value?: string | number
 }>()
 
 const router = useRouter()
@@ -16,11 +17,11 @@ const router = useRouter()
 
 <template>
   <div 
-    class="row push"
+    class="row push discloser"
     @click="router.push(path)"
   >
     <SvgIcon v-if="icon" :icon="icon" />
-    <h5 v-else-if="emoji">{{ emoji }}</h5>
+    <h4 v-else-if="emoji" class="emoji">{{ emoji }}</h4>
     
     <div class="title-subtitle-wrapper">
       <span class="title">{{ title }}</span>
@@ -28,6 +29,8 @@ const router = useRouter()
     </div>
     
     <div class="spacer"></div>
+    
+    <span v-if="value" class="value">{{ value }}</span>
     
     <SvgIcon class="disclosure-indicator" :icon="Icon.ChevronRight" />
   </div>
@@ -39,6 +42,10 @@ const router = useRouter()
 @use '@design-tokens/typography';
 
 .row.push {
+  .emoji {
+    margin: 0;  
+  }
+  
   .title-subtitle-wrapper {
     display: flex;
     flex-direction: column;
@@ -50,8 +57,12 @@ const router = useRouter()
     }
   }
   
-  .value, .subtitle {
+  .subtitle {
     @include palette.color-attribute('color', 'secondary-body');
+  }
+  
+  .value {
+    @include palette.color-attribute('color', 'tertiary-body');
   }
 }
 </style>
