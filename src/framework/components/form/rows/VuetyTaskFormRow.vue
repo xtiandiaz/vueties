@@ -32,7 +32,7 @@ const isDone = ref(props.isDone === true)
 form .row.task {
   align-items: start;
   gap: 0.25em;
-  padding: 0.25em styles.$row-h-padding 0.25em 0.375em;
+  padding: 0.125em styles.$row-h-padding 0.125em 0.375em;
   
   &.done {
     opacity: 0.85;

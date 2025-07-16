@@ -1,5 +1,6 @@
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
+@use '../../styles/mixins';
 
 $form-padding: 1rem;
 $max-width: 1080px !default;
@@ -79,10 +80,12 @@ form {
       ));
       
       .divider {
-        @extend .italic;
-        line-height: calc($row-min-height / 1.5);
+        line-height: calc($row-min-height / 1.25);
+        margin-bottom: 1px;
         padding-left: 1em;
+        @include palette.color-attribute('background-color', 'background', 0.75);
         @include palette.color-attribute('color', 'secondary-body');
+        // @include mixins.linear-gradient(0deg, 'secondary-background' 0 0%, 'secondary-background' 1 100%);
       }
     }
   }
@@ -124,12 +127,22 @@ form {
     }
     
     .disclosure-indicator {
-      width: 1rem;
+      @include mixins.size(1rem);
       @include palette.color-attribute('color', 'accessory');
     }
     
+    .disclosure-wrapper {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.5em;
+      
+      > * {
+        display: inline-block;
+      }
+    }
+    
     .representative-icon {
-      width: 1.5em;
+      @include mixins.size(1.5em);
     }
     
     .spacer {

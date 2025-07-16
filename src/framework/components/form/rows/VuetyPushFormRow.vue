@@ -30,9 +30,10 @@ const router = useRouter()
     
     <div class="spacer"></div>
     
-    <span v-if="value" class="value">{{ value }}</span>
-    
-    <SvgIcon class="disclosure-indicator" :icon="Icon.ChevronRight" />
+    <span class="disclosure-wrapper">
+      <span v-if="value" class="value">{{ value }}</span>
+      <SvgIcon class="disclosure-indicator" :icon="Icon.ChevronRight" />
+    </span>
   </div>
 </template>
 
@@ -43,7 +44,8 @@ const router = useRouter()
 
 .row.push {
   .emoji {
-    margin: 0;  
+    margin: 0;
+    line-height: 1;
   }
   
   .title-subtitle-wrapper {
