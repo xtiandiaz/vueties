@@ -15,10 +15,13 @@ defineProps<{
   <section class="vuety-form-section">
     <div v-if="showsLargeTitle && title" class="large-title">
       <SvgIcon v-if="icon" :icon="icon" />
-      <h6>{{ title }}</h6>
+      <div class="title-subtitle-wrapper">
+        <h6 class="title">{{ title }}</h6>
+        <span v-if="subtitle">{{ subtitle }}</span>
+      </div>
     </div>
     
-    <div v-if="(title && !showsLargeTitle) || subtitle" class="header">
+    <div v-if="!showsLargeTitle && (title || subtitle)" class="header">
       <strong v-if="title">{{ title }}</strong>
       <span v-if="subtitle">{{ subtitle }}</span>
     </div>
@@ -35,22 +38,28 @@ defineProps<{
 
 <style scoped lang="scss">
 @use 'styles';
+@use '../../styles/mixins';
 @use '@design-tokens/typography';
 @use '@design-tokens/palette';
 
 .large-title {
+  align-items: center;
   display: flex;
-  gap: 0.5em;
-  justify-items: center;
+  gap: 0.625em;
   margin: 0 0 0.5em 1em;
   @include palette.color-attribute('color', 'secondary-body');
   
-  h6 {
+  .title-subtitle-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .title {
     margin: 0;
   }
   
   .svg-icon {
-    width: 1.5em;
+    @include mixins.size(1.75em);
   }
 }
 </style>

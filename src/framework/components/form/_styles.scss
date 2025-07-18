@@ -37,7 +37,7 @@ form {
   section {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.25em;
     
     > * {
       width: auto;
@@ -81,10 +81,13 @@ form {
       
       .divider {
         line-height: calc($row-min-height / 1.25);
+        // margin: 0 1px;
+        min-height: 0.25em;
         padding-left: 1em;
         @include palette.color-attribute('background-color', 'background', 0.75);
-        @include palette.color-attribute('color', 'secondary-body');
-        // @include mixins.linear-gradient(0deg, 'secondary-background' 0 0%, 'secondary-background' 1 100%);
+        @include palette.color-attributes((
+          'color': 'secondary-body'
+        ));
       }
     }
   }
