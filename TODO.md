@@ -1,9 +1,7 @@
-- Add Push Form Row component
 - Add Slider and Slider Form Row components
 - Add Switch and Switch Form Row components
 - Add Alert component
 - Add Button and Form Row notification Badges, and Badge component
-- Add Segmented Button component
 - Add Tab Bar component
 - Add Input Text component
 - Add Weekly Calendar component
