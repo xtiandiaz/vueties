@@ -5,9 +5,9 @@ declare module 'vue-router' {
   interface RouteMeta {
     isModal: boolean
     
-    _modalTitle: Ref<string | undefined>
-    _showsLargeTitle: Ref<boolean>
-    _title: Ref<string | undefined>
+    _modalTitle?: Ref<string | undefined>
+    _showsLargeTitle?: Ref<boolean>
+    _title?: Ref<string | undefined>
     
     setTitle(title?: string, isAlsoShownLarge?: boolean): void
   }

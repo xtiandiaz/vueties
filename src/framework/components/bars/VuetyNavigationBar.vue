@@ -31,7 +31,7 @@ function goBack() {
 </script>
 
 <template>
-  <nav v-if="viewModel.isVisible" class="vuety-navigation-bar">
+  <nav v-if="viewModel.isVisible ?? true" class="vuety-navigation-bar">
     <div class="vuety-scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <div class="content-wrapper">
@@ -52,7 +52,7 @@ function goBack() {
         v-if="title"
         id="vnb-title"
         class="title"
-        :style="{ opacity: route.meta._showsLargeTitle.value ? (barShadeOpacity ?? 0) : 1 }"
+        :style="{ opacity: route.meta._showsLargeTitle?.value ? (barShadeOpacity ?? 0) : 1 }"
       >
         {{ title }}
       </span>

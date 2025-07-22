@@ -15,7 +15,7 @@ import { VuetyNavigationReturnMode } from '../components/bars/view-models'
       <ModalView v-else-if="Component">
         <NavigationalView
           :navigationBarVM="{ isVisible: true, returnMode: VuetyNavigationReturnMode.Close }"
-          :title="route.meta._modalTitle.value"
+          :title="route.meta._modalTitle?.value"
         >
           <component :is="Component" />
         </NavigationalView>

@@ -12,7 +12,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <NavigationalView :navigationBarVM="navigationBarVM" :title="route.meta._title.value">
+  <NavigationalView :navigationBarVM="navigationBarVM" :title="route.meta._title?.value">
     <RouterView name="main" v-slot="{ Component }">
       <KeepAlive>
         <component :is="Component" />

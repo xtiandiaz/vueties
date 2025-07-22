@@ -22,8 +22,7 @@ export interface VuetyNavigationBarItemVM {
 }
 
 export interface VuetyNavigationBarVM {
-  isVisible: boolean
-  
+  isVisible?: boolean
   leftBarItems?: VuetyNavigationBarItemVM[]
   rightBarItems?: VuetyNavigationBarItemVM[]
   returnMode?: VuetyNavigationReturnMode
