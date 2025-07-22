@@ -1,6 +1,4 @@
-<script setup lang="ts" generic="RouteKey">
-import { VuetyNavigationReturnMode } from '../components/bars/view-models'
-
+<script setup lang="ts">
 
 defineProps<{
   title?: string
@@ -8,7 +6,14 @@ defineProps<{
 </script>
 
 <template>
-  
+  <ModalView>
+    <NavigationalView
+      :navigationBarVM="{}"
+      :title="title"
+    >
+      <slot></slot>
+  </NavigationalView>
+  </ModalView>
 </template>
 
 <style scoped lang="scss">
