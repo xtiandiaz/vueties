@@ -22,7 +22,7 @@ defineProps<{
     </div>
     
     <div v-if="!showsLargeTitle && (title || subtitle)" class="header">
-      <strong v-if="title">{{ title }}</strong>
+      <span class="title" v-if="title">{{ title }}</span>
       <span v-if="subtitle">{{ subtitle }}</span>
     </div>
     

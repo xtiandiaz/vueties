@@ -14,8 +14,8 @@ defineProps<{
 .svg-icon {
   aspect-ratio: 1;
   display: inline-block;
+  line-height: 1;
   min-height: 1em;
   min-width: 1em;
-  vertical-align: middle;
 }
 </style>
