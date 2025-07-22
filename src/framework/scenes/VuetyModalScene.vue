@@ -2,7 +2,6 @@
 import ModalSearchView from '../views/VuetyModalSearchView.vue';
 import ModalView from '../views/VuetyModalView.vue';
 import NavigationalView from '../views/VuetyNavigationalView.vue'
-import { VuetyNavigationReturnMode } from '../components/bars/view-models'
 </script>
 
 <template>
@@ -14,7 +13,7 @@ import { VuetyNavigationReturnMode } from '../components/bars/view-models'
       
       <ModalView v-else-if="Component">
         <NavigationalView
-          :navigationBarVM="{ isVisible: true, returnMode: VuetyNavigationReturnMode.Close }"
+          :navigationBarVM="{ controlsModal: true }"
           :title="route.meta._modalTitle?.value"
         >
           <component :is="Component" />
@@ -25,6 +24,17 @@ import { VuetyNavigationReturnMode } from '../components/bars/view-models'
 </template>
 
 <style scoped lang="scss">
+@use '../components/bars/styles' as bar-styles;
+@use '../styles/mixins';
+
+:deep(.vuety-navigation-bar) {
+  padding-top: 0;
+}
+
+:deep(.vnv-view-wrapper) {
+  @include mixins.position(absolute, bar-styles.$nav-bar-height, 0, 0, 0);
+}
+
 @mixin transition($timing-function, $duration: 0.25s) {
   transition: none $duration $timing-function;
   

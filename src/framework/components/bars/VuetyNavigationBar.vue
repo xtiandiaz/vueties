@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
-import { VuetyNavigationReturnMode, type VuetyNavigationBarVM } from './view-models'
+import type { VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
@@ -11,23 +11,49 @@ import '@/assets/tungsten/extensions/array.extensions'
 const { viewModel } = defineProps<{
   viewModel: VuetyNavigationBarVM,
   barShadeOpacity?: number
+  controlsModal?: boolean
   title?: string
 }>()
 
 const router = useRouter()
 const route = useRoute()
+const historyState = router.options.history.state
 
-const showsBackButton = computed(() => 
-  route.path !== '/' && viewModel.returnMode !== VuetyNavigationReturnMode.Close
+const controlsModal = viewModel.controlsModal === true
+const modalStartingPath = controlsModal && route.meta.isModal ? route.path : undefined
+const modalPaths = new Array<string>()
+
+const showsBackButton = computed(() =>
+  (controlsModal && route.path !== modalStartingPath) || 
+  (!controlsModal && route.path !== '/')
 )
 
 function goBack() {
-  if (window.history.length > 2) {
+  if (historyState.back) {
     router.back()
   } else {
     router.replace('/')
   }
 }
+
+function closeModal() {
+  router.go(-modalPaths.length)
+}
+
+watch(router.currentRoute, (currentRoute) => {
+  if (!controlsModal || !currentRoute.meta.isModal) {
+    return
+  }
+  
+  const index = modalPaths.findIndex(p => currentRoute.path === p)
+  if (index >= 0) {
+    modalPaths.splice(index)
+  }
+  
+  modalPaths.push(currentRoute.path)
+  
+  console.log([...modalPaths].join('\n'))
+}, { immediate: true })
 </script>
 
 <template>
@@ -60,8 +86,8 @@ function goBack() {
       <div class="spacer"></div>
 
       <CloseButton 
-        v-if="viewModel.returnMode === VuetyNavigationReturnMode.Close" 
-        @click="goBack()" 
+        v-if="controlsModal"
+        @click="closeModal()"
       />
       
       <NavigationSubBar 

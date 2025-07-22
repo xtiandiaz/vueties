@@ -1,10 +1,5 @@
 import { Icon } from '@design-tokens/iconography'
 
-export enum VuetyNavigationReturnMode {
-  Back, 
-  Close
-}
-
 export interface VuetyToolBarButtonVM<Tool> {
   tool: Tool
   icon: Icon
@@ -23,7 +18,7 @@ export interface VuetyNavigationBarItemVM {
 
 export interface VuetyNavigationBarVM {
   isVisible?: boolean
+  controlsModal?: boolean
   leftBarItems?: VuetyNavigationBarItemVM[]
   rightBarItems?: VuetyNavigationBarItemVM[]
-  returnMode?: VuetyNavigationReturnMode
 }

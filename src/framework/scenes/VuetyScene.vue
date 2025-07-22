@@ -13,7 +13,7 @@ const route = useRoute()
 
 <template>
   <NavigationalView :navigationBarVM="navigationBarVM" :title="route.meta._title?.value">
-    <RouterView name="main" v-slot="{ Component }">
+    <RouterView v-slot="{ Component }">
       <KeepAlive>
         <component :is="Component" />
       </KeepAlive>
