@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { useRouter } from 'vue-router';
+import { ref, computed, watch, onMounted } from 'vue'
+import { useRouter, type RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 import type { VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
@@ -26,15 +26,7 @@ const showsBackButton = computed(() =>
   traces.value.filter(t => controlsModal && t.isModal || !t.isModal).length > 1
 )
 
-function goBack() {
-  router.back()
-}
-
-function closeModal() {
-  router.go(-traces.value.length)
-}
-
-watch(router.currentRoute, (currentRoute) => {
+function traceRoute(currentRoute: RouteLocationNormalizedLoadedGeneric) {  
   const newPath = currentRoute.path
   const isModal = currentRoute.meta.isModal
   
@@ -45,7 +37,25 @@ watch(router.currentRoute, (currentRoute) => {
   
   traces.value.push({ path: newPath, isModal })
   // console.log([...traces.value].map(t => t.path).join('\n'))
-}, { immediate: true })
+}
+
+function goBack() {
+  router.back()
+}
+
+function closeModal() {
+  router.go(-traces.value.length)
+}
+
+watch(router.currentRoute, async (currentRoute) => {
+  traceRoute(currentRoute)
+})
+
+onMounted(async () => {
+  await router.isReady()
+  
+  traceRoute(router.currentRoute.value)
+})
 </script>
 
 <template>
