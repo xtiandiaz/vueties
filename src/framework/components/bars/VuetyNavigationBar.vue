@@ -22,9 +22,13 @@ const router = useRouter()
 const traces = ref<NavigationTrace[]>([])
 const controlsModal = viewModel.controlsModal === true
 
-const showsBackButton = computed(() =>
-  traces.value.filter(t => controlsModal && t.isModal || !t.isModal).length > 1
-)
+const showsBackButton = computed(() => {
+  if (controlsModal) {
+    return traces.value.filter(t => t.isModal).length > 1  
+  }
+  
+  return traces.value.filter(t => !t.isModal).length > 1 || router.currentRoute.value.path !== '/'
+})
 
 function traceRoute(currentRoute: RouteLocationNormalizedLoadedGeneric) {  
   const newPath = currentRoute.path
@@ -40,7 +44,12 @@ function traceRoute(currentRoute: RouteLocationNormalizedLoadedGeneric) {
 }
 
 function goBack() {
-  router.back()
+  if (traces.value.length > 1) {
+    router.back()
+  } else {
+    router.replace('/')
+    traces.value.splice(0)
+  }
 }
 
 function closeModal() {
