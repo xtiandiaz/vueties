@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router';
+import { ref, computed, watch } from 'vue'
+import { useRouter } from 'vue-router';
 import type { VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
 import '@/assets/tungsten/extensions/array.extensions'
+
+type NavigationTrace = { path: string, isModal: boolean }
 
 const { viewModel } = defineProps<{
   viewModel: VuetyNavigationBarVM,
@@ -16,43 +18,33 @@ const { viewModel } = defineProps<{
 }>()
 
 const router = useRouter()
-const route = useRoute()
-const historyState = router.options.history.state
 
+const traces = ref<NavigationTrace[]>([])
 const controlsModal = viewModel.controlsModal === true
-const modalStartingPath = controlsModal && route.meta.isModal ? route.path : undefined
-const modalPaths = new Array<string>()
 
 const showsBackButton = computed(() =>
-  (controlsModal && route.path !== modalStartingPath) || 
-  (!controlsModal && route.path !== '/')
+  traces.value.filter(t => controlsModal && t.isModal || !t.isModal).length > 1
 )
 
 function goBack() {
-  if (historyState.back) {
-    router.back()
-  } else {
-    router.replace('/')
-  }
+  router.back()
 }
 
 function closeModal() {
-  router.go(-modalPaths.length)
+  router.go(-traces.value.length)
 }
 
 watch(router.currentRoute, (currentRoute) => {
-  if (!controlsModal || !currentRoute.meta.isModal) {
-    return
-  }
+  const newPath = currentRoute.path
+  const isModal = currentRoute.meta.isModal
   
-  const index = modalPaths.findIndex(p => currentRoute.path === p)
+  const index = traces.value.findIndex(t => t.path === newPath && t.isModal === isModal)
   if (index >= 0) {
-    modalPaths.splice(index)
+    traces.value.splice(index)
   }
   
-  modalPaths.push(currentRoute.path)
-  
-  console.log([...modalPaths].join('\n'))
+  traces.value.push({ path: newPath, isModal })
+  // console.log([...traces.value].map(t => t.path).join('\n'))
 }, { immediate: true })
 </script>
 
@@ -78,7 +70,7 @@ watch(router.currentRoute, (currentRoute) => {
         v-if="title"
         id="vnb-title"
         class="title"
-        :style="{ opacity: route.meta._showsLargeTitle?.value ? (barShadeOpacity ?? 0) : 1 }"
+        :style="{ opacity: $route.meta._showsLargeTitle?.value ? (barShadeOpacity ?? 0) : 1 }"
       >
         {{ title }}
       </span>
