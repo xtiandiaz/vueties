@@ -59,7 +59,8 @@ defineProps<{
   }
   
   .svg-icon {
-    @include mixins.size(1.75em);
+    @include mixins.size(1.5em);
+    @include palette.color-attribute('color', 'tertiary-body');
   }
 }
 </style>

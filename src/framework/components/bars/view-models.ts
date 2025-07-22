@@ -15,9 +15,9 @@ export interface VuetyToolBarButtonVM<Tool> {
 
 export interface VuetyNavigationBarItemVM {
   icon: Icon
-  isEnabled: boolean
   path: string
-
+  
+  isEnabled?: boolean
   label?: string
 }
 

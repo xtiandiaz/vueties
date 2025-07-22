@@ -6,6 +6,7 @@ const { title } = defineProps<{
   title: string,
   icon?: Icon,
   subtitle?: string,
+  value?: number | string
 }>()
 </script>
 
@@ -17,6 +18,10 @@ const { title } = defineProps<{
       <span class="title">{{ title }}</span>
       <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
     </div>
+    
+    <div class="spacer"></div>
+    
+    <span v-if="value" class="value">{{ value }}</span>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { type VuetyNavigationBarVM } from '../components/bars/view-models'
-import VuetyNavigationalView from '../views/VuetyNavigationalView.vue';
-import VuetyModalScene from './VuetyModalScene.vue';
+import NavigationalView from '../views/VuetyNavigationalView.vue';
+import ModalScene from './VuetyModalScene.vue';
 
 defineProps<{
   navigationBarVM?: VuetyNavigationBarVM
@@ -12,11 +12,17 @@ const route = useRoute()
 </script>
 
 <template>
-  <VuetyNavigationalView :navigationBarVM="navigationBarVM" :title="route.meta.title?.value">
-    <RouterView />
-  </VuetyNavigationalView>
+  <NavigationalView :navigationBarVM="navigationBarVM" :title="route.meta._title.value">
+    <RouterView name="main" v-slot="{ Component }">
+      <KeepAlive>
+        <component :is="Component" />
+      </KeepAlive>
+      
+      <ModalScene />
+    </RouterView> 
+  </NavigationalView>
   
-  <VuetyModalScene />
+  <ModalScene />
 </template>
 
 <style scoped lang="scss">

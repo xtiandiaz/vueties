@@ -9,7 +9,7 @@ defineProps<{
   emoji?: string,
   icon?: Icon
   subtitle?: string,
-  value?: string | number
+  value?: number | string
 }>()
 
 const router = useRouter()
@@ -64,6 +64,8 @@ const router = useRouter()
   }
   
   .value {
+    font-size: 0.95em;
+    white-space: nowrap;
     @include palette.color-attribute('color', 'tertiary-body');
   }
 }

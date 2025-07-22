@@ -81,8 +81,7 @@ form {
       
       .divider {
         line-height: calc($row-min-height / 1.25);
-        // margin: 0 1px;
-        min-height: 0.25em;
+        min-height: 0.5em;
         padding-left: 1em;
         @include palette.color-attribute('background-color', 'background', 0.75);
         @include palette.color-attributes((

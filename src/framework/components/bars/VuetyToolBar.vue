@@ -13,8 +13,15 @@ const emits = defineEmits<{
 
 <template>
   <div class="vuety-toolbar">
-    <IconButton v-for="(vm, index) of buttonVMs" :key="index" :icon="vm.icon" :label="vm.label"
-      :disabled="!vm.isEnabled" :class="vm.tool" @click="emits('toolSelected', vm.tool)" />
+    <IconButton 
+      v-for="(vm, index) of buttonVMs" 
+      :key="index" 
+      :class="vm.tool" 
+      :disabled="!(vm.isEnabled ?? true)" 
+      :icon="vm.icon" 
+      :label="vm.label"
+      @click="emits('toolSelected', vm.tool)" 
+    />
   </div>
 </template>
 

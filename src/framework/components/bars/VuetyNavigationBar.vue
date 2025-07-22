@@ -17,7 +17,17 @@ const { viewModel } = defineProps<{
 const router = useRouter()
 const route = useRoute()
 
-const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMode !== VuetyNavigationReturnMode.Close)
+const showsBackButton = computed(() => 
+  route.path !== '/' && viewModel.returnMode !== VuetyNavigationReturnMode.Close
+)
+
+function goBack() {
+  if (window.history.length > 2) {
+    router.back()
+  } else {
+    router.replace('/')
+  }
+}
 </script>
 
 <template>
@@ -29,7 +39,7 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
         v-if="showsBackButton"
         class="back"
         :icon="Icon.ChevronLeft"
-        @click="router.back()"
+        @click="goBack()"
       />
       
       <NavigationSubBar 
@@ -42,7 +52,7 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
         v-if="title"
         id="vnb-title"
         class="title"
-        :style="{ opacity: route.meta.showsLargeTitle.value ? barShadeOpacity ?? 0 : 1 }"
+        :style="{ opacity: route.meta._showsLargeTitle.value ? (barShadeOpacity ?? 0) : 1 }"
       >
         {{ title }}
       </span>
@@ -51,7 +61,7 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
 
       <CloseButton 
         v-if="viewModel.returnMode === VuetyNavigationReturnMode.Close" 
-        @click="router.back()" 
+        @click="goBack()" 
       />
       
       <NavigationSubBar 
@@ -65,6 +75,7 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
 
 <style scoped lang="scss">
 @use 'styles';
+@use '../../styles/mixins';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
@@ -74,10 +85,11 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
   z-index: styles.$nav-bar-z-index;
   
   .content-wrapper {
+    @extend .item-bar;
+    gap: 0;
     height: 100%;
     padding: 0 styles.$nav-bar-h-padding;
     position: relative;
-    @extend .item-bar;
     
     :deep(.vuety-icon-button.back .svg-icon) {
       width: 1.75em;
@@ -86,11 +98,14 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
 
     .title {
       @extend .strong;
+      display: inline-block;
       left: 50%;
+      pointer-events: none;
       position: absolute;
       text-align: center;
       top: 50%;
       transform: translate(-50%, -50%);
+      white-space: nowrap;
     }
 
     .vuety-toolbar {
@@ -107,11 +122,7 @@ const showsBackButton = computed(() => route.path !== '/' && viewModel.returnMod
 
 .vuety-scroll-shade {
   border-bottom: 1px solid;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+  @include mixins.position(absolute, 0, 0, 0, 0);
   @include palette.color-attributes((
     'background-color': 'background',
     'border-color': 'tertiary-background'

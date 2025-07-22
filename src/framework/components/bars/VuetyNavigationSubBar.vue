@@ -14,10 +14,11 @@ const router = useRouter()
   <div class="item-bar">
     <IconButton 
       v-for="(vm, index) of itemVMs" 
-      :disabled="!vm.isEnabled"
-      :key="index" :icon="vm.icon" 
+      :key="index" 
+      :disabled="!(vm.isEnabled ?? true)"
+      :icon="vm.icon" 
       :label="vm.label" 
-      @click="router.push(vm.path)" 
+      @click="router.push(vm.path.replace('{current}', $route.path != '/' ? $route.path : ''))" 
     />
   </div>
 </template>
