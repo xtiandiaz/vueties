@@ -39,7 +39,7 @@ const emits = defineEmits<{
         v-if="viewModel.leftBarItems && !showsBackButton" 
         class="left"
         :itemVMs="viewModel.leftBarItems" 
-        @goTo="(path) => emits('goTo', path)"
+        @goTo="(path: string) => emits('goTo', path)"
       />
 
       <span 
@@ -62,7 +62,7 @@ const emits = defineEmits<{
         v-if="viewModel.rightBarItems" 
         class="right"
         :itemVMs="viewModel.rightBarItems" 
-        @goTo="(path) => emits('goTo', path)"
+        @goTo="(path: string) => emits('goTo', path)"
       />
     </div>
   </nav>

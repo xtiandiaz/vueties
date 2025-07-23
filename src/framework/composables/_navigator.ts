@@ -21,7 +21,6 @@ export function useNavigator(modal: boolean): VuetyNavigationOptions {
       return traces.value.filter(t => t.isModal).length > 1  
     }
     
-    console.log(router.currentRoute.value.path)
     return router.currentRoute.value.path !== '/' && !router.currentRoute.value.meta.isModal
   })
   const shouldEnableCloseOption = computed(() => modal)
@@ -36,8 +35,6 @@ export function useNavigator(modal: boolean): VuetyNavigationOptions {
     }
     
     traces.value.push({ path: newPath, isModal })
-    
-    // console.log(traces.value.map(t => t.path).join('\n'))
   }
   
   watch(router.currentRoute, (currentRoute) => {
@@ -62,7 +59,7 @@ export function useNavigator(modal: boolean): VuetyNavigationOptions {
   function closeModal() {
     const nonModalTraces = traces.value.filter(t => !t.isModal)
     const modalStretch = traces.value.length - nonModalTraces.length
-    console.log("Modal Stretch:", modalStretch)
+    // console.log("Modal Stretch:", modalStretch)
     
     router.go(-modalStretch)
     
