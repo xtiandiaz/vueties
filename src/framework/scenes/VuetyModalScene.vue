@@ -2,6 +2,9 @@
 import ModalSearchView from '../views/VuetyModalSearchView.vue';
 import ModalView from '../views/VuetyModalView.vue';
 import NavigationalView from '../views/VuetyNavigationalView.vue'
+import { useNavigator } from '../composables/_navigator';
+
+const navigationOptions = useNavigator(true)
 </script>
 
 <template>
@@ -11,10 +14,18 @@ import NavigationalView from '../views/VuetyNavigationalView.vue'
         <component :is="Component" />
       </ModalSearchView>
       
-      <ModalView v-else-if="Component">
+      <ModalView 
+        v-else-if="Component"
+        @close="navigationOptions?.closeModal()"
+      >
         <NavigationalView
+          :enablesBackOption="navigationOptions.shouldEnableBackOption.value"
+          :enablesCloseOption="navigationOptions.shouldEnableCloseOption.value"
           :navigationBarVM="{ controlsModal: true }"
           :title="route.meta._modalTitle?.value"
+          @close="navigationOptions?.closeModal()"
+          @goBack="navigationOptions?.goBack()"
+          @goTo="path => navigationOptions?.goTo(path)"
         >
           <component :is="Component" />
         </NavigationalView>

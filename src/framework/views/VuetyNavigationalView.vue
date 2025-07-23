@@ -5,8 +5,17 @@ import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
 import { clamp } from '@/assets/tungsten/math';
 
 defineProps<{
-  navigationBarVM?: VuetyNavigationBarVM,
+  enablesBackOption: boolean
+  enablesCloseOption: boolean
+  
+  navigationBarVM?: VuetyNavigationBarVM
   title?: string 
+}>()
+
+const emits = defineEmits<{
+  close: [void]
+  goBack: [void]
+  goTo: [path: string]
 }>()
 
 const viewRef = useTemplateRef('view-wrapper')
@@ -35,9 +44,14 @@ onBeforeUnmount(() => {
   <div class="vuety-navigational-view">
     <NavigationBar 
       v-if="navigationBarVM"
+      :showsBackButton="enablesBackOption"
+      :showsCloseButton="enablesCloseOption"
       :barShadeOpacity="headShadeOpacity"
       :title="title"
-      :viewModel="navigationBarVM" 
+      :viewModel="navigationBarVM"
+      @close="emits('close')"
+      @goBack="emits('goBack')"
+      @goTo="path => emits('goTo', path)"
     />
     
     <div class="vnv-view-wrapper" ref="view-wrapper">

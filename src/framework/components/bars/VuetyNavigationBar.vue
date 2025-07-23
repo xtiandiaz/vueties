@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
-import { useRouter, type RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 import type { VuetyNavigationBarVM } from './view-models'
 import NavigationSubBar from './VuetyNavigationSubBar.vue';
 import IconButton from '../buttons/VuetyIconButton.vue'
@@ -8,63 +6,21 @@ import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
 import '@/assets/tungsten/extensions/array.extensions'
 
-type NavigationTrace = { path: string, isModal: boolean }
-
 const { viewModel } = defineProps<{
-  viewModel: VuetyNavigationBarVM,
+  showsBackButton: boolean
+  showsCloseButton: boolean
+  viewModel: VuetyNavigationBarVM
+  
   barShadeOpacity?: number
-  controlsModal?: boolean
   title?: string
 }>()
 
-const router = useRouter()
+const emits = defineEmits<{
+  close: [void]
+  goBack: [void]
+  goTo: [path: string]
+}>()
 
-const traces = ref<NavigationTrace[]>([])
-const controlsModal = viewModel.controlsModal === true
-
-const showsBackButton = computed(() => {
-  if (controlsModal) {
-    return traces.value.filter(t => t.isModal).length > 1  
-  }
-  
-  return traces.value.filter(t => !t.isModal).length > 1 || router.currentRoute.value.path !== '/'
-})
-
-function traceRoute(currentRoute: RouteLocationNormalizedLoadedGeneric) {  
-  const newPath = currentRoute.path
-  const isModal = currentRoute.meta.isModal
-  
-  const index = traces.value.findIndex(t => t.path === newPath && t.isModal === isModal)
-  if (index >= 0) {
-    traces.value.splice(index)
-  }
-  
-  traces.value.push({ path: newPath, isModal })
-  // console.log([...traces.value].map(t => t.path).join('\n'))
-}
-
-function goBack() {
-  if (traces.value.length > 1) {
-    router.back()
-  } else {
-    router.replace('/')
-    traces.value.splice(0)
-  }
-}
-
-function closeModal() {
-  router.go(-traces.value.length)
-}
-
-watch(router.currentRoute, async (currentRoute) => {
-  traceRoute(currentRoute)
-})
-
-onMounted(async () => {
-  await router.isReady()
-  
-  traceRoute(router.currentRoute.value)
-})
 </script>
 
 <template>
@@ -76,13 +32,14 @@ onMounted(async () => {
         v-if="showsBackButton"
         class="back"
         :icon="Icon.ChevronLeft"
-        @click="goBack()"
+        @click="emits('goBack')"
       />
       
       <NavigationSubBar 
         v-if="viewModel.leftBarItems && !showsBackButton" 
         class="left"
         :itemVMs="viewModel.leftBarItems" 
+        @goTo="(path) => emits('goTo', path)"
       />
 
       <span 
@@ -97,14 +54,15 @@ onMounted(async () => {
       <div class="spacer"></div>
 
       <CloseButton 
-        v-if="controlsModal"
-        @click="closeModal()"
+        v-if="showsCloseButton"
+        @click="emits('close')"
       />
       
       <NavigationSubBar 
         v-if="viewModel.rightBarItems" 
-        :itemVMs="viewModel.rightBarItems" 
         class="right"
+        :itemVMs="viewModel.rightBarItems" 
+        @goTo="(path) => emits('goTo', path)"
       />
     </div>
   </nav>

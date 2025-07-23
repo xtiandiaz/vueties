@@ -1,16 +1,16 @@
-<script setup lang="ts" generic="RouteKey">
-import { useRouter } from 'vue-router'
-
+<script setup lang="ts">
 defineProps<{
   title?: string
 }>()
 
-const router = useRouter()
+const emits = defineEmits<{
+  close: [void]
+}>()
 </script>
 
 <template>
   <div class="vuety-modal-view">
-    <div class="vmv-background" @click="router.back()"></div>
+    <div class="vmv-background" @click="emits('close')"></div>
     
     <div class="vmv-view-wrapper">
       <slot></slot>
