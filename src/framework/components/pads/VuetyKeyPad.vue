@@ -12,7 +12,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="pad key-pad">
+  <div class="pad vuety-key-pad">
     <button 
       v-for="(vm, index) of keyVMs" 
       :key="index" 
@@ -33,7 +33,7 @@ const emits = defineEmits<{
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
 
-.key-pad {
+.vuety-key-pad {
   button {
     border-radius: 0.5em;
     height: 3em;

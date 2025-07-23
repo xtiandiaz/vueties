@@ -1,6 +1,6 @@
 import { Icon } from '@design-tokens/iconography'
 
-export interface VuetyToolBarButtonVM<Tool> {
+export interface VuetyToolbarButtonVM<Tool> {
   tool: Tool
   icon: Icon
   isEnabled: boolean

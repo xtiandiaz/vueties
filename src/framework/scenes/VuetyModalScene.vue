@@ -10,7 +10,12 @@ const navigationOptions = useNavigator(true)
 <template>
   <RouterView name="modal" v-slot="{ Component, route }">
     <Transition>
-      <ModalSearchView v-if="Component && route.name === 'search'">
+      <ModalSearchView 
+        v-if="Component && route.name === 'search'"
+        @close="navigationOptions?.closeModal()"
+        @goBack="navigationOptions?.goBack()"
+        @goTo="(path: string) => navigationOptions?.goTo(path)"
+      >
         <component :is="Component" />
       </ModalSearchView>
       
@@ -25,7 +30,7 @@ const navigationOptions = useNavigator(true)
           :title="route.meta._modalTitle?.value"
           @close="navigationOptions?.closeModal()"
           @goBack="navigationOptions?.goBack()"
-          @goTo="path => navigationOptions?.goTo(path)"
+          @goTo="(path: string) => navigationOptions?.goTo(path)"
         >
           <component :is="Component" />
         </NavigationalView>

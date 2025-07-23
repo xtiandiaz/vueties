@@ -1,11 +1,34 @@
 <script setup lang="ts">
-import ModalNavigationalView from './VuetyModalNavigationalView.vue';
+import ModalView from './VuetyModalView.vue'
+import NavigationalView from './VuetyNavigationalView.vue';
+
+defineProps<{
+  title?: string
+}>()
+
+const emits = defineEmits<{
+  close: [void]
+  goBack: [void]
+  goTo: [path: string]
+}>()
 </script>
 
 <template>
-  <ModalNavigationalView>
-    <slot></slot>
-  </ModalNavigationalView>
+  <ModalView
+    @close="emits('close')"
+  >
+    <NavigationalView
+      :enablesBackOption="false"
+      :enablesCloseOption="true"
+      :navigationBarVM="{}"
+      :title="title"
+      @close="emits('close')"
+      @goBack="emits('goBack')"
+      @goTo="(path: string) => emits('goTo', path)"
+    >
+      <slot></slot>
+    </NavigationalView>
+  </ModalView>
 </template>
 
 <style scoped lang="scss">

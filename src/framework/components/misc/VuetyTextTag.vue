@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <span class="tag">
+  <span class="vuety-tag">
     {{ label }}
   </span>
 </template>
@@ -17,7 +17,7 @@ defineProps<{
 @use '@design-tokens/palette';
 @use '@design-tokens/utils' as ds-utils;
 
-span.tag {  
+.vuety-tag {
   border: 2px solid;
   display: inline-block;
   padding: 0.25em 0.5em;
