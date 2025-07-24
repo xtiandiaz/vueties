@@ -58,7 +58,7 @@ svg {
 }
 
 #base {
-  @include palette.color-attribute('stroke', 'secondary-background');
+  @include palette.color-attribute('stroke', 'tertiary-background');
 }
 
 #progress {
