@@ -1,9 +1,9 @@
 <script setup lang="ts" generic="Tool">
-import { type VuetyToolBarButtonVM } from './view-models'
+import { type VuetyToolbarButtonVM } from './view-models'
 import IconButton from '../buttons/VuetyIconButton.vue'
 
 defineProps<{
-  buttonVMs: VuetyToolBarButtonVM<Tool>[]
+  buttonVMs: VuetyToolbarButtonVM<Tool>[]
 }>()
 
 const emits = defineEmits<{
