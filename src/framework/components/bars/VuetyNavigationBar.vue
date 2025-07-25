@@ -51,7 +51,7 @@ const emits = defineEmits<{
         {{ title }}
       </span>
 
-      <div class="spacer"></div>
+      <div class="flex-spacer"></div>
 
       <CloseButton 
         v-if="showsCloseButton"
@@ -69,11 +69,8 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
-@use '@design-tokens/mixins';
-@use '@/assets/varties';
 
 .vuety-navigation-bar {
   height: styles.$nav-bar-height;
@@ -101,7 +98,7 @@ const emits = defineEmits<{
       top: 50%;
       transform: translate(-50%, -50%);
       white-space: nowrap;
-      @include typography.strong();
+      @include vs.strong();
     }
 
     .vuety-toolbar {
@@ -118,10 +115,10 @@ const emits = defineEmits<{
 
 .vuety-scroll-shade {
   border-bottom: 1px solid;
-  @include mixins.position(absolute, 0, 0, 0, 0);
-  @include palette.color-attributes((
-    'background-color': varties.$background-color,
-    'border-color': varties.$tertiary-background-color
+  @include vs.position(absolute, 0, 0, 0, 0);
+  @include vs.color-attributes((
+    'background-color': vs.$background-color,
+    'border-color': vs.$tertiary-background-color
   ));
 }
 </style>

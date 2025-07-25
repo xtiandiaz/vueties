@@ -21,7 +21,7 @@ const emits = defineEmits<{
     <SvgIcon v-if="vm.icon" :icon="vm.icon" class="representative-icon" />
     <span class="title" :class="{ selected: vm.isSelected }">{{ vm.title }}</span>
 
-    <div class="spacer"></div>
+    <div class="flex-spacer"></div>
 
     <SvgIcon v-if="vm.isSelected" :icon="Icon.Checkmark" class="representative-icon" />
   </div>

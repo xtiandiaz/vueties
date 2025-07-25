@@ -19,7 +19,7 @@ const { title } = defineProps<{
       <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
     </div>
     
-    <div class="spacer"></div>
+    <div class="flex-spacer"></div>
     
     <span v-if="value" class="value">{{ value }}</span>
   </div>

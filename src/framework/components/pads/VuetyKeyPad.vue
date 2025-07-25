@@ -21,16 +21,15 @@ const emits = defineEmits<{
       @click="emits('input', vm.value)"
     >
       <SvgIcon v-if="vm.icon" :icon="vm.icon" />
-      <label v-else :class="{ dimmed: vm.isDimmed }">{{ vm.label }}</label>
+      <label v-else :class="['h5', { dimmed: vm.isDimmed }]">{{ vm.label }}</label>
     </button>
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use '../../utils/vuetystrap';
+<style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
 @use '../buttons/styles' as button-styles;
-
 
 .vuety-key-pad {
   button {
@@ -38,9 +37,9 @@ const emits = defineEmits<{
     height: 3em;
     vertical-align: middle;
     width: 3em;
-    @include palette.color-attributes((
-      'background-color': vuetystrap.$key-background-color,
-      'color': vuetystrap.$key-color
+    @include vs.color-attributes((
+      'background-color': vs.$keypad-key-background-color,
+      'color': vs.$keypad-key-color
     ));
     
     &:disabled {
@@ -48,23 +47,22 @@ const emits = defineEmits<{
     }
 
     &.iconized:enabled {
-      @include palette.color-attributes((
-        'background-color': vuetystrap.$keypad-key-color,
-        'color': vuetystrap.$keypad-background-color
+      @include vs.color-attributes((
+        'background-color': vs.$keypad-key-color,
+        'color': vs.$keypad-key-background-color
       ));
     }
 
     label {
-      @extend h5;
+      @extend %h5;
       
       &.dimmed {
-        opacity: 25%;
+        opacity: 0.25;
       }
     }
     
     .svg-icon {
-      height: 2em;
-      width: 2em;
+      @include vs.size(2em);
     }
   }
 }

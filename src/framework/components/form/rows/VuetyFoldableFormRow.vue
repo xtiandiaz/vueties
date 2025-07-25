@@ -18,7 +18,7 @@ const emits = defineEmits<{
         <slot name="title"></slot>
         <slot name="subtitle"></slot>
       </div>
-      <div class="spacer"></div>
+      <div class="flex-spacer"></div>
       <SvgIcon class="disclosure-indicator" :icon="isUnfolded ? Icon.ChevronUp : Icon.ChevronDown" />
     </div>
     <div v-if="isUnfolded" class="content foldable">

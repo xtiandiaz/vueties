@@ -32,10 +32,10 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
 @use '../components/form/styles' as form-styles;
 @use '../components/bars/styles' as bar-styles;
-@use '@design-tokens/palette';
 
 :deep(.vuety-navigation-bar) {
   height: bar-styles.$search-bar-height;
@@ -55,7 +55,7 @@ const emits = defineEmits<{
   
   .rows {
     border: 1px solid;
-    @include palette.color-attribute('border-color', 'tertiary-background');
+    @include vs.color-attribute('border-color', vs.$tertiary-background-color);
   }
 } 
 
