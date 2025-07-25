@@ -34,8 +34,8 @@ const { title } = defineProps<{
   .title-subtitle-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.25em;
-    padding: 0.75em 0;
+    gap: 0.125em;
+    padding: 0.5em 0;
     
     .subtitle {
       @extend .caption;

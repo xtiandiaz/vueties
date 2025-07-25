@@ -11,11 +11,12 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '../../styles/mixins';
+
 .svg-icon {
   aspect-ratio: 1;
   display: inline-block;
   line-height: 1;
-  min-height: 1em;
-  min-width: 1em;
+  @include mixins.min-size(1em);
 }
 </style>
