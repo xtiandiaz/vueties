@@ -1,10 +1,10 @@
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
-@use '../../styles/mixins';
+@use '@design-tokens/mixins';
+@use '@/assets/varties';
 
 $form-padding: 1rem;
 $max-width: 1080px !default;
-$row-border-radius: 1em;
 $row-h-padding: 1rem;
 $row-min-height: 3rem;
 
@@ -18,7 +18,7 @@ form {
   text-align: left;
   
   ::placeholder {
-    @include palette.color-attribute('color', 'accessory');
+    @include palette.color-attribute('color', varties.$accessory-color);
   }
   
   input:focus, textarea:focus {
@@ -28,9 +28,9 @@ form {
   input[type=text] {
     line-height: $row-min-height;
     @include palette.color-attributes((
-      'background-color': 'background',
-      'color': 'body',
-      'caret-color': 'body'
+      'background-color': varties.$background-color,
+      'color': varties.$body-color,
+      'caret-color': varties.$body-color
     ));
   }
 
@@ -44,9 +44,9 @@ form {
     }
     
     div.header, div.footer {
-      @extend .caption;
       padding: 0 1em;
-      @include palette.color-attribute('color', 'tertiary-body');
+      @include typography.caption();
+      @include palette.color-attribute('color', varties.$tertiary-body-color);
       
       > * {
         display: block;
@@ -65,27 +65,27 @@ form {
       }
       
       span.title {
-        @extend .strong;
+        @include typography.strong();
       }
     }
     
     .rows {
-      border-radius: $row-border-radius;
+      border-radius: varties.$form-section-border-radius;
       display: flex;
       flex-direction: column;
       gap: 1px;
       overflow: hidden;
       @include palette.color-attributes((
-        'background-color': 'tertiary-background'
+        'background-color': varties.$tertiary-background-color
       ));
       
       .divider {
         line-height: calc($row-min-height / 1.25);
         min-height: 0.5em;
         padding-left: 1em;
-        @include palette.color-attribute('background-color', 'background', 0.75);
+        @include palette.color-attribute('background-color', varties.$background-color, 0.75);
         @include palette.color-attributes((
-          'color': 'secondary-body'
+          'color': varties.$secondary-body-color
         ));
       }
     }
@@ -99,7 +99,7 @@ form {
     min-height: $row-min-height;
     overflow: hidden;
     padding: 0 $row-h-padding;
-    @include palette.color-attribute('background-color', 'background');
+    @include palette.color-attribute('background-color', varties.$background-color);
     
     &:first-of-type .rounded-element {
       border-radius: 1em 1em 0 0;
@@ -116,10 +116,10 @@ form {
       gap: 0;
       
       input {
-        @extend .body;
         border: none;
         padding: 0;
         width: 100%;
+        @include typography.body();
       }
     }
     
@@ -129,7 +129,7 @@ form {
     
     .disclosure-indicator {
       @include mixins.size(1rem);
-      @include palette.color-attribute('color', 'accessory');
+      @include palette.color-attribute('color', varties.$accessory-color);
     }
     
     .disclosure-wrapper {

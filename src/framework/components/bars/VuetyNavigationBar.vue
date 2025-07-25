@@ -70,9 +70,10 @@ const emits = defineEmits<{
 
 <style scoped lang="scss">
 @use 'styles';
-@use '../../styles/mixins';
 @use '@design-tokens/palette';
 @use '@design-tokens/typography';
+@use '@design-tokens/mixins';
+@use '@/assets/varties';
 
 .vuety-navigation-bar {
   height: styles.$nav-bar-height;
@@ -92,7 +93,6 @@ const emits = defineEmits<{
     }
 
     .title {
-      @extend .strong;
       display: inline-block;
       left: 50%;
       pointer-events: none;
@@ -101,6 +101,7 @@ const emits = defineEmits<{
       top: 50%;
       transform: translate(-50%, -50%);
       white-space: nowrap;
+      @include typography.strong();
     }
 
     .vuety-toolbar {
@@ -119,8 +120,8 @@ const emits = defineEmits<{
   border-bottom: 1px solid;
   @include mixins.position(absolute, 0, 0, 0, 0);
   @include palette.color-attributes((
-    'background-color': 'background',
-    'border-color': 'tertiary-background'
+    'background-color': varties.$background-color,
+    'border-color': varties.$tertiary-background-color
   ));
 }
 </style>

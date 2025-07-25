@@ -42,12 +42,12 @@ form .row.task {
     }
     
     :deep(.vuety-icon-button .svg-icon) {
-      @include palette.color-attribute('color', 'body');
+      @include palette.color-attribute('color', varties.$body-color);
     }
   }
   
   :deep(.vuety-icon-button .svg-icon) {
-    @include palette.color-attribute('color', 'accessory');
+    @include palette.color-attribute('color', varties.$accessory-color);
   }
   
   .content {

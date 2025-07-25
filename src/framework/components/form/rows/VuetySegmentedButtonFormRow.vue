@@ -33,10 +33,11 @@ const emits = defineEmits<{
 <style scoped lang="scss">
 @use '../styles';
 @use '@design-tokens/palette';
+@use '@/assets/varties';
 
 .vuety-segmented-button-form-row {  
   .representative-icon {
-    @include palette.color-attribute('color', 'tertiary-body');
+    @include palette.color-attribute('color', varties.$tertiary-body-color);
   }
 }
 </style>

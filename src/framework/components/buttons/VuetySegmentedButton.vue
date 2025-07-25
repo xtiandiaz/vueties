@@ -32,9 +32,10 @@ const emits = defineEmits<{
 
 <style scoped lang="scss">
 @use 'styles';
-@use '../../styles/mixins';
-@use '@/assets/varties';
 @use '@design-tokens/palette';
+@use '@design-tokens/typography';
+@use '@design-tokens/mixins';
+@use '@/assets/varties';
 
 .vuety-segmented-button {
   overflow: hidden;
@@ -49,7 +50,7 @@ const emits = defineEmits<{
   }
   
   .background {
-    @include palette.color-attribute('background-color', 'secondary-background');
+    @include palette.color-attribute('background-color', varties.$secondary-background-color);
   }
   
   .selection-background {
@@ -61,7 +62,7 @@ const emits = defineEmits<{
     padding: 0 1em;
     
     &.selected {
-      @include palette.color-attribute('color', 'background');
+      @include palette.color-attribute('color', varties.$background-color);
       
       .selection-background {
         visibility: visible;
@@ -69,7 +70,7 @@ const emits = defineEmits<{
     }
     
     label {
-      @extend .strong;
+      @include typography.strong();
     }
   }
 }
