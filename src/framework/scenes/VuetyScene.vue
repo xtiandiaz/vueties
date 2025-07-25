@@ -18,7 +18,7 @@ const navigationOptions = useNavigator(false)
     :navigationBarVM="navigationBarVM" 
     :title="$route.meta._title?.value"
     @goBack="navigationOptions?.goBack()"
-    @goTo="path => navigationOptions?.goTo(path)"
+    @goTo="(path: string) => navigationOptions?.goTo(path)"
   >
     <RouterView v-slot="{ Component }">
       <KeepAlive>
@@ -33,9 +33,9 @@ const navigationOptions = useNavigator(false)
 </template>
 
 <style scoped lang="scss">
-@use '../styles/mixins';
+@use '@vueties/utils/vuetystrap' as vs;
 
 .vuety-navigational-view {
-  @include mixins.position(fixed, 0, 0, 0, 0)
+  @include vs.position(fixed, 0, 0, 0, 0)
 }
 </style>

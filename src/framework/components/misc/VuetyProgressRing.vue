@@ -43,9 +43,7 @@ const progressPoint = {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/varties';
-@use '../../styles/mixins';
-@use '@design-tokens/palette';
+@use '@vueties/utils/vuetystrap' as vs;
 
 svg {
   display: block;
@@ -58,11 +56,11 @@ svg {
 }
 
 #base {
-  @include palette.color-attribute('stroke', 'tertiary-background');
+  @include vs.color-attribute('stroke', 'tertiary-background');
 }
 
 #progress {
   stroke-linecap: round;
-  @include palette.color-attribute('stroke', varties.$tint-color);
+  @include vs.color-attribute('stroke', vs.$tint-color);
 }
 </style>

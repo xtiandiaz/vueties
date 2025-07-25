@@ -21,11 +21,9 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
 @use '../buttons/styles' as button-styles;
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
-@use '@/assets/varties';
 
 .number-pad {
   border-radius: 1.5em;
@@ -37,9 +35,9 @@ const emits = defineEmits<{
     height: auto;
     vertical-align: middle;
     flex: 1 1 30%;
-    @include palette.color-attributes((
-      'background-color': varties.$key-background-color,
-      'color': varties.$key-color
+    @include vs.color-attributes((
+      'background-color': vs.$keypad-key-background-color,
+      'color': vs.$keypad-key-color
     ));
     
     label {
@@ -49,7 +47,7 @@ const emits = defineEmits<{
     .svg-icon {
       height: 2em;
       width: 2em;
-      @include palette.color-attribute('color', 'tertiary-body');
+      @include vs.color-attribute('color', 'tertiary-body');
     }
   }
 }

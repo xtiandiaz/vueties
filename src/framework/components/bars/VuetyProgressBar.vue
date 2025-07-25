@@ -23,8 +23,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/varties';
-@use '@design-tokens/palette';
+@use '@vueties/utils/vuetystrap' as vs;
 
 $bar-height: 6px;
 $icon-size: 1.5em;
@@ -55,13 +54,13 @@ div.progress-bar {
 
     .track {
       right: 0;
-      @include palette.color-attribute('background-color', 'body', 0.1);
+      @include vs.color-attribute('background-color', 'body', 0.1);
     }
 
     .fill {
       min-width: $bar-height;
       transition: width 0.25s ease-out;
-      @include palette.color-attribute('background-color', varties.$tint-color);
+      @include vs.color-attribute('background-color', vs.$tint-color);
     }
   }
 

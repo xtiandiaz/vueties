@@ -17,21 +17,19 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@/assets/varties';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
 
 $icon-size: 1.5em;
 
 .row.button {
-  @extend .strong;
   gap: 0.5em !important;
   justify-content: center;
-  @include palette.color-attribute('color', varties.$tint-color);
+  @include vs.strong();
+  @include vs.color-attribute('color', vs.$tint-color);
   
   &.destructive {
-    @include palette.color-attribute('color', 'red');
+    @include vs.color-attribute('color', 'red');
   }
 
   &:not(:disabled, .disabled) {

@@ -1,5 +1,4 @@
-@use '@design-tokens/palette';
-@use '@/assets/varties';
+@use '@vueties/utils/vuetystrap' as vs;
 
 * {
   touch-action: manipulation;
@@ -9,9 +8,9 @@
 
 html {
   overscroll-behavior: none;
-  @include palette.color-attributes((
-    'color': varties.$body-color,
-    'background-color': varties.$secondary-background-color
+  @include vs.color-attributes((
+    'color': vs.$body-color,
+    'background-color': vs.$secondary-background-color
   ));
 }
 
@@ -19,19 +18,4 @@ html, body, #app {
   height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-.disabled, :disabled {
-  cursor: default;
-  opacity: 25%;
-  background: none;
-}
-
-.flex-spacer {
-  flex: auto;
-}
-
-h1.large-title {
-  margin-bottom: 0;
-  margin-left: 0.25em;
 }

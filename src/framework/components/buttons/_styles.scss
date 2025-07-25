@@ -1,7 +1,4 @@
-@use '@/assets/varties';
-@use '@vueties/styles/mixins';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
+@use '@vueties/utils/vuetystrap' as vs;
 
 $button-min-height: 3em;
 $icon-size: calc($button-min-height - 1em) !default;
@@ -15,7 +12,7 @@ button {
   justify-content: center;
   min-height: $button-min-height;
   padding: 0;
-  @include palette.color-attribute('color', varties.$tint-color);
+  @include vs.color-attribute('color', vs.$tint-color);
 
   &:hover:enabled {
     &, label {
@@ -24,7 +21,7 @@ button {
   }
   
   &.destructive {
-    @include palette.color-attribute('color', 'red');
+    @include vs.color-attribute('color', 'red');
   }
   
   &.vuety-icon-button {
@@ -32,7 +29,7 @@ button {
     border-radius: 50%;
     padding: 0;
     position: relative;
-    @include mixins.size($button-min-height);
+    @include vs.size($button-min-height);
   
     label {
       @extend .caption;

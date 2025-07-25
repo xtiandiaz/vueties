@@ -12,25 +12,24 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
-@use '../../styles/mixins';
-@use '@design-tokens/palette';
 
 button.vuety-close-button {
   @extend .vuety-icon-button;
   position: relative;
   
   .svg-icon {
-    @include mixins.size(1.5em);
-    @include palette.color-attribute('color', 'tertiary-body');
+    @include vs.size(1.5em);
+    @include vs.color-attribute('color', vs.$tertiary-body-color);
   }
   
   .circle-fill {
     border-radius: 50%;
     display: block;
     position: absolute;
-    @include mixins.size(2em);
-    @include palette.color-attribute('background-color', 'body', 0.1);
+    @include vs.size(2em);
+    @include vs.color-attribute('background-color', vs.$body-color, 0.1);
   }
 }
 </style>

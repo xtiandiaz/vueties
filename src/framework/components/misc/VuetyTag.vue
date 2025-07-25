@@ -18,10 +18,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/varties';
-@use '../../styles/mixins';
-@use '@design-tokens/palette';
-@use '@design-tokens/utils' as ds-utils;
+@use '@vueties/utils/vuetystrap' as vs;
 
 .vuety-tag {
   align-items: center;
@@ -31,18 +28,18 @@ defineProps<{
   position: relative;
   
   &, .svg-icon {
-    @include palette.color-attribute('color', varties.$tag-color);
+    @include vs.color-attribute('color', vs.$tag-color);
   }
   
   .background {
     border-radius: 2em;
-    opacity: varties.$tag-background-opacity;
-    @include mixins.position(absolute, 0, 0, 0, 0);
-    @include palette.color-attribute('background-color', varties.$tag-background-color);
+    opacity: vs.$tag-background-opacity;
+    @include vs.position(absolute, 0, 0, 0, 0);
+    @include vs.color-attribute('background-color', vs.$tag-background-color);
   }
   
   .svg-icon {
-    @include mixins.size(1.5em);
+    @include vs.size(1.5em);
   }
   
   &.iconized {

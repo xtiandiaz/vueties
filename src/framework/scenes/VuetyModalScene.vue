@@ -40,15 +40,15 @@ const navigationOptions = useNavigator(true)
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../components/bars/styles' as bar-styles;
-@use '../styles/mixins';
 
 :deep(.vuety-navigation-bar) {
   padding-top: 0;
 }
 
 :deep(.vnv-view-wrapper) {
-  @include mixins.position(absolute, bar-styles.$nav-bar-height, 0, 0, 0);
+  @include vs.position(absolute, bar-styles.$nav-bar-height, 0, 0, 0);
 }
 
 @mixin transition($timing-function, $duration: 0.25s) {

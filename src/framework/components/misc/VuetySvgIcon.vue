@@ -11,12 +11,12 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '../../styles/mixins';
+@use '@vueties/utils/vuetystrap' as vs;
 
 .svg-icon {
   aspect-ratio: 1;
   display: inline-block;
   line-height: 1;
-  @include mixins.min-size(1em);
+  @include vs.min-size(1em);
 }
 </style>

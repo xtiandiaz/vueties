@@ -1,0 +1,14 @@
+h1.large-title {
+  margin-bottom: 0;
+  margin-left: 0.25em;
+}
+
+.disabled, :disabled {
+  cursor: default;
+  opacity: 25%;
+  background: none;
+}
+
+.flex-spacer {
+  flex: auto;
+}

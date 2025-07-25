@@ -27,11 +27,10 @@ const emits = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
+@use '../../utils/vuetystrap';
 @use 'styles';
 @use '../buttons/styles' as button-styles;
-@use '@/assets/varties';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
+
 
 .vuety-key-pad {
   button {
@@ -40,8 +39,8 @@ const emits = defineEmits<{
     vertical-align: middle;
     width: 3em;
     @include palette.color-attributes((
-      'background-color': varties.$key-background-color,
-      'color': varties.$key-color
+      'background-color': vuetystrap.$key-background-color,
+      'color': vuetystrap.$key-color
     ));
     
     &:disabled {
@@ -50,8 +49,8 @@ const emits = defineEmits<{
 
     &.iconized:enabled {
       @include palette.color-attributes((
-        'background-color': varties.$key-color,
-        'color': varties.$key-background-color
+        'background-color': vuetystrap.$keypad-key-color,
+        'color': vuetystrap.$keypad-background-color
       ));
     }
 

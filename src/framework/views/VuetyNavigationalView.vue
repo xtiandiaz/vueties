@@ -61,13 +61,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
-@use '@vueties/styles/mixins';
 @use '../components/bars/styles' as bar-styles;
 
 .vuety-navigation-bar {
   padding-top: env(safe-area-inset-top);
-  @include mixins.position(absolute, 0, 0, 0, 0);
+  @include vs.position(absolute, 0, 0, 0, 0);
 }
 
 .vuety-navigational-view {
@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
   overflow-y: auto;
   padding-bottom: env(safe-area-inset-bottom);
-  @include mixins.position(absolute, calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height), 0, 0, 0);
+  @include vs.position(absolute, calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height), 0, 0, 0);
   @include styles.scroll-shade-threshold(bar-styles.$nav-bar-height);
 }
 </style>
