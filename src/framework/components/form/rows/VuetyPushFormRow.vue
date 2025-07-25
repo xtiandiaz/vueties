@@ -25,10 +25,10 @@ const router = useRouter()
     
     <div class="title-subtitle-wrapper">
       <span class="title">{{ title }}</span>
-      <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
+      <span v-if="subtitle" class="subtitle caption">{{ subtitle }}</span>
     </div>
     
-    <div class="spacer"></div>
+    <div class="flex-spacer"></div>
     
     <span class="disclosure-wrapper">
       <span v-if="value" class="value">{{ value }}</span>
@@ -38,9 +38,8 @@ const router = useRouter()
 </template>
 
 <style lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
 
 .row.push {
   .emoji {
@@ -53,20 +52,16 @@ const router = useRouter()
     flex-direction: column;
     gap: 0.25em;
     padding: 0.75em 0;
-    
-    .subtitle {
-      @extend .caption;
-    }
   }
   
   .subtitle {
-    @include palette.color-attribute('color', 'secondary-body');
+    @include vs.color-attribute('color', vs.$secondary-body-color);
   }
   
   .value {
     font-size: 0.95em;
     white-space: nowrap;
-    @include palette.color-attribute('color', 'tertiary-body');
+    @include vs.color-attribute('color', vs.$tertiary-body-color);
   }
 }
 </style>

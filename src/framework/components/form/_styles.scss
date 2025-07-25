@@ -1,7 +1,4 @@
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
-@use '@design-tokens/mixins';
-@use '@/assets/varties';
+@use '@vueties/utils/vuetystrap' as vs;
 
 $form-padding: 1rem;
 $max-width: 1080px !default;
@@ -18,7 +15,7 @@ form {
   text-align: left;
   
   ::placeholder {
-    @include palette.color-attribute('color', varties.$accessory-color);
+    @include vs.color-attribute('color', vs.$accessory-color);
   }
   
   input:focus, textarea:focus {
@@ -27,10 +24,10 @@ form {
   
   input[type=text] {
     line-height: $row-min-height;
-    @include palette.color-attributes((
-      'background-color': varties.$background-color,
-      'color': varties.$body-color,
-      'caret-color': varties.$body-color
+    @include vs.color-attributes((
+      'background-color': vs.$background-color,
+      'color': vs.$body-color,
+      'caret-color': vs.$body-color
     ));
   }
 
@@ -45,8 +42,8 @@ form {
     
     div.header, div.footer {
       padding: 0 1em;
-      @include typography.caption();
-      @include palette.color-attribute('color', varties.$tertiary-body-color);
+      @include vs.caption();
+      @include vs.color-attribute('color', vs.$tertiary-body-color);
       
       > * {
         display: block;
@@ -66,27 +63,27 @@ form {
       
       span.title {
         letter-spacing: 0.05em;
-        @include typography.strong();
+        @include vs.strong();
       }
     }
     
     .rows {
-      border-radius: varties.$form-section-border-radius;
+      border-radius: vs.$form-section-border-radius;
       display: flex;
       flex-direction: column;
       gap: 1px;
       overflow: hidden;
-      @include palette.color-attributes((
-        'background-color': varties.$tertiary-background-color
+      @include vs.color-attributes((
+        'background-color': vs.$tertiary-background-color
       ));
       
       .divider {
         line-height: calc($row-min-height / 1.25);
         min-height: 0.5em;
         padding-left: 1em;
-        @include palette.color-attribute('background-color', varties.$background-color, 0.75);
-        @include palette.color-attributes((
-          'color': varties.$secondary-body-color
+        @include vs.color-attribute('background-color', vs.$background-color, 0.75);
+        @include vs.color-attributes((
+          'color': vs.$secondary-body-color
         ));
       }
     }
@@ -100,7 +97,7 @@ form {
     min-height: $row-min-height;
     overflow: hidden;
     padding: 0 $row-h-padding;
-    @include palette.color-attribute('background-color', varties.$background-color);
+    @include vs.color-attribute('background-color', vs.$background-color);
     
     &:first-of-type .rounded-element {
       border-radius: 1em 1em 0 0;
@@ -120,7 +117,7 @@ form {
         border: none;
         padding: 0;
         width: 100%;
-        @include typography.body();
+        @include vs.body();
       }
     }
     
@@ -129,8 +126,8 @@ form {
     }
     
     .disclosure-indicator {
-      @include mixins.size(1rem);
-      @include palette.color-attribute('color', varties.$accessory-color);
+      @include vs.size(1rem);
+      @include vs.color-attribute('color', vs.$accessory-color);
     }
     
     .disclosure-wrapper {
@@ -144,11 +141,7 @@ form {
     }
     
     .representative-icon {
-      @include mixins.size(1.5em);
-    }
-    
-    .spacer {
-      flex: auto;
+      @include vs.size(1.5em);
     }
   }
 }
