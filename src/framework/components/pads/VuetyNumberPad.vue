@@ -33,8 +33,8 @@ const emits = defineEmits<{
   
   button {
     height: auto;
-    vertical-align: middle;
     flex: 1 1 30%;
+    vertical-align: middle;
     @include vs.color-attributes((
       'background-color': vs.$keypad-key-background-color,
       'color': vs.$keypad-key-color
@@ -45,9 +45,8 @@ const emits = defineEmits<{
     }
     
     .svg-icon {
-      height: 2em;
-      width: 2em;
-      @include vs.color-attribute('color', 'tertiary-body');
+      @include vs.size(2em);
+      @include vs.color-attribute('color', vs.$tertiary-body-color);
     }
   }
 }

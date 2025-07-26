@@ -16,7 +16,8 @@ defineProps<{
 .svg-icon {
   aspect-ratio: 1;
   display: inline-block;
+  font-size: 1rem;
   line-height: 1;
-  @include vs.min-size(1em);
+  @include vs.min-size(1rem);
 }
 </style>

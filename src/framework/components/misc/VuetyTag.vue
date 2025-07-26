@@ -44,11 +44,15 @@ defineProps<{
   
   &.iconized {
     padding-left: 0.5em;
+    
+    &.small {
+      padding-left: 0.25em;
+    }
   }
   
   &.small {
     font-size: 0.9em;
-    padding: 0.125em 0.75em;
+    padding: 0.125em 0.5em;
   }
   
   &.tiny {

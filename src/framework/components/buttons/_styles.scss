@@ -1,9 +1,8 @@
 @use '@vueties/utils/vuetystrap' as vs;
 
-$button-min-height: 3em;
-$icon-size: calc($button-min-height - 1em) !default;
+$button-min-height: 3rem;
 
-button {
+button, %button {
   align-items: center;
   background: none;
   border: none;
@@ -23,25 +22,23 @@ button {
   &.destructive {
     @include vs.color-attribute('color', 'red');
   }
-  
-  &.vuety-icon-button {
-    aspect-ratio: 1;
-    border-radius: 50%;
-    padding: 0;
-    position: relative;
-    @include vs.size($button-min-height);
-  
-    label {
-      @extend .caption;
-      bottom: 0;
-      left: 50%;
-      position: absolute;
-      transform: translate(-50%, calc(100% - 0.5em));
-    }
-  
-    .svg-icon {
-      height: $icon-size;
-      width: $icon-size;
-    }
+}
+
+%vuety-icon-button {
+  @extend %button;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  @include vs.size($button-min-height);
+
+  label {
+    @extend %caption;
+    transform: translate(-50%, calc(100% - 0.5rem));
+    @include vs.position(absolute, null, null, 0, 50%);
+  }
+
+  .svg-icon {
+    @include vs.size(65%);
   }
 }

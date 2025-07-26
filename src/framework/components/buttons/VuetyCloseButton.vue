@@ -6,7 +6,7 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 <template>
   <button type="button" class="vuety-close-button">
-    <span class="circle-fill"></span>
+    <div class="circle-fill"></div>
     <SvgIcon :icon="Icon.Xmark" />
   </button>
 </template>
@@ -15,8 +15,9 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 @use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
 
-button.vuety-close-button {
-  @extend .vuety-icon-button;
+.vuety-close-button {
+  @extend %vuety-icon-button;
+  
   position: relative;
   
   .svg-icon {
@@ -26,7 +27,6 @@ button.vuety-close-button {
   
   .circle-fill {
     border-radius: 50%;
-    display: block;
     position: absolute;
     @include vs.size(2em);
     @include vs.color-attribute('background-color', vs.$body-color, 0.1);

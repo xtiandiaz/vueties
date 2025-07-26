@@ -4,12 +4,13 @@ import SvgIcon from '../misc/VuetySvgIcon.vue'
 
 defineProps<{
   icon: Icon,
+  
   label?: string
 }>()
 </script>
 
 <template>
-  <button type="button" class="vuety-icon-button">
+  <button class="vuety-icon-button" type="button">
     <SvgIcon :icon="icon" />
     <label v-if="label">{{ label }}</label>
   </button>
@@ -20,8 +21,10 @@ defineProps<{
 @use 'styles';
 
 .vuety-icon-button {
-  .svg-icon {
-    @include vs.color-attribute('color', vs.$tint-color);
+  @extend %vuety-icon-button;
+  
+  &.filled {
+    @include vs.color-attribute('background-color', vs.$background-color);
   }
   
   &.auxiliary {
@@ -29,6 +32,10 @@ defineProps<{
       @include vs.size(1.25em);
       @include vs.color-attribute('color', vs.$tertiary-body-color);
     }
+  }
+  
+  .svg-icon {
+    @include vs.color-attribute('color', vs.$tint-color);
   }
 }
 </style>
