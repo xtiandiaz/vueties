@@ -37,7 +37,7 @@ const emits = defineEmits<{
   .vmv-background {
     background-color: rgba($color: #000000, $alpha: 0.8);
     z-index: -1000;
-    @include vs.position(absolute, 0, 0, 0, 0);
+    @include vs.position(fixed, 0, 0, 0, 0);
   }
   
   .vmv-view-wrapper {

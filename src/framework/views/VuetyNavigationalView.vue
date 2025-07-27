@@ -77,8 +77,8 @@ onBeforeUnmount(() => {
 .vnv-view-wrapper {
   box-sizing: border-box;
   overflow-y: auto;
-  padding-bottom: env(safe-area-inset-bottom);
-  @include vs.position(absolute, calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height), 0, 0, 0);
+  padding: calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height) 0 env(safe-area-inset-bottom) 0;
+  @include vs.position(absolute, 0, 0, 0, 0);
   @include styles.scroll-shade-threshold(bar-styles.$nav-bar-height);
 }
 </style>

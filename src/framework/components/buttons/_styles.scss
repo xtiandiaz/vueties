@@ -7,7 +7,7 @@ button, %button {
   background: none;
   border: none;
   display: inline-flex;
-  font-size: 1em;
+  font-size: 0.9rem;
   justify-content: center;
   min-height: $button-min-height;
   padding: 0;
@@ -22,6 +22,10 @@ button, %button {
   &.destructive {
     @include vs.color-attribute('color', 'red');
   }
+  
+  .svg-icon {
+    @include vs.size(1.5rem);
+  }
 }
 
 %vuety-icon-button {
@@ -35,6 +39,7 @@ button, %button {
   label {
     @extend %caption;
     transform: translate(-50%, calc(100% - 0.5rem));
+    white-space: nowrap;
     @include vs.position(absolute, null, null, 0, 50%);
   }
 

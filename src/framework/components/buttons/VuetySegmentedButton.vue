@@ -25,44 +25,45 @@ const emits = defineEmits<{
     >
       <div class="selection-background"></div>
       <SvgIcon v-if="segment.icon" :icon="segment.icon" />
-      <label>{{ segment.label }}</label>
+      <label v-if="segment.label.length > 0">{{ segment.label }}</label>
     </button>
   </div>
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
-@use '@design-tokens/mixins';
-@use '@/assets/varties';
 
 .vuety-segmented-button {
-  overflow: hidden;
+  @extend %button;
+  width: fit-content;
   
   &, * {
     position: relative;
   }
   
   .background, .selection-background {
-    border-radius: 2em;
-    @include mixins.position(absolute, 0.5em, 0, 0.5em, 0);
+    border-radius: 2rem;
+    @include vs.position(absolute, 0.5rem, 0, 0.5rem, 0);
   }
   
   .background {
-    @include palette.color-attribute('background-color', varties.$secondary-background-color);
+    @include vs.color-attribute('background-color', vs.$background-color);
   }
   
   .selection-background {
     visibility: hidden;
-    @include palette.color-attribute('background-color', varties.$tint-color);
+    @include vs.color-attribute('background-color', vs.$tint-color);
   }
   
   button {
-    padding: 0 1em;
+    padding: 0 1rem;
+    position: relative;
+    flex: 1 1 100%;
+    gap: 0.25rem;
     
     &.selected {
-      @include palette.color-attribute('color', varties.$background-color);
+      @include vs.color-attribute('color', vs.$background-color);
       
       .selection-background {
         visibility: visible;
@@ -70,7 +71,7 @@ const emits = defineEmits<{
     }
     
     label {
-      @include typography.strong();
+      @extend %strong;
     }
   }
 }
