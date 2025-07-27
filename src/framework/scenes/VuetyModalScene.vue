@@ -43,6 +43,10 @@ const navigationOptions = useNavigator(true)
 @use '@vueties/utils/vuetystrap' as vs;
 @use '../components/bars/styles' as bar-styles;
 
+:deep(.vnv-view-wrapper) {
+  padding-top: bar-styles.$nav-bar-height;
+}
+
 @mixin transition($timing-function, $duration: 0.25s) {
   transition: none $duration $timing-function;
   
