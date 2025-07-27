@@ -20,7 +20,7 @@ const emits = defineEmits<{
   <div class="vuety-segmented-button-form-row row">
     <SvgIcon v-if="icon" class="representative-icon" :icon="icon" />
     
-    <span v-if="title" class="title">{{ title }}</span>
+    <span v-if="title" class="title">{{ title }}:</span>
     
     <SegmentedButton 
       :choice="choice" 
@@ -31,13 +31,16 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@design-tokens/palette';
-@use '@/assets/varties';
 
-.vuety-segmented-button-form-row {  
+.vuety-segmented-button-form-row { 
+  :deep(.background) {
+    @include vs.color-attribute('background-color', vs.$secondary-background-color);
+  }
+   
   .representative-icon {
-    @include palette.color-attribute('color', varties.$tertiary-body-color);
+    @include vs.color-attribute('color', vs.$tertiary-body-color);
   }
 }
 </style>
