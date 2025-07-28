@@ -7,7 +7,7 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  enableTool: [key: Key]
+  setTool: [key: Key]
 }>()
 </script>
 
@@ -16,10 +16,10 @@ const emits = defineEmits<{
     <IconButton 
       v-for="(item, index) of items" 
       :key="index" 
-      :class="item.key" 
+      :class="[item.key, { disabled: !(item.isEnabled ?? true)}]" 
       :icon="item.icon" 
       :label="item.label"
-      @click="emits('enableTool', item.key)" 
+      @click="emits('setTool', item.key)" 
     />
   </div>
 </template>
