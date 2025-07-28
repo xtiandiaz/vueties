@@ -1,14 +1,14 @@
-<script setup lang="ts" generic="Key">
+<script setup lang="ts" generic="Value">
+import type { VuetyChoiceOption } from '../form/view-models';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
-import type { VuetySegmentedButtonSegment } from './view-models';
 
 defineProps<{
-  choice: Key
-  segments: VuetySegmentedButtonSegment<Key>[]
+  choice: Value
+  options: VuetyChoiceOption<Value>[]
 }>()
 
 const emits = defineEmits<{
-  select: [key: Key]
+  select: [value: Value]
 }>()
 </script>
 
@@ -17,15 +17,15 @@ const emits = defineEmits<{
     <div class="background"></div>
     
     <button 
-      v-for="(segment, index) of segments"
+      v-for="(option, index) of options"
       type="button"
       :key="index"
-      :class="{ selected: choice === segment.key}"
-      @click="emits('select', segment.key)"
+      :class="{ selected: choice === option.value}"
+      @click="emits('select', option.value)"
     >
       <div class="selection-background"></div>
-      <SvgIcon v-if="segment.icon" :icon="segment.icon" />
-      <label v-if="segment.label.length > 0">{{ segment.label }}</label>
+      <SvgIcon v-if="option.icon" :icon="option.icon" />
+      <label v-if="option.title.length > 0">{{ option.title }}</label>
     </button>
   </div>
 </template>

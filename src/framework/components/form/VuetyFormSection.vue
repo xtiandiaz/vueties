@@ -38,31 +38,32 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use 'styles';
-@use '@design-tokens/typography';
-@use '@design-tokens/palette';
-@use '@design-tokens/mixins';
-@use '@/assets/varties';
 
-.large-title {
-  align-items: center;
-  display: flex;
-  gap: 0.625em;
-  margin: 0 0 0.25em 1.25em;
-  @include palette.color-attribute('color', varties.$secondary-body-color);
+.vuety-form-section {
+  @extend %form-section;
   
-  .title-subtitle-wrapper {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  
-  .title {
-    margin: 0;
-  }
-  
-  .svg-icon {
-    @include mixins.size(1.75em);
-    @include palette.color-attribute('color', varties.$secondary-body-color);
+  .large-title {
+    align-items: center;
+    display: flex;
+    gap: 0.625em;
+    margin: 0 0 0.25em 1.25em;
+    @include vs.color-attribute('color', vs.$secondary-body-color);
+    
+    .title-subtitle-wrapper {
+      display: inline-flex;
+      flex-direction: column;
+    }
+    
+    .title {
+      margin: 0;
+    }
+    
+    .svg-icon {
+      @include vs.size(1.75em);
+      @include vs.color-attribute('color', vs.$secondary-body-color);
+    }
   }
 }
 </style>

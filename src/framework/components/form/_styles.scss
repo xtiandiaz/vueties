@@ -5,6 +5,62 @@ $max-width: 1080px !default;
 $row-h-padding: 1rem;
 $row-min-height: 3rem;
 
+%form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  
+  > * {
+    width: auto;
+  }
+  
+  div.header, div.footer {
+    padding: 0 1em;
+    @include vs.caption();
+    @include vs.color-attribute('color', vs.$tertiary-body-color);
+    
+    > * {
+      display: block;
+    }
+  }
+  
+  div.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    
+    &.inline {
+      align-items: center;
+      flex-direction: row;
+      gap: 0.5em;
+    }
+    
+    span.title {
+      letter-spacing: 0.05em;
+      @include vs.strong();
+    }
+  }
+  
+  .rows {
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+    @include vs.color-attribute('background-color', vs.$tertiary-background-color);
+    
+    .divider {
+      line-height: calc($row-min-height / 1.25);
+      min-height: 0.5em;
+      padding-left: 1em;
+      @include vs.color-attribute('background-color', vs.$background-color, 0.75);
+      @include vs.color-attributes((
+        'color': vs.$secondary-body-color
+      ));
+    }
+  }
+}
+
 %form-row {
   align-items: center;
   display: flex;
@@ -86,66 +142,12 @@ form {
       'caret-color': vs.$body-color
     ));
   }
-
+  
   section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    
-    > * {
-      width: auto;
-    }
-    
-    div.header, div.footer {
-      padding: 0 1em;
-      @include vs.caption();
-      @include vs.color-attribute('color', vs.$tertiary-body-color);
+    @extend %form-section;
+  }
       
-      > * {
-        display: block;
-      }
-    }
-    
-    div.header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25em;
-      
-      &.inline {
-        align-items: center;
-        flex-direction: row;
-        gap: 0.5em;
-      }
-      
-      span.title {
-        letter-spacing: 0.05em;
-        @include vs.strong();
-      }
-    }
-    
-    .rows {
-      border-radius: 1em;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      overflow: hidden;
-      @include vs.color-attributes((
-        'background-color': vs.$tertiary-background-color
-      ));
-      
-      .divider {
-        line-height: calc($row-min-height / 1.25);
-        min-height: 0.5em;
-        padding-left: 1em;
-        @include vs.color-attribute('background-color', vs.$background-color, 0.75);
-        @include vs.color-attributes((
-          'color': vs.$secondary-body-color
-        ));
-      }
-    }
-    
-    .row {
-      @extend %form-row;
-    }
+  .row {
+    @extend %form-row;
   }
 }

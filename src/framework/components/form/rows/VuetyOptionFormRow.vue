@@ -1,56 +1,59 @@
 <script setup lang="ts" generic="Value">
-import { type VuetyFormOptionRowVM } from '../view-models';
 import { Icon } from '@design-tokens/iconography'
 import SvgIcon from '../../misc/VuetySvgIcon.vue';
 
 defineProps<{
-  vm: VuetyFormOptionRowVM<Value>
+  isSelected: boolean
+  title: string
+  value: Value
+  
+  icon?: Icon
 }>()
 
 const emits = defineEmits<{
-  selected: [value: Value]
+  select: [value: Value]
 }>()
 </script>
 
 <template>
   <div 
-    class="row option" :class="{ selected: vm.isSelected }"
-    @click="emits('selected', vm.value)"
+    class="vuety-option-form-row" :class="{ selected: isSelected }"
+    @click="emits('select', value)"
   >
-    
-    <SvgIcon v-if="vm.icon" :icon="vm.icon" class="representative-icon" />
-    <span class="title" :class="{ selected: vm.isSelected }">{{ vm.title }}</span>
+    <SvgIcon v-if="icon" :icon="icon" class="representative-icon" />
+    <span class="title" :class="{ selected: isSelected }">{{ title }}</span>
 
     <div class="flex-spacer"></div>
 
-    <SvgIcon v-if="vm.isSelected" :icon="Icon.Checkmark" class="representative-icon" />
+    <SvgIcon v-if="isSelected" :icon="Icon.Checkmark" class="representative-icon" />
   </div>
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
 
-.row.option {
+.vuety-option-form-row {
+  @extend %form-row;
+  
   &:hover {
     cursor: pointer;
   }
   
   &.selected {
     .title {
-      @extend strong;
+      @extend %strong;
     }
     .title, .representative-icon {
-      @include palette.color-attribute('color', 'body');
+      @include vs.color-attribute('color', vs.$body-color);
     }  
   }
   
   .title {
-    @include palette.color-attribute('color', 'secondary-body');
+    @include vs.color-attribute('color', vs.$secondary-body-color);
   }
   .representative-icon {
-    @include palette.color-attribute('color', 'tertiary-body');
+    @include vs.color-attribute('color', vs.$tertiary-body-color);
   }
 }
 </style>
