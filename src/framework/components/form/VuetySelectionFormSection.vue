@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="Value">
-import { type VuetySelectionOption } from '../shared-vm'
+import { type VuetySelectionOption } from '../shared.vm'
 import FormSection from './VuetyFormSection.vue';
 import OptionRow from './rows/VuetyOptionFormRow.vue'
 import type { Icon } from '@/assets/design-tokens/iconography';

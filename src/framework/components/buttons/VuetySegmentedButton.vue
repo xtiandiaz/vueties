@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="Value">
-import type { VuetySelectionOption } from '../shared-vm';
+import type { VuetySelectionOption } from '../shared.vm';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 defineProps<{
