@@ -1,6 +1,6 @@
 import { Icon } from '@design-tokens/iconography'
 
-export interface VuetyChoiceOption<Value> {
+export interface VuetySelectionOption<Value> {
   title: string
   value: Value
   

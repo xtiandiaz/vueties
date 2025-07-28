@@ -1,14 +1,14 @@
-<script setup lang="ts" generic="Key">
-import type { VuetySegmentedButtonSegment } from '../../buttons/view-models';
+<script setup lang="ts" generic="Value">
 import SegmentedButton from '../../buttons/VuetySegmentedButton.vue';
+import type { VuetySelectionOption } from '../../shared-vm';
 
 defineProps<{
-  choice: Key
-  segments: VuetySegmentedButtonSegment<Key>[]
+  choice: Value
+  options: VuetySelectionOption<Value>[]
 }>()
 
 const emits = defineEmits<{
-  select: [key: Key]
+  select: [key: Value]
 }>()
 </script>
 
@@ -16,8 +16,8 @@ const emits = defineEmits<{
   <div class="vuety-segmented-button-form-row">    
     <SegmentedButton 
       :choice="choice" 
-      :segments="segments" 
-      @select="(key) => emits('select', key)"
+      :options="options" 
+      @select="(value) => emits('select', value)"
     />
   </div>
 </template>
