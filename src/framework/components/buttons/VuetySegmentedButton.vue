@@ -1,10 +1,10 @@
 <script setup lang="ts" generic="Value">
-import type { VuetyChoiceOption } from '../form/view-models';
+import type { VuetySelectionOption } from '../shared-vm';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 defineProps<{
   choice: Value
-  options: VuetyChoiceOption<Value>[]
+  options: VuetySelectionOption<Value>[]
 }>()
 
 const emits = defineEmits<{
