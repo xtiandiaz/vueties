@@ -7,13 +7,13 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  selected: [void]
+  select: [void]
 }>()
 </script>
 
 <template>
-  <div class="row foldable" :class="{ unfolded: isUnfolded }">
-    <div class="content fixed" @click="emits('selected')">
+  <div :class="['vuety-foldable-form-row', { unfolded: isUnfolded }]">
+    <div class="content fixed" @click="emits('select')">
       <div id="title-subtitle-wrapper">
         <slot name="title"></slot>
         <slot name="subtitle"></slot>
@@ -28,13 +28,14 @@ const emits = defineEmits<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
 
-.row.foldable {
-  padding: 0 !important;
-  display: block !important;
+.vuety-foldable-form-row {
+  @extend %form-row;
+  
+  display: block;
+  padding: 0;
 
   .content {
     align-items: center;

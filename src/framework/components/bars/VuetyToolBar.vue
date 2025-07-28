@@ -1,26 +1,25 @@
-<script setup lang="ts" generic="Tool">
-import { type VuetyToolbarButtonVM } from './view-models'
+<script setup lang="ts" generic="Key">
+import type { VuetyToolbarItem } from '../shared.vm';
 import IconButton from '../buttons/VuetyIconButton.vue'
 
 defineProps<{
-  buttonVMs: VuetyToolbarButtonVM<Tool>[]
+  items: VuetyToolbarItem<Key>[]
 }>()
 
 const emits = defineEmits<{
-  toolSelected: [tool: Tool]
+  enableTool: [key: Key]
 }>()
 </script>
 
 <template>
   <div class="vuety-toolbar">
     <IconButton 
-      v-for="(vm, index) of buttonVMs" 
+      v-for="(item, index) of items" 
       :key="index" 
-      :class="vm.tool" 
-      :disabled="!(vm.isEnabled ?? true)" 
-      :icon="vm.icon" 
-      :label="vm.label"
-      @click="emits('toolSelected', vm.tool)" 
+      :class="item.key" 
+      :icon="item.icon" 
+      :label="item.label"
+      @click="emits('enableTool', item.key)" 
     />
   </div>
 </template>
@@ -29,8 +28,11 @@ const emits = defineEmits<{
 @use 'styles';
 
 .vuety-toolbar {
-  @extend .item-bar;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
 }
 </style>

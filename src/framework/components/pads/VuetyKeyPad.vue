@@ -21,7 +21,7 @@ const emits = defineEmits<{
       @click="emits('input', vm.value)"
     >
       <SvgIcon v-if="vm.icon" :icon="vm.icon" />
-      <label v-else :class="['h5', { dimmed: vm.isDimmed }]">{{ vm.label }}</label>
+      <label v-else :class="['h4', { dimmed: vm.isDimmed }]">{{ vm.label }}</label>
     </button>
   </div>
 </template>
@@ -33,10 +33,9 @@ const emits = defineEmits<{
 
 .vuety-key-pad {
   button {
-    border-radius: 0.5em;
-    height: 3em;
+    border-radius: 0.5rem;
     vertical-align: middle;
-    width: 3em;
+    @include vs.size(3rem);
     @include vs.color-attributes((
       'background-color': vs.$keypad-key-background-color,
       'color': vs.$keypad-key-color
@@ -53,16 +52,14 @@ const emits = defineEmits<{
       ));
     }
 
-    label {
-      @extend %h5;
-      
+    label {      
       &.dimmed {
         opacity: 0.25;
       }
     }
     
     .svg-icon {
-      @include vs.size(2em);
+      @include vs.size(2rem);
     }
   }
 }
