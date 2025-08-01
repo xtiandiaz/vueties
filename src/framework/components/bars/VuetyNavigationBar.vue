@@ -85,19 +85,17 @@ const emits = defineEmits<{
     position: relative;
     
     :deep(.vuety-icon-button.back .svg-icon) {
-      width: 1.75em;
-      height: 1.75em;
+      @include vs.size(1.75rem);
     }
 
     .title {
+      @extend %strong;
       display: inline-block;
-      left: 50%;
       pointer-events: none;
-      position: absolute;
       text-align: center;
-      top: 50%;
       transform: translate(-50%, -50%);
       white-space: nowrap;
+      @include vs.position(absolute, 50%, null, null, 50%);
       @include vs.strong();
     }
 

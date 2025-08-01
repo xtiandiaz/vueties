@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@design-tokens/iconography';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
-
 </script>
 
 <template>
@@ -17,19 +16,18 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 .vuety-close-button {
   @extend %vuety-icon-button;
-  
   position: relative;
   
   .svg-icon {
-    @include vs.size(1.5em);
+    @include vs.size(1.5rem);
     @include vs.color-attribute('color', vs.$tertiary-body-color);
   }
   
   .circle-fill {
     border-radius: 50%;
     position: absolute;
-    @include vs.size(2em);
-    @include vs.color-attribute('background-color', vs.$body-color, 0.1);
+    @include vs.size(2rem);
+    @include vs.color-attribute('background-color', vs.$body-color 0.1);
   }
 }
 </style>

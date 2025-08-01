@@ -43,7 +43,6 @@ const emits = defineEmits<{
 
 :deep(.vhv-view) {
   height: calc(100% - bar-styles.$search-bar-height);
-  @include styles.scroll-shade-threshold(bar-styles.$search-bar-height);
 }
 
 :deep(.vsv-input-section) {

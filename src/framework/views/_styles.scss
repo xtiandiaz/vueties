@@ -3,7 +3,4 @@
 $modal-view-border-radius: 1rem;
 $modal-view-margin-top: 1.5rem;
 $modal-view-max-width: 1080px !default;
-
-@mixin scroll-shade-threshold($extent) {
-  --scroll-shade-threshold: #{vs.to-px(calc($extent / 2))};
-}
+$modal-view-z-index: 1000;
