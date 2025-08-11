@@ -29,7 +29,7 @@ import SvgIcon from '../misc/VuetySvgIcon.vue';
     border-radius: 50%;
     position: absolute;
     @include vs.size(2em);
-    @include vs.color-attribute('background-color', vs.$body-color, 0.1);
+    @include vs.color-attribute('background-color', vs.$body-color 0.1);
   }
 }
 </style>

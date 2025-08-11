@@ -1,11 +1,20 @@
 import { Icon } from '@design-tokens/iconography'
 
-export interface VuetyToolbarItem<Key> {
-  icon: Icon
-  key: Key
+export interface VuetyKeypadKey<Value> {
+  label: string
+  value: Value
   
+  icon?: Icon
   isEnabled?: boolean
-  label?: string
+}
+
+export const deleteKey = <Value>(value: Value, isEnabled: boolean): VuetyKeypadKey<Value> => {
+  return {
+    icon: Icon.Delete,
+    isEnabled,
+    label: '',
+    value
+  }
 }
 
 export interface VuetySelectionOption<Value> {
@@ -14,4 +23,12 @@ export interface VuetySelectionOption<Value> {
   
   icon?: Icon
   subtitle?: string
+}
+
+export interface VuetyToolbarItem<Key> {
+  icon: Icon
+  key: Key
+  
+  isEnabled?: boolean
+  label?: string
 }

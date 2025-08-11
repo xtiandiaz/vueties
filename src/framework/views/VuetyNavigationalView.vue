@@ -5,9 +5,8 @@ import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
 import { clamp } from '@/assets/tungsten/math';
 
 defineProps<{
-  enablesBackOption: boolean
-  enablesCloseOption: boolean
-  
+  enablesBackOption?: boolean
+  enablesCloseOption?: boolean
   navigationBarVM?: VuetyNavigationBarVM
   title?: string 
 }>()
@@ -44,8 +43,8 @@ onBeforeUnmount(() => {
   <div class="vuety-navigational-view">
     <NavigationBar 
       v-if="navigationBarVM"
-      :showsBackButton="enablesBackOption"
-      :showsCloseButton="enablesCloseOption"
+      :showsBackButton="enablesBackOption ?? false"
+      :showsCloseButton="enablesCloseOption ?? false"
       :barShadeOpacity="headShadeOpacity"
       :title="title"
       :viewModel="navigationBarVM"

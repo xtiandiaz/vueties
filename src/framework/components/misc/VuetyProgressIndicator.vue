@@ -8,7 +8,7 @@ import SvgIcon from './VuetySvgIcon.vue'
 </template>
 
 <style scoped lang="scss">
-@use '@design-tokens/palette';
+@use '@vueties/utils/vuetystrap' as vs;
 
 @keyframes spin {
   100% { rotate: 180deg; }
@@ -17,6 +17,6 @@ import SvgIcon from './VuetySvgIcon.vue'
 .vuety-progress-indicator {
   animation: spin 1s linear 0s infinite;
   display: inline-block;
-  @include palette.color-attribute('color', 'accessory');
+  @include vs.color-attribute('color', vs.$accessory-color);
 }
 </style>

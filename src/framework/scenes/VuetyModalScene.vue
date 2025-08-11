@@ -1,5 +1,5 @@
 <script setup lang="ts">;
-import ModalSearchView from '../views/VuetyModalSearchView.vue';
+// import ModalSearchView from '../views/VuetyModalSearchView.vue';
 import ModalView from '../views/VuetyModalView.vue';
 import NavigationalView from '../views/VuetyNavigationalView.vue'
 import { useNavigator } from '../composables/_navigator';
@@ -10,17 +10,17 @@ const navigationOptions = useNavigator(true)
 <template>
   <RouterView name="modal" v-slot="{ Component, route }">
     <Transition>
-      <ModalSearchView 
+      <!-- <ModalSearchView 
         v-if="Component && route.name === 'search'"
         @close="navigationOptions?.closeModal()"
         @goBack="navigationOptions?.goBack()"
         @goTo="(path: string) => navigationOptions?.goTo(path)"
       >
         <component :is="Component" />
-      </ModalSearchView>
+      </ModalSearchView> -->
       
       <ModalView 
-        v-else-if="Component"
+        v-if="Component"
         @close="navigationOptions?.closeModal()"
       >
         <NavigationalView

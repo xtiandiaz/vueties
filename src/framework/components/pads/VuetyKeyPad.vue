@@ -1,27 +1,27 @@
-<script lang="ts" setup>
+<script setup lang="ts" generic="Value">
+import type { VuetyKeypadKey } from '../shared.vm';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
-import type { VuetyKeypadKeyVM } from './view-models'
 
 defineProps<{
-  keyVMs: VuetyKeypadKeyVM[]
+  keys: VuetyKeypadKey<Value>[]
 }>()
 
 const emits = defineEmits<{
-  input: [value: number | string]
+  input: [value: Value]
 }>()
 </script>
 
 <template>
-  <div class="pad vuety-key-pad">
+  <div class="vuety-keypad pad">
     <button 
-      v-for="(vm, index) of keyVMs" 
+      v-for="(_key, index) of keys" 
       :key="index" 
-      :disabled="!vm.isEnabled" 
-      :class="{ iconized: vm.icon !== undefined }"
-      @click="emits('input', vm.value)"
+      :disabled="!(_key.isEnabled ?? true)" 
+      :class="{ iconized: _key.icon !== undefined }"
+      @click="emits('input', _key.value)"
     >
-      <SvgIcon v-if="vm.icon" :icon="vm.icon" />
-      <label v-else :class="['h4', { dimmed: vm.isDimmed }]">{{ vm.label }}</label>
+      <SvgIcon v-if="_key.icon" :icon="_key.icon" />
+      <label v-else :class="['h4']">{{ _key.label }}</label>
     </button>
   </div>
 </template>
@@ -31,8 +31,8 @@ const emits = defineEmits<{
 @use 'styles';
 @use '../buttons/styles' as button-styles;
 
-.vuety-key-pad {
-  button {
+.vuety-keypad {
+  button {    
     border-radius: 0.5rem;
     vertical-align: middle;
     @include vs.size(3rem);
@@ -59,7 +59,7 @@ const emits = defineEmits<{
     }
     
     .svg-icon {
-      @include vs.size(2rem);
+      @include vs.size(1.75rem);
     }
   }
 }

@@ -23,7 +23,10 @@ defineProps<{
     </div>
     
     <div v-if="!showsLargeTitle && (title || subtitle)" class="header">
-      <span class="title" v-if="title">{{ title }}</span>
+      <div class="title-icon-wrapper">
+        <SvgIcon v-if="icon" :icon="icon" />
+        <span v-if="title" class="title">{{ title }}</span>
+      </div>
       <span v-if="subtitle">{{ subtitle }}</span>
     </div>
     
@@ -47,8 +50,8 @@ defineProps<{
   .large-title {
     align-items: center;
     display: flex;
-    gap: 0.625em;
-    margin: 0 0 0.25em 1.25em;
+    gap: 0.625rem;
+    margin: 0 0 0.25em 1.25rem;
     @include vs.color-attribute('color', vs.$secondary-body-color);
     
     .title-subtitle-wrapper {
@@ -61,8 +64,24 @@ defineProps<{
     }
     
     .svg-icon {
-      @include vs.size(1.75em);
+      @include vs.size(1.75rem);
       @include vs.color-attribute('color', vs.$secondary-body-color);
+    }
+  }
+  
+  .header {
+    .title-icon-wrapper {
+      align-items: center;
+      display: flex;
+      gap: 0.375rem;
+      
+      > * {
+        display: inline-block;
+      }
+      
+      .svg-icon {
+        @include vs.size(1.25rem);
+      }
     }
   }
 }

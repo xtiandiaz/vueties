@@ -36,7 +36,6 @@ $row-min-height: 3rem;
     }
     
     span.title {
-      letter-spacing: 0.05em;
       @include vs.strong();
     }
   }
