@@ -27,7 +27,7 @@ const emits = defineEmits<{
 
 .vuety-modal-view {
   padding-top: calc(styles.$modal-view-margin-top + env(safe-area-inset-top));
-  z-index: 1000;
+  z-index: styles.$modal-view-z-index;
   @include vs.position(fixed, 0, 0, 0, 0);
   
   :deep(.vuety-navigation-bar) {

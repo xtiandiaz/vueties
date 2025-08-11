@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, useTemplateRef } from 'vue';
+import { useTemplateRef } from 'vue';
 import { type VuetyNavigationBarVM } from '../components/bars/view-models'
 import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
-import { clamp } from '@/assets/tungsten/math';
+import { useScrollSpanNormalized } from '../composables/scroll-span-normalized';
 
 defineProps<{
   enablesBackOption?: boolean
@@ -17,26 +17,10 @@ const emits = defineEmits<{
   goTo: [path: string]
 }>()
 
-const viewRef = useTemplateRef('view-wrapper')
-const scrollShadeThreshold = ref(56)
-const headShadeOpacity = ref(0)
-
-function onViewScrolled() {
-  headShadeOpacity.value = clamp(viewRef.value!.scrollTop / scrollShadeThreshold.value, 0, 1)
-}
-
-onMounted(() => {
-  scrollShadeThreshold.value = Number(
-    getComputedStyle(viewRef.value!)
-      .getPropertyValue('--scroll-shade-threshold')
-      .replace('px', '')
-  )
-  viewRef.value?.addEventListener('scroll', onViewScrolled)
-})
-
-onBeforeUnmount(() => {
-  viewRef.value?.removeEventListener('scroll', onViewScrolled)
-})
+const scrollSpan = useScrollSpanNormalized(
+  useTemplateRef('view-wrapper'), 
+  { min: 0, max: 28 }
+).span
 </script>
 
 <template>
@@ -45,7 +29,7 @@ onBeforeUnmount(() => {
       v-if="navigationBarVM"
       :showsBackButton="enablesBackOption ?? false"
       :showsCloseButton="enablesCloseOption ?? false"
-      :barShadeOpacity="headShadeOpacity"
+      :barShadeOpacity="scrollSpan"
       :title="title"
       :viewModel="navigationBarVM"
       @close="emits('close')"
@@ -78,6 +62,5 @@ onBeforeUnmount(() => {
   overflow-y: auto;
   padding: calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height) 0 env(safe-area-inset-bottom) 0;
   @include vs.position(absolute, 0, 0, 0, 0);
-  @include styles.scroll-shade-threshold(bar-styles.$nav-bar-height);
 }
 </style>
