@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="Key">
-import type { VuetyToolbarItem } from '../shared.vm';
+import type { VuetyToolbarItem } from '../shared/view-models';
 import IconButton from '../buttons/VuetyIconButton.vue'
 
 defineProps<{

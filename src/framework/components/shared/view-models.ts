@@ -32,3 +32,9 @@ export interface VuetyToolbarItem<Key> {
   isEnabled?: boolean
   label?: string
 }
+
+export interface VuetyNavigationBarItem<Key> extends VuetyToolbarItem<Key> {
+  position: number,
+  
+  path?: string
+}

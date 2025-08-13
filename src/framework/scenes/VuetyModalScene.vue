@@ -1,36 +1,37 @@
 <script setup lang="ts">;
-// import ModalSearchView from '../views/VuetyModalSearchView.vue';
+import { computed, KeepAlive, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import ModalView from '../views/VuetyModalView.vue';
 import NavigationalView from '../views/VuetyNavigationalView.vue'
-import { useNavigator } from '../composables/_navigator';
+import { useModalNavigationStore } from '../stores/navigation.store';
 
-const navigationOptions = useNavigator(true)
+const router = useRouter()
+const route = useRoute()
+const modalNavigation = useModalNavigationStore()
+
+function backOrClose(toPath: string) {
+  router.replace(toPath)
+}
+
+watch(() => route.matched, (matched) => {
+  console.log("has default?", matched.some(m => m?.components?.['default'] != undefined))
+}, { immediate: true })
 </script>
 
 <template>
   <RouterView name="modal" v-slot="{ Component, route }">
     <Transition>
-      <!-- <ModalSearchView 
-        v-if="Component && route.name === 'search'"
-        @close="navigationOptions?.closeModal()"
-        @goBack="navigationOptions?.goBack()"
-        @goTo="(path: string) => navigationOptions?.goTo(path)"
-      >
-        <component :is="Component" />
-      </ModalSearchView> -->
-      
       <ModalView 
         v-if="Component"
-        @close="navigationOptions?.closeModal()"
       >
         <NavigationalView
-          :enablesBackOption="navigationOptions.shouldEnableBackOption.value"
-          :enablesCloseOption="navigationOptions.shouldEnableCloseOption.value"
-          :navigationBarVM="{ controlsModal: true }"
-          :title="route.meta._modalTitle?.value"
-          @close="navigationOptions?.closeModal()"
-          @goBack="navigationOptions?.goBack()"
-          @goTo="(path: string) => navigationOptions?.goTo(path)"
+          :backPath="route.meta._navOptions.value.backPath"
+          :closePath="route.meta._navOptions.value.closePath"
+          :navBarItems="modalNavigation.barItems" 
+          :title="modalNavigation.title"
+          @back="backOrClose"
+          @close="backOrClose"
+          @push="router.push"
         >
           <component :is="Component" />
         </NavigationalView>

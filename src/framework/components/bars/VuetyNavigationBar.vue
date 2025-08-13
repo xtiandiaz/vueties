@@ -1,68 +1,74 @@
-<script setup lang="ts">
-import type { VuetyNavigationBarVM } from './view-models'
-import NavigationSubBar from './VuetyNavigationSubBar.vue';
+<script setup lang="ts" generic="Key">
+import { computed } from 'vue'
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
 import '@/assets/tungsten/extensions/array.extensions'
+import type { VuetyNavigationBarItem } from '../shared/view-models';
+import Toolbar from './VuetyToolbar.vue';
 
-const { viewModel } = defineProps<{
-  showsBackButton: boolean
-  showsCloseButton: boolean
-  viewModel: VuetyNavigationBarVM
+const { barItems } = defineProps<{
+  barItems: VuetyNavigationBarItem<Key>[]
   
   barShadeOpacity?: number
+  backPath?: string
+  closePath?: string
   title?: string
 }>()
 
 const emits = defineEmits<{
-  close: [void]
-  goBack: [void]
-  goTo: [path: string]
+  back: [path: string]
+  close: [path: string]
+  push: [path: string]
+  // setTool: [key: Key]
 }>()
 
+const leftBarItems = computed(() => barItems.filter(it => it.position < 0))
+const rightBarItems = computed(() => barItems.filter(it => it.position >= 0))
+
+function push(key: Key) {
+  const path = barItems.find(bi => bi.key === key)?.path
+  if (path) {
+    emits('push', path)
+  }
+}
 </script>
 
 <template>
-  <nav v-if="viewModel.isVisible ?? true" class="vuety-navigation-bar">
+  <nav class="vuety-navigation-bar">
     <div class="vuety-scroll-shade" :style="{ opacity: barShadeOpacity ?? 0 }"></div>
     
     <div class="content-wrapper">
       <IconButton
-        v-if="showsBackButton"
+        v-if="backPath"
         class="back"
         :icon="Icon.ChevronLeft"
-        @click="emits('goBack')"
+        @click="emits('back', backPath)"
       />
       
-      <NavigationSubBar 
-        v-if="viewModel.leftBarItems && !showsBackButton" 
+      <Toolbar
+        v-else-if="leftBarItems" 
         class="left"
-        :itemVMs="viewModel.leftBarItems" 
-        @goTo="(path: string) => emits('goTo', path)"
+        :items="leftBarItems" 
+        @setTool="push"
       />
 
-      <span 
-        v-if="title"
-        id="vnb-title"
-        class="title"
-        :style="{ opacity: $route.meta._showsLargeTitle?.value ? (barShadeOpacity ?? 0) : 1 }"
-      >
+      <span v-if="title" id="vnb-title" class="title">
         {{ title }}
       </span>
 
       <div class="flex-spacer"></div>
 
       <CloseButton 
-        v-if="showsCloseButton"
-        @click="emits('close')"
+        v-if="closePath"
+        @click="emits('close', closePath)"
       />
       
-      <NavigationSubBar 
-        v-if="viewModel.rightBarItems" 
-        class="right"
-        :itemVMs="viewModel.rightBarItems" 
-        @goTo="(path: string) => emits('goTo', path)"
+      <Toolbar
+        v-else-if="rightBarItems" 
+        class="left"
+        :items="rightBarItems" 
+        @setTool="push"
       />
     </div>
   </nav>

@@ -1,35 +1,27 @@
 <script setup lang="ts">
-import { type VuetyNavigationBarVM } from '../components/bars/view-models'
+import { useRouter } from 'vue-router'
 import NavigationalView from '../views/VuetyNavigationalView.vue';
 import ModalScene from './VuetyModalScene.vue';
-import { useNavigator } from '../composables/_navigator'
+import { useNavigationStore } from '../stores/navigation.store';
 
-defineProps<{
-  navigationBarVM?: VuetyNavigationBarVM
-}>()
-
-const navigationOptions = useNavigator(false)
+const router = useRouter()
+const navigation = useNavigationStore()
 </script>
 
 <template>
-  <NavigationalView 
-    :enablesBackOption="navigationOptions.shouldEnableBackOption.value"
-    :enablesCloseOption="navigationOptions.shouldEnableCloseOption.value"
-    :navigationBarVM="navigationBarVM" 
-    :title="$route.meta._title?.value"
-    @goBack="navigationOptions?.goBack()"
-    @goTo="(path: string) => navigationOptions?.goTo(path)"
-  >
-    <RouterView v-slot="{ Component }">
-      <KeepAlive>
-        <component :is="Component" />
-      </KeepAlive>
+  <RouterView name="default" v-slot="{ Component, route }">
+    <NavigationalView 
+      :backPath="route.meta._navOptions.value.backPath"
+      :closePath="route.meta._navOptions.value.closePath"
+      :navBarItems="navigation.barItems" 
+      :title="navigation.title"
+      @push="router.push"
+    >
+      <component :is="Component" />
       
       <ModalScene />
-    </RouterView> 
-  </NavigationalView>
-  
-  <ModalScene />
+    </NavigationalView>
+  </RouterView>
 </template>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="Value">
 import SegmentedButton from '../../buttons/VuetySegmentedButton.vue';
-import type { VuetySelectionOption } from '../../shared.vm';
+import type { VuetySelectionOption } from '../../shared/view-models';
 
 defineProps<{
   choice: Value

@@ -1,20 +1,21 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="NavItemKey">
 import { useTemplateRef } from 'vue';
-import { type VuetyNavigationBarVM } from '../components/bars/view-models'
 import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
 import { useScrollSpanNormalized } from '../composables/scroll-span-normalized';
+import type { VuetyNavigationBarItem } from '../components/shared/view-models';
 
-defineProps<{
-  enablesBackOption?: boolean
-  enablesCloseOption?: boolean
-  navigationBarVM?: VuetyNavigationBarVM
-  title?: string 
+const { navBarItems } = defineProps<{
+  navBarItems: VuetyNavigationBarItem<NavItemKey>[]
+  
+  backPath?: string
+  closePath?: string
+  title?: string
 }>()
 
 const emits = defineEmits<{
-  close: [void]
-  goBack: [void]
-  goTo: [path: string]
+  back: [path: string]
+  close: [path: string]
+  push: [path: string]
 }>()
 
 const scrollSpan = useScrollSpanNormalized(
@@ -26,15 +27,15 @@ const scrollSpan = useScrollSpanNormalized(
 <template>
   <div class="vuety-navigational-view">
     <NavigationBar 
-      v-if="navigationBarVM"
-      :showsBackButton="enablesBackOption ?? false"
-      :showsCloseButton="enablesCloseOption ?? false"
+      v-if="navBarItems || title"
+      :barItems="navBarItems"
+      :backPath="backPath"
+      :closePath="closePath"
       :barShadeOpacity="scrollSpan"
       :title="title"
-      :viewModel="navigationBarVM"
-      @close="emits('close')"
-      @goBack="emits('goBack')"
-      @goTo="path => emits('goTo', path)"
+      @back="path => emits('back', path)"
+      @close="path => emits('close', path)"
+      @push="path => emits('push', path)"
     />
     
     <div class="vnv-view-wrapper" ref="view-wrapper">

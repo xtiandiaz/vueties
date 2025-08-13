@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="Value">
-import type { VuetyKeypadKey } from '../shared.vm';
+import type { VuetyKeypadKey } from '../shared/view-models';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
 
 defineProps<{
