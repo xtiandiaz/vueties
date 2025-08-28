@@ -26,15 +26,57 @@ export interface VuetySelectionOption<Value> {
 }
 
 export interface VuetyToolbarItem<Key> {
-  icon: Icon
   key: Key
   
+  icon?: Icon
   isEnabled?: boolean
   label?: string
+  
+  action?: () => void
 }
 
-export interface VuetyNavigationBarItem<Key> extends VuetyToolbarItem<Key> {
-  position: number,
-  
-  path?: string
+export enum VuetyNavigationBarItemKind {
+  back,
+  close, 
+  custom
+}
+
+export interface VuetyNavigationBarItem extends VuetyToolbarItem<string> {
+  kind: VuetyNavigationBarItemKind
+  path: string
+  position: number
+}
+
+export const backNavBarItem = (label?: string): VuetyNavigationBarItem => {
+  return {
+    key: 'back',
+    kind: VuetyNavigationBarItemKind.back,
+    label,
+    path: 'back',
+    position: -100,
+  }
+}
+export const closeNavBarItem = (path: string, label?: string): VuetyNavigationBarItem => {
+  return {
+    key: 'close',
+    kind: VuetyNavigationBarItemKind.close,
+    path, 
+    position: 100,
+    label
+  }
+}
+export const navBarItem = (
+  path: string, 
+  position: number, 
+  label?: string, 
+  icon?: Icon
+): VuetyNavigationBarItem => {
+  return {
+    icon,
+    key: path,
+    kind: VuetyNavigationBarItemKind.custom,
+    label,
+    path, 
+    position,
+  }
 }

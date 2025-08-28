@@ -1,40 +1,12 @@
-<script setup lang="ts">;
-import { computed, KeepAlive, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+<script setup lang="ts">
 import ModalView from '../views/VuetyModalView.vue';
-import NavigationalView from '../views/VuetyNavigationalView.vue'
-import { useModalNavigationStore } from '../stores/navigation.store';
-
-const router = useRouter()
-const route = useRoute()
-const modalNavigation = useModalNavigationStore()
-
-function backOrClose(toPath: string) {
-  router.replace(toPath)
-}
-
-watch(() => route.matched, (matched) => {
-  console.log("has default?", matched.some(m => m?.components?.['default'] != undefined))
-}, { immediate: true })
 </script>
 
 <template>
-  <RouterView name="modal" v-slot="{ Component, route }">
+  <RouterView name="modal" v-slot="{ Component }">
     <Transition>
-      <ModalView 
-        v-if="Component"
-      >
-        <NavigationalView
-          :backPath="route.meta._navOptions.value.backPath"
-          :closePath="route.meta._navOptions.value.closePath"
-          :navBarItems="modalNavigation.barItems" 
-          :title="modalNavigation.title"
-          @back="backOrClose"
-          @close="backOrClose"
-          @push="router.push"
-        >
-          <component :is="Component" />
-        </NavigationalView>
+      <ModalView v-if="Component">
+        <component :is="Component" />
       </ModalView>
     </Transition>
   </RouterView>

@@ -7,19 +7,19 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  setTool: [key: Key]
+  selectItem: [item: VuetyToolbarItem<Key>]
 }>()
 </script>
 
 <template>
   <div class="vuety-toolbar">
     <IconButton 
-      v-for="(item, index) of items" 
+      v-for="(item, index) of items.filter(it => it.icon != undefined)" 
       :key="index" 
       :class="[item.key, { disabled: !(item.isEnabled ?? true)}]" 
-      :icon="item.icon" 
+      :icon="item.icon!" 
       :label="item.label"
-      @click="emits('setTool', item.key)" 
+      @click="item.action?.() ?? emits('selectItem', item)" 
     />
   </div>
 </template>

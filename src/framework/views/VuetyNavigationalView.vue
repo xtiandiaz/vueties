@@ -1,21 +1,12 @@
 <script setup lang="ts" generic="NavItemKey">
 import { useTemplateRef } from 'vue';
-import NavigationBar from '../components/bars/VuetyNavigationBar.vue'
-import { useScrollSpanNormalized } from '../composables/scroll-span-normalized';
 import type { VuetyNavigationBarItem } from '../components/shared/view-models';
+import { useScrollSpanNormalized } from '../composables/scroll-span-normalized';
+import VuetyNavigationBar from '../components/bars/VuetyNavigationBar.vue';
 
-const { navBarItems } = defineProps<{
-  navBarItems: VuetyNavigationBarItem<NavItemKey>[]
-  
-  backPath?: string
-  closePath?: string
+defineProps<{
+  navBarItems: VuetyNavigationBarItem[],
   title?: string
-}>()
-
-const emits = defineEmits<{
-  back: [path: string]
-  close: [path: string]
-  push: [path: string]
 }>()
 
 const scrollSpan = useScrollSpanNormalized(
@@ -26,20 +17,14 @@ const scrollSpan = useScrollSpanNormalized(
 
 <template>
   <div class="vuety-navigational-view">
-    <NavigationBar 
-      v-if="navBarItems || title"
-      :barItems="navBarItems"
-      :backPath="backPath"
-      :closePath="closePath"
-      :barShadeOpacity="scrollSpan"
+    <VuetyNavigationBar 
+      :bar-items="navBarItems" 
+      :bar-shade-opacity="scrollSpan"
       :title="title"
-      @back="path => emits('back', path)"
-      @close="path => emits('close', path)"
-      @push="path => emits('push', path)"
     />
     
     <div class="vnv-view-wrapper" ref="view-wrapper">
-      <slot></slot>
+      <slot class="vnv-view"></slot>
     </div>
   </div>
 </template>
@@ -49,19 +34,18 @@ const scrollSpan = useScrollSpanNormalized(
 @use 'styles';
 @use '../components/bars/styles' as bar-styles;
 
-.vuety-navigation-bar {
-  padding-top: env(safe-area-inset-top);
-  @include vs.position(absolute, 0, 0, 0, 0);
-}
-
 .vuety-navigational-view {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  padding-top: env(safe-area-inset-top);
 }
 
 .vnv-view-wrapper {
   box-sizing: border-box;
   overflow-y: auto;
-  padding: calc(env(safe-area-inset-top) + bar-styles.$nav-bar-height) 0 env(safe-area-inset-bottom) 0;
-  @include vs.position(absolute, 0, 0, 0, 0);
+  padding-bottom: env(safe-area-inset-bottom);
+  flex-grow: 1;
 }
 </style>

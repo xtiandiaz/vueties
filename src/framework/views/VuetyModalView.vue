@@ -10,9 +10,11 @@ const emits = defineEmits<{
 
 <template>
   <div class="vuety-modal-view">
+    
     <div class="vmv-background" @click="emits('close')"></div>
     
     <div class="vmv-view-wrapper">
+      <!-- <slot name="header"></slot> -->
       <slot></slot>
     </div>
   </div>
