@@ -1,5 +1,5 @@
 import { onMounted } from 'vue'
-import { setUpEvent } from "./set-up-event";
+import { useWindowEvent } from "./window-event";
 import { isMobile } from "@/assets/tungsten/navigator"
 
 export function compensateForKeyboardSpace() {
@@ -12,7 +12,7 @@ export function compensateForKeyboardSpace() {
       return
     }
     
-    setUpEvent('resize', visualViewport, (e) => {
+    useWindowEvent('resize', visualViewport, (e) => {
       const vv = e.target as VisualViewport
       const filler = document.getElementById('vuety-mobile-keyboard-filler')
       

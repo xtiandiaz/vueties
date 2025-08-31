@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router';
 import IconButton from '../buttons/VuetyIconButton.vue'
 import CloseButton from '../buttons/VuetyCloseButton.vue';
 import { Icon } from '@design-tokens/iconography';
 import { VuetyNavigationBarItemKind, type VuetyNavigationBarItem } from '../shared/view-models';
 import Toolbar from './VuetyToolbar.vue';
 import '@/assets/tungsten/extensions/array.extensions'
-
-const router = useRouter()
 
 const { barItems } = defineProps<{
   barItems: VuetyNavigationBarItem[]
@@ -17,11 +14,17 @@ const { barItems } = defineProps<{
   title?: string
 }>()
 
+const emits = defineEmits<{
+  back: [void]
+  close: [void]
+  push: [path: string]
+}>()
+
 const leftBarItems = computed(() => barItems.filter(it => it.position < 0))
 const backItem = computed(() => leftBarItems.value.find(it => it.kind === VuetyNavigationBarItemKind.back))
 
 const rightBarItems = computed(() => barItems.filter(it => it.position >= 0))
-const closeItem = computed(() => leftBarItems.value.find(it => it.kind === VuetyNavigationBarItemKind.close))
+const closeItem = computed(() => rightBarItems.value.find(it => it.kind === VuetyNavigationBarItemKind.close))
 </script>
 
 <template>
@@ -34,14 +37,14 @@ const closeItem = computed(() => leftBarItems.value.find(it => it.kind === Vuety
         class="back"
         :icon="Icon.ChevronLeft"
         :label="backItem.label"
-        @click="router.back()"
+        @click="emits('back')"
       />
       
       <Toolbar
         v-else-if="leftBarItems" 
         class="left"
         :items="leftBarItems"
-        @select-item="item => router.push(item.key)"
+        @select-item="item => emits('push', item.key)"
       />
 
       <span v-if="title" id="vnb-title" class="title">
@@ -52,14 +55,14 @@ const closeItem = computed(() => leftBarItems.value.find(it => it.kind === Vuety
 
       <CloseButton 
         v-if="closeItem"
-        @click="router.replace(closeItem.path!)"
+        @click="emits('close')"
       />
       
       <Toolbar
         v-else-if="rightBarItems" 
-        class="left"
+        class="right"
         :items="rightBarItems" 
-        @select-item="item => router.push(item.key)"
+        @select-item="item => emits('push', item.key)"
       />
     </div>
   </nav>

@@ -14,7 +14,6 @@ const emits = defineEmits<{
     <div class="vmv-background" @click="emits('close')"></div>
     
     <div class="vmv-view-wrapper">
-      <!-- <slot name="header"></slot> -->
       <slot></slot>
     </div>
   </div>

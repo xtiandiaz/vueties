@@ -3,7 +3,7 @@ import { Icon } from '@design-tokens/iconography'
 import SvgIcon from '../../misc/VuetySvgIcon.vue';
 
 defineProps<{
-  isUnfolded: boolean,
+  isUnfolded: boolean
 }>()
 
 const emits = defineEmits<{

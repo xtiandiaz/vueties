@@ -1,18 +1,29 @@
 <script setup lang="ts" generic="NavItemKey">
-import { useTemplateRef } from 'vue';
-import type { VuetyNavigationBarItem } from '../components/shared/view-models';
+import { onMounted, useTemplateRef } from 'vue';
+import { VuetyNavigationBarItemKind, type VuetyNavigationBarItem } from '../components/shared/view-models';
 import { useScrollSpanNormalized } from '../composables/scroll-span-normalized';
 import VuetyNavigationBar from '../components/bars/VuetyNavigationBar.vue';
 
-defineProps<{
+const { navBarItems } = defineProps<{
   navBarItems: VuetyNavigationBarItem[],
   title?: string
+}>()
+
+const emits = defineEmits<{
+  back: [void]
+  close: [void]
+  push: [path: string]
+  setClosePath: [path?: string]
 }>()
 
 const scrollSpan = useScrollSpanNormalized(
   useTemplateRef('view-wrapper'), 
   { min: 0, max: 28 }
 ).span
+
+onMounted(() => {
+  emits('setClosePath', navBarItems.find(it => it.kind === VuetyNavigationBarItemKind.close)?.path)
+})
 </script>
 
 <template>
@@ -21,6 +32,9 @@ const scrollSpan = useScrollSpanNormalized(
       :bar-items="navBarItems" 
       :bar-shade-opacity="scrollSpan"
       :title="title"
+      @back="emits('back')"
+      @close="emits('close')"
+      @push="path => emits('push', path)"
     />
     
     <div class="vnv-view-wrapper" ref="view-wrapper">

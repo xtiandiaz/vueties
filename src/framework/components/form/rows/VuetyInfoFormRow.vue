@@ -11,11 +11,11 @@ const { title } = defineProps<{
 </script>
 
 <template>
-  <div class="row info">
+  <div class="vuety-info-form-row">
     <SvgIcon v-if="icon" :icon="icon" />
     
     <div class="title-subtitle-wrapper">
-      <span class="title">{{ title }}</span>
+      <span class="title" v-html="title"></span>
       <span v-if="subtitle" class="subtitle">{{ subtitle }}</span>
     </div>
     
@@ -26,28 +26,29 @@ const { title } = defineProps<{
 </template>
 
 <style scoped lang="scss">
+@use '@vueties/utils/vuetystrap' as vs;
 @use '../styles';
-@use '@design-tokens/palette';
-@use '@design-tokens/typography';
 
-.row.info {
+.vuety-info-form-row {
+  @extend %form-row;
+  
+  .svg-icon {
+    min-width: 1.75rem;
+  }
+  
   .title-subtitle-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.125em;
-    padding: 0.5em 0;
+    gap: 0.125rem;
+    padding: 0.5rem 0;
     
     .subtitle {
-      @extend .caption;
+      @extend %caption;
     }
   }
   
   .value, .subtitle {
-    @include palette.color-attribute('color', 'secondary-body');
-  }
-  
-  .svg-icon {
-    min-width: 1.75em;
+    @include vs.color-attribute('color', 'secondary-body');
   }
 }
 </style>
