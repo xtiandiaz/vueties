@@ -2,13 +2,13 @@ import { onMounted, onUnmounted } from "vue";
 
 type EventTargetForSetup = EventTarget | VisualViewport
 
-export function useWindowEvent(key: keyof WindowEventMap, target: EventTargetForSetup, callback: (e: Event) => void) {
+export function useEvent(key: keyof WindowEventMap, target: EventTargetForSetup, listener: (e: Event) => void) {
   onMounted(() => {
     console.log(`Adding ${target} event:`, key)
-    target.addEventListener(key, callback)
+    target.addEventListener(key, listener)
   })
   onUnmounted(() => {
     console.log(`Removing ${target} event:`, key)
-    target.removeEventListener(key, callback)
+    target.removeEventListener(key, listener)
   })
 }
