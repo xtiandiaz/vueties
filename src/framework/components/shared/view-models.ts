@@ -69,10 +69,12 @@ export const navBarItem = (
   path: string, 
   position: number, 
   label?: string, 
-  icon?: Icon
+  icon?: Icon,
+  isEnabled: boolean = true
 ): VuetyNavigationBarItem => {
   return {
     icon,
+    isEnabled,
     key: path,
     kind: VuetyNavigationBarItemKind.custom,
     label,
