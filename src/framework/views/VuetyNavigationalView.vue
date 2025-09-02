@@ -34,7 +34,7 @@ onMounted(() => {
       :title="title"
       @back="emits('back')"
       @close="emits('close')"
-      @push="path => emits('push', path)"
+      @push="(path: string) => emits('push', path)"
     />
     
     <div class="vnv-view-wrapper" ref="view-wrapper">
@@ -53,13 +53,11 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: env(safe-area-inset-top);
 }
 
 .vnv-view-wrapper {
   box-sizing: border-box;
-  overflow-y: auto;
-  padding-bottom: env(safe-area-inset-bottom);
   flex-grow: 1;
+  overflow-y: auto;
 }
 </style>

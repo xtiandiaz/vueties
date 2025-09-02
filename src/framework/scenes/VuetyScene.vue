@@ -20,7 +20,9 @@ function push(path: string) {
     @back="back"
     @push="push"
   >
-      <component :is="Component" />
+      <div id="vs-router-view-component-wrapper">
+        <component :is="Component" />
+      </div>
       
       <ModalScene 
         @back="back"
@@ -32,7 +34,9 @@ function push(path: string) {
 <style scoped lang="scss">
 @use '@vueties/utils/vuetystrap' as vs;
 
-.vuety-navigational-view {
-  @include vs.position(fixed, 0, 0, 0, 0)
+#vs-router-view-component-wrapper {
+  box-sizing: border-box;
+  height: 100%;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
 }
 </style>

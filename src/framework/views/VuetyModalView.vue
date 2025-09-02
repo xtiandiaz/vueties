@@ -27,13 +27,8 @@ const emits = defineEmits<{
 @use '../components/bars/styles' as bar-styles;
 
 .vuety-modal-view {
-  padding-top: calc(styles.$modal-view-margin-top + env(safe-area-inset-top));
   z-index: styles.$modal-view-z-index;
   @include vs.position(fixed, 0, 0, 0, 0);
-  
-  :deep(.vuety-navigation-bar) {
-    padding-top: 0;
-  }
   
   .vmv-background {
     background-color: rgba($color: #000000, $alpha: 0.8);

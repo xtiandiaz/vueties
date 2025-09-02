@@ -42,10 +42,7 @@ function close() {
 <style scoped lang="scss">
 @use '@vueties/utils/vuetystrap' as vs;
 @use '../components/bars/styles' as bar-styles;
-
-:deep(.vnv-view-wrapper) {
-  padding-top: 0;
-}
+@use '../views/styles' as view-styles;
 
 @mixin transition($timing-function, $duration: 0.25s) {
   transition: none $duration $timing-function;
@@ -56,6 +53,14 @@ function close() {
   :deep(.vmv-view-wrapper) {
     transition: transform $duration $timing-function;
   } 
+}
+
+.vuety-modal-view {
+  padding-top: calc(view-styles.$modal-view-margin-top + env(safe-area-inset-top));
+  
+  .vmv-view-wrapper {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 .v-enter-active {
