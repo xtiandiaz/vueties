@@ -8,7 +8,7 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  select: [key: Value]
+  selected: [key: Value]
 }>()
 </script>
 
@@ -17,7 +17,7 @@ const emits = defineEmits<{
     <SegmentedButton 
       :choice="choice" 
       :options="options" 
-      @select="(value) => emits('select', value)"
+      @selected="(value) => emits('selected', value)"
     />
   </div>
 </template>
@@ -28,6 +28,7 @@ const emits = defineEmits<{
 
 .vuety-segmented-button-form-row {
   @extend %form-row;
+  padding: 0 0.5rem;
    
   .representative-icon {
     @include vs.color-attribute('color', vs.$tertiary-body-color);

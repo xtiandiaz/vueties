@@ -8,7 +8,7 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  select: [value: Value]
+  selected: [value: Value]
 }>()
 </script>
 
@@ -21,7 +21,7 @@ const emits = defineEmits<{
       type="button"
       :key="index"
       :class="{ selected: choice === option.value}"
-      @click="emits('select', option.value)"
+      @click="emits('selected', option.value)"
     >
       <div class="selection-background"></div>
       <SvgIcon v-if="option.icon" :icon="option.icon" />

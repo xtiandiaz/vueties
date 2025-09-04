@@ -3,11 +3,13 @@ import { type VuetySelectionOption } from '../shared/view-models'
 import FormSection from './VuetyFormSection.vue';
 import OptionRow from './rows/VuetyOptionFormRow.vue'
 import type { Icon } from '@/assets/design-tokens/iconography';
+import type { Range } from '@/assets/tungsten/math';
 
-const { choices, minimumChoiceCount } = defineProps<{
-  choices: Value[]
+const model = defineModel<Value[]>({ default: [], required: true })
+
+const { choiceRange } = defineProps<{
+  choiceRange: Range
   options: VuetySelectionOption<Value>[]
-  minimumChoiceCount: number
   
   footnote?: string
   icon?: Icon
@@ -15,16 +17,16 @@ const { choices, minimumChoiceCount } = defineProps<{
   subtitle?: string
 }>()
 
-const emits = defineEmits<{
-  deselect: [value: Value]
-  select: [value: Value]
-}>()
-
-function onTapped(value: Value) {
-  if (choices.includes(value) && choices.length > minimumChoiceCount) {
-    emits('deselect', value)
-  } else if (!choices.includes(value)) {
-    emits('select', value)
+function onOptionPicked(value: Value) {  
+  if (model.value.includes(value)) {
+    if (model.value.length > choiceRange.min) {
+      model.value.remove(c => c === value)
+    }
+  } else {
+    if (model.value.length >= choiceRange.max) {
+      model.value.pop()
+    }
+    model.value.push(value)
   }
 }
 </script>
@@ -41,11 +43,11 @@ function onTapped(value: Value) {
       v-for="(option, index) in options" 
       :key="index"
       :value="option.value"
-      :isSelected="choices.includes(option.value)"
+      :isSelected="model.includes(option.value)"
       :icon="option.icon"
       :title="option.title"
       :subtitle="option.subtitle"
-      @select="(value) => onTapped(value)" 
+      @picked="(value) => onOptionPicked(value)" 
     />
   </FormSection>
 </template>
