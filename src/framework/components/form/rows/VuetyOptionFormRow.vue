@@ -11,14 +11,14 @@ defineProps<{
 }>()
 
 const emits = defineEmits<{
-  select: [value: Value]
+  picked: [value: Value]
 }>()
 </script>
 
 <template>
   <div 
     class="vuety-option-form-row" :class="{ selected: isSelected }"
-    @click="emits('select', value)"
+    @click="emits('picked', value)"
   >
     <SvgIcon v-if="icon" :icon="icon" class="representative-icon" />
     <span class="title" :class="{ selected: isSelected }">{{ title }}</span>

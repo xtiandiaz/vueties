@@ -2,13 +2,10 @@
 import type { VuetySelectionOption } from '../shared/view-models';
 import SvgIcon from '../misc/VuetySvgIcon.vue';
 
-defineProps<{
-  choice: Value
-  options: VuetySelectionOption<Value>[]
-}>()
+const model = defineModel<Value>({ required: true })
 
-const emits = defineEmits<{
-  select: [value: Value]
+defineProps<{
+  options: VuetySelectionOption<Value>[]
 }>()
 </script>
 
@@ -16,12 +13,12 @@ const emits = defineEmits<{
   <div class="vuety-segmented-button">
     <div class="background"></div>
     
-    <button 
+    <button
       v-for="(option, index) of options"
       type="button"
+      :class="{ selected: option.value === model }"
       :key="index"
-      :class="{ selected: choice === option.value}"
-      @click="emits('select', option.value)"
+      @click="model = option.value"
     >
       <div class="selection-background"></div>
       <SvgIcon v-if="option.icon" :icon="option.icon" />

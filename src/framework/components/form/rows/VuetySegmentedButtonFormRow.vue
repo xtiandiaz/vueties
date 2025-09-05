@@ -2,22 +2,18 @@
 import SegmentedButton from '../../buttons/VuetySegmentedButton.vue';
 import type { VuetySelectionOption } from '../../shared/view-models';
 
-defineProps<{
-  choice: Value
-  options: VuetySelectionOption<Value>[]
-}>()
+const model = defineModel<Value>({ required: true })
 
-const emits = defineEmits<{
-  select: [key: Value]
+defineProps<{
+  options: VuetySelectionOption<Value>[]
 }>()
 </script>
 
 <template>
   <div class="vuety-segmented-button-form-row">    
     <SegmentedButton 
-      :choice="choice" 
+      v-model="model"
       :options="options" 
-      @select="(value) => emits('select', value)"
     />
   </div>
 </template>
@@ -28,6 +24,7 @@ const emits = defineEmits<{
 
 .vuety-segmented-button-form-row {
   @extend %form-row;
+  padding: 0 0.5rem;
    
   .representative-icon {
     @include vs.color-attribute('color', vs.$tertiary-body-color);
