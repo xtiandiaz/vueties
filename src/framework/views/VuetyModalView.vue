@@ -37,6 +37,7 @@ const emits = defineEmits<{
   }
   
   .vmv-view-wrapper {
+    box-sizing: border-box;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;

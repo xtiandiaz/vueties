@@ -58,9 +58,9 @@ function close() {
 .vuety-modal-view {
   padding-top: calc(view-styles.$modal-view-margin-top + env(safe-area-inset-top));
   
-  .vmv-view-wrapper {
+  :deep(.vmv-view-wrapper) {
     padding-bottom: env(safe-area-inset-bottom);
-  }
+  } 
 }
 
 .v-enter-active {
