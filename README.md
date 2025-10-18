@@ -16,7 +16,7 @@ The collection includes:
 - Basic Forms
 - Modal views
 - Basic transitions
-- And [design tokens](https://xtiandiaz.github.io/lexi) (colors, iconography, typography, etc.) of my particular taste and preference.
+- And [design tokens](https://github.com/xtiandiaz/design-tokens) (colors, iconography, typography, etc.) of my particular taste and preference.
 - Probably more to come as needed...
 
 You may have noticed, however, that they're not documented. Well, mainly because I don't expect to lure other devs. to use these vueties given the fact that there are many other reliable alternatives. In any case, feel free to fork and/or offer contribution.
